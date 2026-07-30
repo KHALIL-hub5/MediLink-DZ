@@ -1,4 +1,4 @@
-# Medcin-Pass
+# A digital healthcare assistant for Algerian citizens that helps them find medical care quickly and safely.
 a project algerian (website)
 #the path of the project:
 1-the user use this website to book an appointment with th doctor.
