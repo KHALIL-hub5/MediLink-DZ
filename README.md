@@ -1,552 +1,259 @@
-# A digital healthcare assistant for Algerian citizens that helps them find medical care quickly and safely.
-a project algerian (website and mobile app)
+# 🏥 MediLink DZ
 
-######################################################## Documentation ###############################################################
+> A modern healthcare platform connecting patients, doctors, pharmacies, and healthcare providers across Algeria.
 
-Since you're treating this as a real startup/PFE, I'll mentor you the way a university supervisor or software architect would. You should not start coding before preparing the project documentation.
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Vite](https://img.shields.io/badge/Vite-Latest-purple)
+![Status](https://img.shields.io/badge/Status-Under_Development-orange)
 
-Project Documentation Roadmap
+---
 
-Your project should include these documents, in this order:
+## 📖 Overview
 
-Healthcare Assistant
+MediLink DZ is a digital healthcare platform designed to simplify access to medical services in Algeria.
+
+The platform allows patients to:
+
+- 🔍 Search for doctors by specialty and location
+- 📅 Book medical appointments online
+- 💊 Find nearby pharmacies
+- 🤖 Use an AI-powered health assistant for educational guidance
+- 📂 Access their medical history
+- 🔔 Receive appointment and medication reminders
+
+Healthcare professionals can efficiently manage their appointments and patient interactions, while administrators oversee the entire platform.
+
+---
+
+# ✨ Main Features
+
+## 👤 Patient
+
+- Secure authentication
+- Personal dashboard
+- Doctor search
+- Online appointment booking
+- Medical history
+- AI Health Assistant
+- Notifications
+- Profile management
+
+---
+
+## 👨‍⚕️ Doctor
+
+- Doctor profile
+- Availability management
+- Appointment management
+- Patient history
+- Consultation records
+
+---
+
+## 💊 Pharmacy
+
+- Pharmacy directory
+- Nearby pharmacies
+- Working hours
+- Medicine availability (future feature)
+
+---
+
+## 🤖 AI Health Assistant
+
+The AI assistant provides:
+
+- Educational health information
+- Symptom guidance (not a medical diagnosis)
+- Recommendations to consult a healthcare professional when appropriate
+- Doctor and pharmacy suggestions based on the user's location
+
+> **Medical Disclaimer:** The AI assistant is not a substitute for professional medical advice, diagnosis, or treatment.
+
+---
+
+## 📱 Responsive Design
+
+The application is fully responsive and optimized for:
+
+- 💻 Desktop
+- 📱 Mobile
+- 📟 Tablet
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Shadcn UI
+- React Router
+- TanStack Query
+- React Hook Form
+- Zod
+- Axios
+- Framer Motion
+
+---
+
+## Backend *(planned)*
+
+- NestJS
+- TypeScript
+- PostgreSQL
+- Prisma ORM
+- JWT Authentication
+- REST API
+
+---
+
+## AI Integration *(planned)*
+
+- OpenAI API
+- Google Gemini API
+
+---
+
+## Maps & Location *(planned)*
+
+- Google Maps API
+- Geolocation API
+
+---
+
+# 📂 Project Structure
+
+```text
+MediLinkDZ/
+
+├── Front-end/
+│   ├── src/
+│   ├── public/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── services/
+│   ├── api/
+│   ├── assets/
+│   └── ...
 │
-├── 1. Vision Document
-├── 2. Feasibility Study
-├── 3. Software Requirements Specification (SRS)
-├── 4. Business Model
-├── 5. User Stories
-├── 6. Use Case Diagram
-├── 7. Use Case Specifications
-├── 8. UML Diagrams
-│      ├── Class Diagram
-│      ├── Sequence Diagrams
-│      ├── Activity Diagrams
-│      ├── State Diagrams
-│      ├── Component Diagram
-│      └── Deployment Diagram
-├── 9. Database Design
-├── 10. API Documentation
-├── 11. AI Design Document
-├── 12. Security Document
-├── 13. UI/UX Documentation
-├── 14. Testing Document
-├── 15. Deployment Guide
-└── 16. User Manual
-1. Vision Document
+├── Back-end/
+│   ├── src/
+│   ├── prisma/
+│   ├── modules/
+│   ├── controllers/
+│   ├── services/
+│   └── ...
+│
+└── docs/
+```
 
-Describe:
+---
 
-Problem
-Solution
-Objectives
-Target users
-Expected impact
+# 🚀 Installation
 
-Example sections:
+Clone the repository
 
-Introduction
+```bash
+git clone https://github.com/YOUR_USERNAME/MediLinkDZ.git
+```
 
-Problem Statement
+Go to the project
 
-Objectives
+```bash
+cd MediLinkDZ
+```
 
-Scope
+Install frontend dependencies
 
-Stakeholders
+```bash
+cd Front-end
+npm install
+```
 
-Expected Benefits
-2. Feasibility Study
+Start the development server
 
-Include:
+```bash
+npm run dev
+```
 
-Technical feasibility
-React
-React Native
-NestJS
-PostgreSQL
-Gemini AI
-Economic feasibility
+---
 
-Cost estimation
+# 🎯 Roadmap
 
-Hosting
+### Phase 1
 
-Database
+- [x] Project planning
+- [x] UI/UX Design
+- [ ] Frontend Development
+- [ ] Backend Architecture
 
-AI
+### Phase 2
 
-Maps
+- [ ] Authentication
+- [ ] Doctor Search
+- [ ] Appointment Booking
+- [ ] Pharmacy Locator
 
-Operational feasibility
+### Phase 3
 
-Will doctors use it?
+- [ ] AI Health Assistant
+- [ ] Medical Records
+- [ ] Notifications
 
-Will patients use it?
+### Phase 4
 
-3. Software Requirements Specification (SRS)
+- [ ] Mobile Application
+- [ ] Deployment
+- [ ] Production Release
 
-This is the most important document.
+---
 
-Include:
+# 🌍 Vision
 
-Functional Requirements
+Our goal is to build a unified digital healthcare ecosystem for Algeria that improves access to healthcare services through modern technology.
 
-FR1 Register
+---
 
-FR2 Login
+# 🤝 Contributing
 
-FR3 Book Appointment
+Contributions are welcome!
 
-FR4 Search Doctor
+If you'd like to contribute:
 
-FR5 Find Pharmacy
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
 
-FR6 AI Symptom Checker
+---
 
-FR7 Medical History
+# 📄 License
 
-FR8 Notifications
+This project is licensed under the MIT License.
 
-FR9 Admin Dashboard
+---
 
-Non Functional Requirements
+# 👨‍💻 Author
 
-Performance
+**Khalil Djaidja**
 
-Security
+Software Engineering Student
 
-Availability
+Passionate about:
 
-Usability
+- Web Development
+- Mobile Development
+- Artificial Intelligence
+- Cybersecurity
+- Healthcare Technologies
 
-Scalability
+---
 
-Maintainability
-
-4. Business Model
-
-Explain
-
-Who pays?
-
-Patients?
-
-Doctors?
-
-Clinics?
-
-Hospitals?
-
-Advertising?
-
-Subscription?
-
-Premium AI?
-
-5. User Stories
-
-Example
-
-As a patient
-
-I want to book an appointment
-
-So that I can visit my doctor.
-
-Example
-
-As a pharmacist
-
-I want to update medicine availability
-
-So patients know what is available.
-6. Use Case Diagram
-
-Actors
-
-Patient
-
-Doctor
-
-Pharmacist
-
-Admin
-
-AI Service
-
-Maps API
-
-Payment Gateway
-
-Use Cases
-
-Register
-
-Login
-
-Book Appointment
-
-Cancel Appointment
-
-Find Doctor
-
-Find Pharmacy
-
-Upload Prescription
-
-Chat with AI
-
-Receive Notification
-
-Manage Users
-
-7. Use Case Specifications
-
-Example
-
-UC-01
-
-Login
-
-Actor
-
-Patient
-
-Preconditions
-
-User registered
-
-Main Flow
-
-Enter email
-
-Enter password
-
-Validate
-
-Open dashboard
-
-Alternative Flow
-
-Wrong password
-
-Forgot password
-
-8. UML Diagrams
-
-You will need
-
-Class Diagram
-
-Entities
-
-Patient
-
-Doctor
-
-Appointment
-
-Medicine
-
-Prescription
-
-Clinic
-
-Pharmacy
-
-Notification
-
-MedicalRecord
-
-Symptom
-
-Disease
-
-Activity Diagram
-
-Appointment process
-
-Sequence Diagram
-
-Patient
-
-↓
-
-Frontend
-
-↓
-
-Backend
-
-↓
-
-Database
-
-↓
-
-Doctor
-
-Component Diagram
-
-Frontend
-
-Backend
-
-AI
-
-Maps
-
-Database
-
-Notification
-
-Deployment Diagram
-
-Mobile App
-
-↓
-
-API Server
-
-↓
-
-Database
-
-↓
-
-Gemini API
-
-↓
-
-Maps API
-
-9. Database Design
-
-ER Diagram
-
-Tables
-
-Users
-
-Patients
-
-Doctors
-
-Appointments
-
-Medicines
-
-Pharmacies
-
-Clinics
-
-Diseases
-
-Symptoms
-
-MedicalRecords
-
-Notifications
-
-Reviews
-
-10. API Documentation
-
-Document every endpoint
-
-Example
-
-POST /login
-
-POST /register
-
-GET /doctors
-
-GET /appointments
-
-POST /appointments
-
-DELETE /appointments
-
-POST /symptoms
-
-GET /pharmacies
-
-POST /prescription/upload
-
-For each API
-
-Description
-
-Parameters
-
-Request
-
-Response
-
-Errors
-
-11. AI Design Document
-
-Very important.
-
-Explain
-
-Prompt Engineering
-
-Model
-
-Temperature
-
-Safety
-
-Fallback
-
-Caching
-
-Conversation Memory
-
-Medical Disclaimer
-
-Confidence Score
-
-Example
-
-Patient symptoms
-
-↓
-
-Backend
-
-↓
-
-Gemini
-
-↓
-
-Structured JSON
-
-↓
-
-Frontend
-12. Security Document
-
-Authentication
-
-JWT
-
-OAuth
-
-HTTPS
-
-Password Hashing
-
-Role Based Access Control
-
-SQL Injection Protection
-
-XSS
-
-CSRF
-
-Encryption
-
-Medical Data Privacy
-
-Audit Logs
-
-13. UI/UX Documentation
-
-Wireframes
-
-Mockups
-
-Color Palette
-
-Typography
-
-Navigation
-
-Accessibility
-
-Responsive Design
-
-14. Testing Document
-
-Unit Testing
-
-Integration Testing
-
-API Testing
-
-Security Testing
-
-Performance Testing
-
-Usability Testing
-
-AI Testing
-
-Acceptance Testing
-
-15. Deployment Guide
-
-Frontend
-
-Backend
-
-Database
-
-Environment Variables
-
-Docker
-
-CI/CD
-
-Cloud Hosting
-
-Monitoring
-
-Backup
-
-16. User Manual
-
-Patient Guide
-
-Doctor Guide
-
-Admin Guide
-
-Screenshots
-
-FAQs
-
-Troubleshooting
-
-Recommended Tech Stack
-Layer	Technology
-Mobile	React Native
-Web	React
-Backend	NestJS
-Database	PostgreSQL
-ORM	Prisma
-Authentication	JWT + Google OAuth
-AI	Google Gemini
-Maps	OpenStreetMap + Leaflet
-Notifications	Firebase Cloud Messaging
-File Storage	Cloudinary
-Deployment	Docker + Nginx
-Version Control	Git + GitHub
-Development Timeline
-Phase	Deliverables
-Phase 1	Vision, Feasibility, SRS
-Phase 2	UML, ERD, Database Design
-Phase 3	UI/UX Prototypes
-Phase 4	Backend APIs
-Phase 5	Web Application
-Phase 6	Mobile Application
-Phase 7	AI Integration
-Phase 8	Maps & Geolocation
-Phase 9	Testing
-Phase 10	Deployment & Documentation
+⭐ If you like this project, consider giving it a star!
