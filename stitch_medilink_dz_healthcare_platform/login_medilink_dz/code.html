@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | MediLink DZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f5ee",
+                    "secondary": "#006591",
+                    "surface-container-highest": "#dfe4dd",
+                    "inverse-surface": "#2d322d",
+                    "on-background": "#181d19",
+                    "inverse-primary": "#7ed99e",
+                    "on-primary-fixed-variant": "#00522d",
+                    "surface-container": "#ebefe8",
+                    "primary-fixed-dim": "#7ed99e",
+                    "on-surface": "#181d19",
+                    "primary": "#006a3b",
+                    "on-primary-container": "#f6fff4",
+                    "surface-container-high": "#e5e9e2",
+                    "on-secondary-container": "#004666",
+                    "inverse-on-surface": "#edf2eb",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface-variant": "#dfe4dd",
+                    "surface": "#f6fbf3",
+                    "on-surface-variant": "#3f4941",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "primary-container": "#268451",
+                    "on-secondary-fixed": "#001e2f",
+                    "tertiary-fixed": "#dbe1ff",
+                    "outline": "#6f7a70",
+                    "on-tertiary-fixed": "#00174b",
+                    "surface-bright": "#f6fbf3",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "surface-tint": "#006d3d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "background": "#f6fbf3",
+                    "tertiary": "#0051d5",
+                    "tertiary-container": "#316bf3",
+                    "on-tertiary-container": "#fefcff",
+                    "primary-fixed": "#9af6b8",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "outline-variant": "#becabe",
+                    "on-primary-fixed": "#00210f",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d7dbd4",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#39b8fd",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .auth-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        input:focus + label, input:not(:placeholder-shown) + label {
+            transform: translateY(-24px) scale(0.85);
+            color: var(--tw-color-primary);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans min-h-screen flex items-center justify-center p-0 md:p-6">
+<!-- Auth Container -->
+<main class="w-full max-w-[1100px] min-h-[700px] bg-surface-container-lowest md:rounded-xl overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.06)] flex flex-col md:flex-row animate-in fade-in duration-700">
+<!-- Left Side: Calming Medical Imagery -->
+<section class="hidden md:flex md:w-1/2 relative overflow-hidden bg-primary-container">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-80 mix-blend-overlay" data-alt="A serene, professional medical environment featuring a high-tech clinic lobby in Algiers with soft daylight streaming through large windows. The interior uses a calming color palette of sea greens and soft whites. A blurred doctor in the distance conveys trustworthiness and expertise. The overall mood is peaceful, digital-first, and exceptionally clean, reflecting a high-end Algerian healthcare experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqjsDmkos1jnxcpnw9N8cNNl7v55f-VNcKCVDhMOSCssj9N2MmFCdvGMifU-Vs_VU0vt7SJM47AzirAx9eS42OF18lhE_SBFCwGmcG05b_gtJ07A907rgPgCdu9nqmDusgoXwlhSg-PG6jQbozqWaZL7aaLgtWU4829Bzea6oH6HJ30PeIDzucpBUfV4ePCw9f68ljMP3340CPppiNoMty3-if26j8MmHkfTT6jYFCT4zbaOrr_yqV3A"/>
+</div>
+<!-- Overlay Content -->
+<div class="relative z-10 w-full h-full flex flex-col justify-between p-12 text-on-primary-container">
+<div>
+<h2 class="font-h2 text-h2 tracking-tight mb-4">MediLink DZ</h2>
+<p class="font-body-lg text-body-lg opacity-90 max-w-sm">Connecting Algeria to world-class healthcare, powered by AI and human expertise.</p>
+</div>
+<div class="glass-panel p-6 rounded-lg border border-white/20">
+<div class="flex items-center gap-4 mb-3">
+<span class="material-symbols-outlined text-primary-fixed">verified_user</span>
+<span class="font-label-md text-label-md">Ministry of Health Approved</span>
+</div>
+<p class="font-caption text-caption opacity-80">Join over 50,000 Algerians managing their health digitally with privacy and security at the core.</p>
+</div>
+</div>
+<!-- Subtle Animated Sparkle -->
+<div class="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary-fixed/20 blur-[100px] rounded-full"></div>
+</section>
+<!-- Right Side: Login Form -->
+<section class="w-full md:w-1/2 flex flex-col justify-center px-margin-mobile md:px-20 py-12 bg-surface-bright">
+<header class="mb-10">
+<div class="md:hidden flex justify-center mb-8">
+<h1 class="font-h3 text-h3 text-primary tracking-tight">MediLink DZ</h1>
+</div>
+<h2 class="font-h2 text-h2 mb-2 text-on-surface">Welcome back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your medical dashboard securely</p>
+</header>
+<!-- Social Logins -->
+<div class="flex flex-col gap-3 mb-8">
+<button class="w-full h-14 flex items-center justify-center gap-3 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<img alt="Google" class="w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF0R2GB3c6L97jEsAqRax2MX1_lFXIKzv9GK-c_OqZnRUt83QwCfjYpkyp2LecWoozQIR5HnZo2gBYjrVrvy6A5eORafyU9gW6Hgc1D-tNjC-Tu9KfZsI316XbNf0gpTyuRHnBe2Xp4FHvKw-n_MF8pGCy4qqTnAaYV-rlFZ5RRh6YViY_RT1hWgGAr8nxdfijJNIdI_UuH5IpJLrSFQjg9zyltFVfNakfW5HBxO1KoVLmw1a3VKxV6Q"/>
+<span class="font-label-md text-label-md">Continue with Google</span>
+</button>
+<button class="w-full h-14 flex items-center justify-center gap-3 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<span class="material-symbols-outlined text-2xl">file_download</span>
+<span class="font-label-md text-label-md">Continue with Apple</span>
+</button>
+</div>
+<div class="relative mb-8 flex items-center">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="px-4 font-caption text-caption text-outline">OR EMAIL</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Main Auth Form -->
+<form class="space-y-6" id="loginForm" onsubmit="return handleLogin(event)">
+<div class="relative group">
+<input class="peer w-full h-14 px-4 bg-surface-container border-none rounded-lg focus:ring-2 focus:ring-primary text-on-surface font-body-md pt-4" id="email" name="email" placeholder=" " required="" type="email"/>
+<label class="absolute left-4 top-4 text-on-surface-variant font-body-md transition-all duration-200 pointer-events-none" for="email">Email Address</label>
+<div class="hidden error-message mt-1 text-error text-caption px-1">Please enter a valid institutional or personal email</div>
+</div>
+<div class="relative group">
+<input class="peer w-full h-14 px-4 bg-surface-container border-none rounded-lg focus:ring-2 focus:ring-primary text-on-surface font-body-md pt-4" id="password" name="password" placeholder=" " required="" type="password"/>
+<label class="absolute left-4 top-4 text-on-surface-variant font-body-md transition-all duration-200 pointer-events-none" for="password">Password</label>
+<button class="absolute right-4 top-4 text-on-surface-variant" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="pw-icon">visibility</span>
+</button>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary bg-surface-container" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface-variant">Remember me</span>
+</label>
+<a class="font-label-md text-label-md text-secondary hover:underline" href="#">Forgot Password?</a>
+</div>
+<button class="w-full h-14 bg-primary text-on-primary rounded-lg font-label-md hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" id="submitBtn" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<footer class="mt-10 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="text-primary font-bold hover:underline" href="#">Register as Patient or Doctor</a>
+</p>
+<div class="mt-8 flex justify-center gap-6">
+<a class="font-caption text-caption text-outline hover:text-primary" href="#">Medical Ethics</a>
+<a class="font-caption text-caption text-outline hover:text-primary" href="#">Privacy Policy</a>
+</div>
+</footer>
+</section>
+</main>
+<!-- Modal Success / Error Micro-interactions -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 glass-panel border border-primary/20 px-6 py-4 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-500 flex items-center gap-3" id="toast">
+<span class="material-symbols-outlined text-primary" id="toast-icon">check_circle</span>
+<span class="font-label-md text-on-surface" id="toast-msg">Successfully signed in</span>
+</div>
+<script>
+        function togglePassword() {
+            const pwInput = document.getElementById('password');
+            const pwIcon = document.getElementById('pw-icon');
+            if (pwInput.type === 'password') {
+                pwInput.type = 'text';
+                pwIcon.innerText = 'visibility_off';
+            } else {
+                pwInput.type = 'password';
+                pwIcon.innerText = 'visibility';
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalContent = btn.innerHTML;
+            
+            // Loading State
+            btn.disabled = true;
+            btn.innerHTML = '<span class="animate-spin material-symbols-outlined">sync</span> Signing in...';
+            
+            // Artificial delay to simulate validation/backend
+            setTimeout(() => {
+                showToast('Welcome back, Redirecting...', 'check_circle');
+                
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalContent;
+                }, 2000);
+            }, 1200);
+
+            return false;
+        }
+
+        function showToast(msg, icon) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+            
+            toastMsg.innerText = msg;
+            toastIcon.innerText = icon;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Professional Validation States UI
+        const emailInput = document.getElementById('email');
+        emailInput.addEventListener('blur', () => {
+            const errorMsg = emailInput.nextElementSibling.nextElementSibling;
+            if (emailInput.value && !emailInput.value.includes('@')) {
+                emailInput.classList.add('ring-2', 'ring-error');
+                errorMsg.classList.remove('hidden');
+            } else {
+                emailInput.classList.remove('ring-2', 'ring-error');
+                errorMsg.classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>

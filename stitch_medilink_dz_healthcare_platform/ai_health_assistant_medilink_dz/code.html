@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ | AI Health Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f5ee",
+                    "secondary": "#006591",
+                    "surface-container-highest": "#dfe4dd",
+                    "inverse-surface": "#2d322d",
+                    "on-background": "#181d19",
+                    "inverse-primary": "#7ed99e",
+                    "on-primary-fixed-variant": "#00522d",
+                    "surface-container": "#ebefe8",
+                    "primary-fixed-dim": "#7ed99e",
+                    "on-surface": "#181d19",
+                    "primary": "#006a3b",
+                    "on-primary-container": "#f6fff4",
+                    "surface-container-high": "#e5e9e2",
+                    "on-secondary-container": "#004666",
+                    "inverse-on-surface": "#edf2eb",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface-variant": "#dfe4dd",
+                    "surface": "#f6fbf3",
+                    "on-surface-variant": "#3f4941",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "primary-container": "#268451",
+                    "on-secondary-fixed": "#001e2f",
+                    "tertiary-fixed": "#dbe1ff",
+                    "outline": "#6f7a70",
+                    "on-tertiary-fixed": "#00174b",
+                    "surface-bright": "#f6fbf3",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "surface-tint": "#006d3d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "background": "#f6fbf3",
+                    "tertiary": "#0051d5",
+                    "tertiary-container": "#316bf3",
+                    "on-tertiary-container": "#fefcff",
+                    "primary-fixed": "#9af6b8",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "outline-variant": "#becabe",
+                    "on-primary-fixed": "#00210f",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d7dbd4",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#39b8fd",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .chat-bubble-inbound {
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chat-bubble-outbound {
+            border-bottom-right-radius: 4px;
+        }
+
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        .glass-panel {
+            background: rgba(246, 251, 243, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #becabe;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)] h-20">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-h2 text-h2 tracking-tight text-primary">MediLink DZ</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Find Doctors</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Pharmacies</a>
+<a class="text-primary font-bold border-b-2 border-primary" href="#">AI Health</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">translate</span>
+</button>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a person with a friendly expression, soft studio lighting, minimalist medical clinic background, clean and airy aesthetic, high-resolution photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf-ulR9Glo3a3XgYbujRoA-01wdjAwvxBti9t-rac454CYMw8GguDVGO9XYnuwr-NiaSaqRrmltAQ_vWr9K2YZc8_hbzmRmwSwXtwoKEweP0TkfjaJI_sJLwa7KaIRkHLdXze_ASW7ZdKQEiBRXofzMxaM-yHaSEpCQ9kSvapAb48b8okV1ApU9CJsL-u9awvLyb7WId6c2YPDxdQqZDAXsUmeOaXGVF-KOIkzccKMyZFVlyijA1q7bw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex mt-20 h-[calc(100vh-80px)] overflow-hidden">
+<!-- SideNavBar (Shared Component Contextualized) -->
+<aside class="h-full w-72 bg-surface-container-low border-r border-outline-variant/30 hidden md:flex flex-col p-6 space-y-4 shrink-0 overflow-y-auto">
+<div class="mb-4">
+<h3 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-4">Recent Sessions</h3>
+<div class="space-y-1">
+<button class="w-full flex items-center gap-3 p-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-transform active:scale-95">
+<span class="material-symbols-outlined">chat</span>
+<span class="truncate">Lower back pain...</span>
+</button>
+<button class="w-full flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors group">
+<span class="material-symbols-outlined group-hover:text-primary">history</span>
+<span class="truncate">Flu symptoms check</span>
+</button>
+<button class="w-full flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors group">
+<span class="material-symbols-outlined group-hover:text-primary">history</span>
+<span class="truncate">Medication schedule</span>
+</button>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-4">Suggested Topics</h3>
+<div class="space-y-2">
+<div class="p-3 bg-surface border border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-colors group">
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="text-label-md">Public Health</span>
+</div>
+<p class="text-caption text-on-surface-variant">Algerian Vaccination Guide 2024</p>
+</div>
+<div class="p-3 bg-surface border border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-colors group">
+<div class="flex items-center gap-2 text-secondary mb-1">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+<span class="text-label-md">Lifestyle</span>
+</div>
+<p class="text-caption text-on-surface-variant">Dietary tips for fasting</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<button class="w-full py-3 px-4 bg-error-container text-on-error-container rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">emergency</span>
+                    Emergency Call
+                </button>
+</div>
+</aside>
+<!-- Main Chat Canvas -->
+<section class="flex-1 flex flex-col relative bg-surface-bright">
+<!-- Disclaimer Banner -->
+<div class="absolute top-0 left-0 right-0 z-10 bg-secondary/10 border-b border-secondary/20 py-2 px-margin-mobile flex items-center justify-center gap-3 backdrop-blur-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+<p class="text-caption md:text-label-md text-secondary text-center">
+<span class="font-bold">Medical Disclaimer:</span> This AI is for information only. In case of emergency, call 14 or visit the nearest ER.
+                </p>
+</div>
+<!-- Chat Messages Container -->
+<div class="flex-1 overflow-y-auto px-4 md:px-margin-desktop pt-16 pb-32 space-y-6" id="chat-messages">
+<!-- System/AI Message -->
+<div class="flex gap-3 max-w-[85%] md:max-w-[70%]">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 mt-2">
+<span class="material-symbols-outlined text-white text-[18px]">smart_toy</span>
+</div>
+<div class="chat-bubble-inbound p-4 bg-surface-container-high text-on-surface rounded-2xl shadow-sm">
+<p class="font-body-md">Hello! I am your MediLink Health Assistant. How can I help you today? I can analyze symptoms, find doctors nearby, or explain medical results.</p>
+<div class="mt-4 flex flex-wrap gap-2">
+<button class="px-3 py-1.5 bg-surface border border-primary text-primary rounded-full text-caption font-bold hover:bg-primary hover:text-white transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">search</span>
+                                Find nearest doctor
+                            </button>
+<button class="px-3 py-1.5 bg-surface border border-primary text-primary rounded-full text-caption font-bold hover:bg-primary hover:text-white transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_pharmacy</span>
+                                Check pharmacy stock
+                            </button>
+<button class="px-3 py-1.5 bg-surface border border-primary text-primary rounded-full text-caption font-bold hover:bg-primary hover:text-white transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">health_and_safety</span>
+                                Symptoms checker
+                            </button>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="max-w-[85%] md:max-w-[70%] chat-bubble-outbound p-4 bg-primary text-on-primary rounded-2xl shadow-md">
+<p class="font-body-md">I've been feeling a sharp pain in my upper abdomen after eating for the past two days. What could it be?</p>
+</div>
+</div>
+<!-- AI Response Typing -->
+<div class="flex gap-3 max-w-[85%] md:max-w-[70%]">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 mt-2">
+<span class="material-symbols-outlined text-white text-[18px]">smart_toy</span>
+</div>
+<div class="chat-bubble-inbound p-4 bg-surface-container-high text-on-surface rounded-2xl shadow-sm flex items-center gap-2">
+<div class="typing-dot w-2 h-2 bg-primary rounded-full"></div>
+<div class="typing-dot w-2 h-2 bg-primary rounded-full"></div>
+<div class="typing-dot w-2 h-2 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="absolute bottom-0 left-0 right-0 p-4 md:p-margin-desktop">
+<div class="max-w-4xl mx-auto glass-panel border border-outline-variant/30 rounded-2xl p-2 md:p-3 shadow-xl">
+<div class="flex items-end gap-2">
+<div class="flex items-center gap-1 mb-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors" title="Upload Image">
+<span class="material-symbols-outlined">image</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors" title="Voice Input">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<div class="flex-1 min-h-[44px] flex items-center">
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none py-3 px-2 font-body-md max-h-32 overflow-y-auto" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Describe your symptoms or ask a health question..." rows="1"></textarea>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-primary text-on-primary rounded-xl shadow-lg hover:bg-primary-container transition-all mb-1 active:scale-90">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Desktop Info Sidebar (Bento Style) -->
+<aside class="hidden xl:flex w-80 h-full border-l border-outline-variant/30 p-6 flex-col gap-6 bg-surface-container">
+<h3 class="font-h3 text-h3 text-primary mb-2">Health Insights</h3>
+<div class="bg-surface p-4 rounded-xl border border-outline-variant/40 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-md text-outline uppercase">AI Accuracy</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase">Optimized</span>
+</div>
+<p class="text-body-md font-bold mb-1">98.2% Correlation</p>
+<p class="text-caption text-on-surface-variant leading-relaxed">Our AI models are trained on clinical data specific to the MENA region health profiles.</p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-secondary-container p-3 rounded-xl text-on-secondary-container">
+<span class="material-symbols-outlined mb-2">stethoscope</span>
+<p class="text-label-md font-bold">4.8k+</p>
+<p class="text-caption opacity-80">Doctors online</p>
+</div>
+<div class="bg-tertiary-container p-3 rounded-xl text-on-tertiary-container">
+<span class="material-symbols-outlined mb-2">pill</span>
+<p class="text-label-md font-bold">120+</p>
+<p class="text-caption opacity-80">Pharmacies</p>
+</div>
+</div>
+<div class="mt-auto relative rounded-2xl overflow-hidden group">
+<div class="w-full h-48 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A clean, futuristic medical dashboard interface showing stylized DNA strands and health metrics, soft teal and white color scheme, high-tech glassmorphism effect, medical innovation concept." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHVa9bclJBIaKZLaI6a7x3vYn8fPshKAGqK-sClgOe3SLdWlgffHOEOJlK2qmUfo1QNpEFr-o24uGk8RtXN2vj5P_-9ketvZinutXWMIRrlPU8pxxAIz8sguyDaZvxDs2AW9iWqbjXL8_XeUT6XCFijOkxxEfENq7v9eltBFxEZ1hCsqikX3Rdr7tCiu6nIcbSyiSdicJOPTcWNIfDbEAyYe_TzeXVct0e_DqKMWCPiDuNyZKYVBO0oQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+<p class="text-white text-label-md font-bold">New: AI Prescription Scan</p>
+<p class="text-white/70 text-caption">Instantly decode handwriting using our latest update.</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Shared Component - Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-lg rounded-t-lg h-16 flex justify-around items-center px-4 pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-caption">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+<span class="text-caption">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-caption">AI Health</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-caption">Profile</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for the chat auto-scroll
+        const chatContainer = document.getElementById('chat-messages');
+        const scrollToBottom = () => {
+            chatContainer.scrollTo({
+                top: chatContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        };
+
+        // Simulate initial loading scroll
+        window.addEventListener('load', () => {
+            setTimeout(scrollToBottom, 500);
+        });
+
+        // Simple mock for interaction
+        document.querySelector('button.bg-primary.text-on-primary').addEventListener('click', () => {
+            const textarea = document.querySelector('textarea');
+            if (textarea.value.trim() === '') return;
+
+            // Create user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex justify-end';
+            userMsg.innerHTML = `
+                <div class="max-w-[85%] md:max-w-[70%] chat-bubble-outbound p-4 bg-primary text-on-primary rounded-2xl shadow-md">
+                    <p class="font-body-md">${textarea.value}</p>
+                </div>
+            `;
+            chatContainer.appendChild(userMsg);
+            textarea.value = '';
+            textarea.style.height = 'auto';
+            scrollToBottom();
+
+            // Simulate AI reply delay
+            setTimeout(() => {
+                const typing = document.createElement('div');
+                typing.className = 'flex gap-3 max-w-[85%] md:max-w-[70%]';
+                typing.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 mt-2">
+                        <span class="material-symbols-outlined text-white text-[18px]">smart_toy</span>
+                    </div>
+                    <div class="chat-bubble-inbound p-4 bg-surface-container-high text-on-surface rounded-2xl shadow-sm flex items-center gap-2">
+                        <div class="typing-dot w-2 h-2 bg-primary rounded-full"></div>
+                        <div class="typing-dot w-2 h-2 bg-primary rounded-full"></div>
+                        <div class="typing-dot w-2 h-2 bg-primary rounded-full"></div>
+                    </div>
+                `;
+                chatContainer.appendChild(typing);
+                scrollToBottom();
+
+                setTimeout(() => {
+                    chatContainer.removeChild(typing);
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'flex gap-3 max-w-[85%] md:max-w-[70%]';
+                    aiMsg.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 mt-2">
+                            <span class="material-symbols-outlined text-white text-[18px]">smart_toy</span>
+                        </div>
+                        <div class="chat-bubble-inbound p-4 bg-surface-container-high text-on-surface rounded-2xl shadow-sm">
+                            <p class="font-body-md">Based on your description, this could be related to several conditions such as gastritis or biliary issues. I recommend consulting a Gastroenterologist. Shall I find one in your area in Algiers?</p>
+                        </div>
+                    `;
+                    chatContainer.appendChild(aiMsg);
+                    scrollToBottom();
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - Doctor Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#9af6b8",
+                        "surface-container-high": "#dce9ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#7ed99e",
+                        "tertiary": "#b90538",
+                        "outline": "#6f7a70",
+                        "on-surface-variant": "#3f4941",
+                        "primary-container": "#268451",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#40000d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#004666",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#00522d",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "primary": "#006a3b",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006591",
+                        "inverse-primary": "#7ed99e",
+                        "surface-tint": "#006d3d",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f6fff4",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed": "#00210f",
+                        "tertiary-fixed": "#ffdadb",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#dc2c4f",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline-variant": "#becabe",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Be Vietnam Pro"],
+                        "title-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .shadow-level-1 { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        .shadow-level-2 { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08); }
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+        .ripple-effect::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        .ripple-effect:active::after {
+            transform: scale(0, 0);
+            opacity: .1;
+            transition: 0s;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="hidden md:flex flex-col h-full py-md fixed inset-y-0 start-0 w-[280px] bg-white/80 backdrop-blur-xl border-e border-outline-variant/20 shadow-xl z-40 bg-surface dark:bg-inverse-surface">
+<div class="px-md mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary">MediLink DZ</h1>
+</div>
+<div class="px-md mb-8 flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm" data-alt="A professional headshot of an Algerian cardiologist, Dr. Amine Benali, wearing a white coat and stethoscope. The lighting is bright and clean, typical of a modern medical facility. The background is a soft, blurred clinical setting. The mood is trustworthy and expert." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7_5ElKPlBw_2NZecn9K9Vd4jFdHo3eQHJkeXFu6uCsml3i-EP5OtRgdUH7QlZbF9y_0fsYJAQpYL-zm_5GeOideDHqlpxFS3bLITFPpX1Ax0O9blgoyT0x7y2r49TeOIzJIvr_LAtLOjVn0RoE7JmHgQv0p3RJKSImFB0nHrURPVwvtyArCW4Itj46Ise66B8VqeYr5Rnmq-ujacA1kSnm9RMDjsmQ9O_9MCBNpFiefvzP5XUaNTc"/>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Dr. Amine Benali</h2>
+<p class="font-caption text-caption text-on-surface-variant">Cardiologist • Algiers</p>
+<p class="font-caption text-caption text-outline">ID: 29482</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-sm flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container dark:bg-secondary dark:text-on-secondary font-bold rounded-lg mx-2 ripple-effect transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg ripple-effect hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+                Patients
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg ripple-effect hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg ripple-effect hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg ripple-effect hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ms-[280px] flex flex-col h-full overflow-hidden bg-background">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-16 w-full bg-surface dark:bg-inverse-surface shadow-sm dark:bg-surface-container-low">
+<button class="text-on-surface-variant dark:text-outline-variant p-2 -ml-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">MediLink DZ</h1>
+<button class="text-on-surface-variant dark:text-outline-variant p-2 -mr-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Top Header (Desktop) -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop py-md h-[88px]">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Welcome back, Dr. Benali</h1>
+<p class="text-on-surface-variant">Here's your overview for today.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 w-64 shadow-sm transition-all" placeholder="Search patients..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop pb-24 md:pb-lg pt-4 md:pt-0">
+<!-- Key Metrics Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-gutter mb-8">
+<!-- Metric 1 -->
+<div class="bg-white rounded-xl p-md shadow-level-1 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container text-on-primary-container rounded-lg">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<span class="font-label-md text-label-md text-primary bg-primary-container/30 px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 12%
+                        </span>
+</div>
+<h3 class="text-on-surface-variant mb-1">Today's Appointments</h3>
+<p class="font-display-lg text-display-lg text-on-surface">14</p>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white rounded-xl p-md shadow-level-1 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-container/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="font-label-md text-label-md text-outline px-2 py-1 flex items-center gap-1">
+                            Total
+                        </span>
+</div>
+<h3 class="text-on-surface-variant mb-1">Total Patients</h3>
+<p class="font-display-lg text-display-lg text-on-surface">1,248</p>
+</div>
+<!-- Metric 3 -->
+<div class="bg-white rounded-xl p-md shadow-level-1 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary-container/10 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-container text-on-tertiary-container rounded-lg">
+<span class="material-symbols-outlined">star</span>
+</div>
+<span class="font-label-md text-label-md text-primary bg-primary-container/30 px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 0.1
+                        </span>
+</div>
+<h3 class="text-on-surface-variant mb-1">Average Rating</h3>
+<p class="font-display-lg text-display-lg text-on-surface">4.8</p>
+</div>
+<!-- Metric 4 (Action) -->
+<div class="bg-primary text-on-primary rounded-xl p-md shadow-level-2 flex flex-col justify-between items-start ripple-effect cursor-pointer hover:shadow-lg transition-shadow">
+<div class="mb-4">
+<span class="material-symbols-outlined text-4xl mb-2">add_circle</span>
+<h3 class="font-title-md text-title-md">New Patient</h3>
+<p class="text-primary-fixed-dim text-sm opacity-90">Quick registration</p>
+</div>
+<span class="material-symbols-outlined ml-auto">arrow_forward</span>
+</div>
+</section>
+<!-- Main Layout: Timeline & Overview -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Col: Appointments Timeline -->
+<section class="lg:col-span-2 flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<h2 class="font-title-md text-title-md text-on-surface">Today's Schedule</h2>
+<button class="text-primary hover:text-surface-tint font-label-md text-label-md flex items-center gap-1">
+                            View Calendar <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+</button>
+</div>
+<div class="bg-white rounded-xl shadow-level-1 p-0 overflow-hidden">
+<!-- Timeline Item 1 -->
+<div class="flex items-start gap-4 p-md border-b border-outline-variant/30 hover:bg-surface-bright transition-colors group cursor-pointer">
+<div class="flex flex-col items-end min-w-[60px] pt-1">
+<span class="font-bold text-on-surface">09:00</span>
+<span class="text-xs text-on-surface-variant">AM</span>
+</div>
+<div class="w-1 h-full bg-primary rounded-full mt-1"></div>
+<div class="flex-1 flex justify-between items-start">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Karim Yelles</h4>
+<p class="text-on-surface-variant text-sm mb-2">Follow-up: Hypertension</p>
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-surface-container text-on-surface-variant text-xs rounded-md">
+<span class="material-symbols-outlined text-[14px]">history</span> History
+                                    </span>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant/50" data-alt="A small, circular profile picture of an elderly Algerian man with a gentle expression, wearing traditional clothing. Soft, natural lighting. A realistic portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXEQodAg3Zuc7wMHwQPS_9WOduvjmRde5X--3JS5zc9FtGhUZyqaq5lGhyD_ElfBz807Y8qqFm_0-qwmswv1qbKqrPVyberGyt6xbxOhYHTkqUrVIG-3wQbaWkM0llDz3-EwP79ncMseUpLCvuM8RQxKVLkeVfjFSx69CJgHSMwI9hQGJhna1VKUDBlvNBijz918691_c1A7-R_fDnpjt2RQ55IGz4PWJT_SCstK0ebV1cX2f5mE_X"/>
+</div>
+</div>
+<!-- Timeline Item 2 (Active) -->
+<div class="flex items-start gap-4 p-md border-b border-primary/20 bg-primary-container/10 group cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 w-1 h-full bg-primary"></div>
+<div class="flex flex-col items-end min-w-[60px] pt-1">
+<span class="font-bold text-primary">10:30</span>
+<span class="text-xs text-primary/80">AM</span>
+</div>
+<div class="w-1 h-full bg-primary/30 rounded-full mt-1 relative">
+<div class="absolute -left-1.5 top-0 w-4 h-4 bg-primary rounded-full border-4 border-white"></div>
+</div>
+<div class="flex-1 flex justify-between items-start">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Meriem Kadi</h4>
+<p class="text-on-surface-variant text-sm mb-2">Echocardiogram Review</p>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-error-container text-on-error-container text-xs rounded-md font-medium">
+                                            High Priority
+                                        </span>
+<button class="inline-flex items-center gap-1 px-2 py-1 bg-white border border-outline-variant hover:border-primary text-primary text-xs rounded-md transition-colors">
+<span class="material-symbols-outlined text-[14px]">folder_shared</span> Records
+                                        </button>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface font-bold">MK</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="flex items-start gap-4 p-md hover:bg-surface-bright transition-colors group cursor-pointer">
+<div class="flex flex-col items-end min-w-[60px] pt-1">
+<span class="font-bold text-outline">11:15</span>
+<span class="text-xs text-outline">AM</span>
+</div>
+<div class="w-1 h-full bg-surface-variant rounded-full mt-1"></div>
+<div class="flex-1 flex justify-between items-start opacity-70 group-hover:opacity-100 transition-opacity">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Ahmed Brahimi</h4>
+<p class="text-on-surface-variant text-sm">Routine Checkup</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant/50" data-alt="A small, circular profile picture of a middle-aged Algerian man in a business suit. Professional lighting, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASF8Z2J07Ob0x52yOGCO-P4wPSDDx8qhHmy6ypfQj_-F6g13Ci0aHX9Cq2WxZuB_FsgauQ217wn2PSol-Xs0daAaI0jVJFVxrQjD0wzjcPn1NpA1AYQakDAXNItGKDYKVu3uduyoAEwTO4UJBFh8JzOz-iVjiSiHh731pcBIjVmkupxntXpWwvOysfBxaXVl_9lfist89Pk41TAR880oaxSzb_c5cV7SC9iOXkrGZ48jq24TbFu-pN"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Col: Quick Access & Insights -->
+<section class="flex flex-col gap-6">
+<!-- Glassmorphic Patient Context Card -->
+<div class="glass-card rounded-xl p-md shadow-level-2 relative overflow-hidden bg-white/60">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+<h3 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">insights</span> Patient Insights
+                        </h3>
+<p class="text-sm text-on-surface-variant mb-4">Anomaly detected in recent blood pressure logs for Karim Yelles.</p>
+<button class="w-full py-2 bg-white border border-outline-variant rounded-lg text-primary font-medium hover:bg-surface transition-colors shadow-sm text-sm">
+                            Review Logs
+                        </button>
+</div>
+<!-- Pending Actions -->
+<div class="bg-white rounded-xl shadow-level-1 p-md">
+<h3 class="font-title-md text-title-md text-on-surface mb-4">Pending Tasks</h3>
+<ul class="space-y-3">
+<li class="flex items-center justify-between p-3 bg-surface rounded-lg border border-transparent hover:border-outline-variant/30 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">prescriptions</span>
+</div>
+<div>
+<p class="font-medium text-sm text-on-surface">Sign Prescriptions</p>
+<p class="text-xs text-on-surface-variant">3 awaiting signature</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</li>
+<li class="flex items-center justify-between p-3 bg-surface rounded-lg border border-transparent hover:border-outline-variant/30 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/10 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">lab_research</span>
+</div>
+<div>
+<p class="font-medium text-sm text-on-surface">Review Lab Results</p>
+<p class="text-xs text-on-surface-variant">New results for M. Kadi</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-white/70 backdrop-blur-lg border-t border-outline-variant/30 shadow-lg bg-surface/70 dark:bg-inverse-surface/70 rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Profile</span>
+</a>
+</nav>
+</body></html>

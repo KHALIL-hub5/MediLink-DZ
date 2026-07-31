@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="light" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#9af6b8",
+                        "surface-container-high": "#dce9ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#7ed99e",
+                        "tertiary": "#b90538",
+                        "outline": "#6f7a70",
+                        "on-surface-variant": "#3f4941",
+                        "primary-container": "#268451",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#40000d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#004666",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#00522d",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "primary": "#006a3b",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006591",
+                        "inverse-primary": "#7ed99e",
+                        "surface-tint": "#006d3d",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f6fff4",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed": "#00210f",
+                        "tertiary-fixed": "#ffdadb",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#dc2c4f",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline-variant": "#becabe",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Be Vietnam Pro"],
+                        "title-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .ambient-shadow-1 {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .ambient-shadow-2 {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md text-body-md">
+<!-- NavigationDrawer (Desktop) -->
+<nav aria-label="Sidebar Navigation" class="hidden md:flex flex-col h-full py-md fixed inset-y-0 start-0 w-[280px] bg-white/80 backdrop-blur-xl border-e border-outline-variant/20 shadow-xl z-40">
+<div class="px-md mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">MediLink DZ</h1>
+</div>
+<div class="px-md mb-md flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a female healthcare administrator in a bright, modern office setting. She is wearing a dark navy blazer over a light green blouse. The lighting is soft and even, typical of a modern corporate environment. The background is slightly blurred showing glass partitions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2we85oT9l9G5vvBjKPY4UWSfMfQOYSyuewOqlRgoZFTMB3Enl4pDDI0JxPKyyldAvy3HN0qECMtFjFAK7PLk5TqUbCkRc1dsdBz8uVqf1uidWpfIyQ1giwpO8U3UFYGmkkKzUkishyj5pNGSwQVQzxJ29g4wIOSf-qmQmYsVmSS3yeTh4_6it67hQI3_i5YeMtaSyJ_FzoQFSCD5fHZ0soveyCVbEGW5OgVacwwKS9iUWbN-ID8ud"/>
+</div>
+<div>
+<div class="font-title-md text-title-md text-on-surface">Dr. Amina Kebir</div>
+<div class="font-caption text-caption text-on-surface-variant">System Administrator</div>
+<div class="font-caption text-caption text-on-surface-variant">ID: ADM-9021</div>
+</div>
+</div>
+<ul class="flex-1 space-y-2 mt-md">
+<li>
+<a class="flex items-center gap-md px-4 py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Users</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>System Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ms-[280px] flex flex-col min-h-screen">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-16 w-full bg-surface shadow-sm">
+<button class="text-on-surface-variant p-2 -ml-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">MediLink DZ</h1>
+<button class="text-on-surface-variant p-2 -mr-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- TopAppBar (Desktop Overlay for Actions) -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop h-20 w-full bg-surface-bright/80 backdrop-blur-md sticky top-0 z-30 border-b border-outline-variant/20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Overview</h2>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface rounded-full border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none w-64 transition-all" placeholder="Search ID, Name, or Logs..." type="text"/>
+</div>
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-highest transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-margin-mobile md:p-margin-desktop flex-1 pb-24 md:pb-lg">
+<!-- Key Metrics Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md mb-lg">
+<!-- Metric 1 -->
+<div class="glass-panel rounded-xl p-md ambient-shadow-1 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="flex items-center text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] mr-1">arrow_upward</span> 12%
+                        </span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Total Active Users</h3>
+<p class="font-display-lg text-display-lg text-on-surface">142.5k</p>
+</div>
+<!-- Metric 2 -->
+<div class="glass-panel rounded-xl p-md ambient-shadow-1 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl group-hover:bg-secondary/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<span class="flex items-center text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] mr-1">arrow_upward</span> 8%
+                        </span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Registered Facilities</h3>
+<p class="font-display-lg text-display-lg text-on-surface">3,402</p>
+</div>
+<!-- Metric 3 -->
+<div class="glass-panel rounded-xl p-md ambient-shadow-1 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-tertiary/10 rounded-full blur-xl group-hover:bg-tertiary/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="flex items-center text-error font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] mr-1">arrow_downward</span> 2%
+                        </span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">System Alerts (24h)</h3>
+<p class="font-display-lg text-display-lg text-on-surface">18</p>
+</div>
+<!-- Metric 4 -->
+<div class="glass-panel rounded-xl p-md ambient-shadow-1 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary-fixed/30 rounded-full blur-xl group-hover:bg-primary-fixed/50 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">dns</span>
+</div>
+<span class="bg-primary/10 text-primary px-2 py-1 rounded-full font-label-md text-label-md">Stable</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Server Uptime</h3>
+<p class="font-display-lg text-display-lg text-on-surface">99.98%</p>
+</div>
+</div>
+<!-- Bento Grid Layout for Analytics & Management -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Chart Area -->
+<div class="lg:col-span-2 glass-panel rounded-xl p-md ambient-shadow-1">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-md text-title-md text-on-surface">App Usage Over Time</h3>
+<select class="bg-surface border border-outline-variant rounded-md text-sm px-3 py-1 focus:ring-primary focus:border-primary outline-none">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>This Year</option>
+</select>
+</div>
+<div class="h-64 w-full relative">
+<canvas id="usageChart"></canvas>
+</div>
+</div>
+<!-- System Status / AI Monitoring -->
+<div class="glass-panel rounded-xl p-md ambient-shadow-1 flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface mb-md">AI Model Monitoring</h3>
+<div class="flex-1 space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface-variant">OCR Prescription Accuracy</span>
+<span class="font-medium">94.2%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 94.2%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface-variant">Diagnostic Suggestion Confidence</span>
+<span class="font-medium">88.5%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-secondary-container h-2 rounded-full" style="width: 88.5%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface-variant">Fraud Detection Triggers</span>
+<span class="font-medium text-error">Active</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-error h-2 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full py-2 bg-surface-container-highest text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                        Adjust Parameters
+                    </button>
+</div>
+<!-- Recent Activity / User Management Preview -->
+<div class="lg:col-span-3 glass-panel rounded-xl overflow-hidden ambient-shadow-1 mt-md">
+<div class="p-md border-b border-outline-variant/30 flex justify-between items-center bg-surface/50">
+<h3 class="font-title-md text-title-md text-on-surface">Recent User Registrations (Pending Approval)</h3>
+<a class="text-primary font-label-md text-label-md hover:underline" href="#">View All Requests</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="p-4 border-b border-outline-variant/20 font-medium">Name/Facility</th>
+<th class="p-4 border-b border-outline-variant/20 font-medium">Type</th>
+<th class="p-4 border-b border-outline-variant/20 font-medium">Location</th>
+<th class="p-4 border-b border-outline-variant/20 font-medium">Date</th>
+<th class="p-4 border-b border-outline-variant/20 font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="text-body-md text-on-surface">
+<tr class="hover:bg-surface-bright transition-colors border-b border-outline-variant/10">
+<td class="p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">P</div>
+<div>
+<div class="font-medium">Pharmacie Centrale Algiers</div>
+<div class="text-sm text-on-surface-variant">License: #PH-4921</div>
+</div>
+</td>
+<td class="p-4"><span class="px-2 py-1 bg-surface-container-highest text-on-surface rounded-full text-xs font-medium">Pharmacy</span></td>
+<td class="p-4 text-on-surface-variant">Algiers Centre</td>
+<td class="p-4 text-on-surface-variant">2 hrs ago</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-error hover:bg-error-container rounded-md transition-colors" title="Reject"><span class="material-symbols-outlined text-[20px]">close</span></button>
+<button class="p-1.5 text-primary hover:bg-primary-container/20 rounded-md transition-colors" title="Approve"><span class="material-symbols-outlined text-[20px]">check</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-xs">D</div>
+<div>
+<div class="font-medium">Dr. Karim Yelles</div>
+<div class="text-sm text-on-surface-variant">Specialty: Neurology</div>
+</div>
+</td>
+<td class="p-4"><span class="px-2 py-1 bg-surface-container-highest text-on-surface rounded-full text-xs font-medium">Doctor</span></td>
+<td class="p-4 text-on-surface-variant">Oran</td>
+<td class="p-4 text-on-surface-variant">5 hrs ago</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-error hover:bg-error-container rounded-md transition-colors" title="Reject"><span class="material-symbols-outlined text-[20px]">close</span></button>
+<button class="p-1.5 text-primary hover:bg-primary-container/20 rounded-md transition-colors" title="Approve"><span class="material-symbols-outlined text-[20px]">check</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav aria-label="Bottom Navigation" class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/70 backdrop-blur-lg border-t border-outline-variant/30 shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md mt-1">Users</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md mt-1">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Chart.js implementation for the analytics graph
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('usageChart').getContext('2d');
+            
+            // Gradient fill for the chart
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(38, 132, 81, 0.5)'); // primary-container
+            gradient.addColorStop(1, 'rgba(38, 132, 81, 0.0)');
+
+            const data = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Active Users',
+                    data: [12000, 19000, 15000, 22000, 18000, 28000, 24000],
+                    borderColor: '#006a3b', // primary
+                    backgroundColor: gradient,
+                    borderWidth: 2,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#006a3b',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    fill: true,
+                    tension: 0.4 // Smooth curves
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#0b1c30', // on-surface
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            padding: 12,
+                            cornerRadius: 8,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(190, 202, 190, 0.2)', // outline-variant with opacity
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                color: '#6f7a70', // outline
+                                callback: function(value) {
+                                    return value / 1000 + 'k';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                color: '#6f7a70', // outline
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        });
+    </script>
+</body></html>

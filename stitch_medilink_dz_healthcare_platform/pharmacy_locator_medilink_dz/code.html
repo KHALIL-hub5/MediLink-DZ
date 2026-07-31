@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pharmacies - MediLink DZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f0f5ee",
+                        "secondary": "#006591",
+                        "surface-container-highest": "#dfe4dd",
+                        "inverse-surface": "#2d322d",
+                        "on-background": "#181d19",
+                        "inverse-primary": "#7ed99e",
+                        "on-primary-fixed-variant": "#00522d",
+                        "surface-container": "#ebefe8",
+                        "primary-fixed-dim": "#7ed99e",
+                        "on-surface": "#181d19",
+                        "primary": "#006a3b",
+                        "on-primary-container": "#f6fff4",
+                        "surface-container-high": "#e5e9e2",
+                        "on-secondary-container": "#004666",
+                        "inverse-on-surface": "#edf2eb",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface-variant": "#dfe4dd",
+                        "surface": "#f6fbf3",
+                        "on-surface-variant": "#3f4941",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "primary-container": "#268451",
+                        "on-secondary-fixed": "#001e2f",
+                        "tertiary-fixed": "#dbe1ff",
+                        "outline": "#6f7a70",
+                        "on-tertiary-fixed": "#00174b",
+                        "surface-bright": "#f6fbf3",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "surface-tint": "#006d3d",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-error": "#ffffff",
+                        "background": "#f6fbf3",
+                        "tertiary": "#0051d5",
+                        "tertiary-container": "#316bf3",
+                        "on-tertiary-container": "#fefcff",
+                        "primary-fixed": "#9af6b8",
+                        "on-tertiary-fixed-variant": "#003ea8",
+                        "outline-variant": "#becabe",
+                        "on-primary-fixed": "#00210f",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d7dbd4",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#39b8fd",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-panel {
+            background: rgba(246, 251, 243, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)] h-20">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="font-h2 text-h2 tracking-tight text-primary">MediLink DZ</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Find Doctors</a>
+<a class="text-primary font-bold border-b-2 border-primary transition-colors duration-200" href="#">Pharmacies</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">AI Health</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">translate</span>
+</button>
+<button class="hidden md:block bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md active:opacity-80 transition-all duration-200">Book Now</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a Middle Eastern healthcare user, soft studio lighting, clean background, modern and approachable style, high resolution, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpmsmeKM17gmxNSgIBgKYN7dAO1nXNPU6vSnbbYtHut-O1-hIA2X62MQXjsbcpfGYhNGOQgHH8aOJjAGErHYA_pzkUHJpseVQsY7iui8KBUAJ92PvLpBIHtqMJGPg6OFqoC973REmmO15-jOcGZnmz8ifnOQqebPf1YXvlP-DvC7WbPjuqP435aP4uPs6khbij9OiAt533qQcF3rlrK_XgFUvKmY4QiLOoHNhPeUA4l-Dru0eudXvDPA"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-20 h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Sidebar: Search and List View -->
+<aside class="w-full md:w-[400px] lg:w-[450px] bg-surface flex flex-col z-20 border-r border-outline-variant/30 shadow-lg md:shadow-none">
+<!-- Search Header -->
+<div class="p-6 space-y-4 bg-surface-container-low/50 border-b border-outline-variant/20">
+<h1 class="font-h3 text-h3 text-primary">Pharmacy Finder</h1>
+<div class="space-y-3">
+<!-- Wilaya Selection -->
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined">location_on</span>
+<select class="w-full pl-12 pr-4 h-14 bg-surface-container-highest/50 border-none rounded-xl font-body-md text-body-md focus:ring-2 focus:ring-primary/20 transition-all appearance-none">
+<option>16 - Algiers</option>
+<option>31 - Oran</option>
+<option>25 - Constantine</option>
+</select>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined pointer-events-none">expand_more</span>
+</div>
+<!-- Medicine Search -->
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined">search</span>
+<input class="w-full pl-12 pr-4 h-14 bg-surface-container-highest/50 border-none rounded-xl font-body-md text-body-md focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search pharmacy or medicine..." type="text"/>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md">Open Now</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-outline-variant/30 transition-colors">Guard Pharmacy</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-outline-variant/30 transition-colors">24/7 Service</button>
+</div>
+</div>
+<!-- List Results -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4 hide-scrollbar">
+<!-- Pharmacy Card 1 -->
+<div class="p-5 bg-white rounded-lg border border-outline-variant/30 shadow-[0_4px_20px_rgba(15,23,42,0.05)] hover:border-primary/50 transition-all group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface text-lg">Pharmacie Centrale d'Alger</h3>
+<p class="text-on-surface-variant text-caption font-caption flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Didouche Mourad, Algiers Center
+                            </p>
+</div>
+<span class="px-2 py-1 rounded bg-primary/10 text-primary font-label-md text-[10px] uppercase tracking-wider">Open 24/7</span>
+</div>
+<div class="flex items-center gap-4 my-4">
+<div class="flex items-center gap-1 text-secondary font-label-md">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+                            0.4 km
+                        </div>
+<div class="flex items-center gap-1 text-outline font-label-md">
+<span class="material-symbols-outlined text-[18px] text-error">emergency_home</span>
+                            On Guard
+                        </div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-10 rounded-lg bg-surface-container-highest text-on-surface font-label-md hover:bg-secondary-container/20 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                            Call
+                        </button>
+<button class="flex items-center justify-center gap-2 h-10 rounded-lg bg-primary text-on-primary font-label-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+                            Directions
+                        </button>
+</div>
+</div>
+<!-- Pharmacy Card 2 -->
+<div class="p-5 bg-white rounded-lg border border-outline-variant/30 shadow-[0_4px_20px_rgba(15,23,42,0.05)] hover:border-primary/50 transition-all">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface text-lg">Pharmacie El Hana</h3>
+<p class="text-on-surface-variant text-caption font-caption flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Hydra, Algiers
+                            </p>
+</div>
+<span class="px-2 py-1 rounded bg-secondary/10 text-secondary font-label-md text-[10px] uppercase tracking-wider">Closes 10PM</span>
+</div>
+<div class="flex items-center gap-4 my-4">
+<div class="flex items-center gap-1 text-secondary font-label-md">
+<span class="material-symbols-outlined text-[18px]">directions_car</span>
+                            1.2 km
+                        </div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-10 rounded-lg bg-surface-container-highest text-on-surface font-label-md hover:bg-secondary-container/20 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                            Call
+                        </button>
+<button class="flex items-center justify-center gap-2 h-10 rounded-lg bg-primary text-on-primary font-label-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+                            Directions
+                        </button>
+</div>
+</div>
+<!-- Pharmacy Card 3 -->
+<div class="p-5 bg-white rounded-lg border border-outline-variant/30 shadow-[0_4px_20px_rgba(15,23,42,0.05)] hover:border-primary/50 transition-all">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface text-lg">Pharmacie Ben Aknoun</h3>
+<p class="text-on-surface-variant text-caption font-caption flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Cite 200 Logts, Ben Aknoun
+                            </p>
+</div>
+<span class="px-2 py-1 rounded bg-primary/10 text-primary font-label-md text-[10px] uppercase tracking-wider">Open 24/7</span>
+</div>
+<div class="flex items-center gap-4 my-4">
+<div class="flex items-center gap-1 text-secondary font-label-md">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+                            2.5 km
+                        </div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-10 rounded-lg bg-surface-container-highest text-on-surface font-label-md hover:bg-secondary-container/20 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                            Call
+                        </button>
+<button class="flex items-center justify-center gap-2 h-10 rounded-lg bg-primary text-on-primary font-label-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+                            Directions
+                        </button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content: Interactive Map Section -->
+<section class="flex-1 relative bg-surface-container">
+<!-- Map Placeholder with data-location -->
+<div class="absolute inset-0 z-0 bg-cover bg-center grayscale-[0.2]" data-alt="A highly detailed, professional cartographic map of Algiers city with realistic street layouts, building footprints, and topography. The visual style is clean and modern with a soft pastel color palette of greens and greys. Subtle glowing green pin markers denote pharmacy locations across the bay area and central districts. High-end digital interface look." data-location="Algiers, Algeria" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATJLmYWDtbJ5Ki3AqH9usaOUA-JR729WDxuP4XSaYqxex0Eq5O5ANF3TVx4XyHemaeG9MdAg7x-0QUdFMc-5HX-zyBTeR_zqKoVoLHbIKd7dO8sXfDJkFgy5Ix-HneZuU6SKpkWF-kZDoqiU6pDLeuii6INWF_5Ssslb5XXkPuc1ryKAJhQeHx_Zh3ZyVrmjrWA-ymuGPzyZgZCatek6Qwu5alkg3eUbuXQwxZnHym5nrRTO9otp41pw')">
+</div>
+<!-- Floating Map Controls -->
+<div class="absolute right-6 top-6 flex flex-col gap-3 z-10">
+<button class="w-12 h-12 bg-white shadow-lg rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<div class="flex flex-col bg-white shadow-lg rounded-xl overflow-hidden">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:bg-surface-container border-b border-outline-variant/20 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="w-12 h-12 bg-white shadow-lg rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<!-- Active Pharmacy Preview (Bottom Overlay on Mobile/Tablet) -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-md md:hidden">
+<div class="glass-panel p-4 rounded-lg shadow-xl border border-white/40 flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl bg-primary flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-3xl">local_pharmacy</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-on-surface">Pharmacie Centrale</h4>
+<p class="text-caption text-on-surface-variant">4 min walk • Open Now</p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">INSULIN IN STOCK</span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+</div>
+<!-- Desktop Map Tooltip -->
+<div class="absolute top-[35%] left-[45%] z-10 hidden md:block">
+<div class="relative group">
+<div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-xl flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-white text-[16px]">medical_services</span>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<div class="bg-white p-3 rounded-xl shadow-2xl border border-outline-variant/30 text-center">
+<p class="font-label-md text-on-surface">Pharmacie Centrale</p>
+<p class="text-[10px] text-primary font-bold">OPEN 24/7</p>
+<div class="w-3 h-3 bg-white rotate-45 absolute -bottom-1.5 left-1/2 -translate-x-1/2 border-r border-b border-outline-variant/30"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden rounded-t-lg bg-surface/80 backdrop-blur-xl shadow-lg h-16">
+<div class="flex justify-around items-center h-full px-4 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-caption text-caption">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-90">
+<span class="material-symbols-outlined">search</span>
+<span class="font-caption text-caption">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-caption text-caption">Records</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-caption">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.classList.add('scale-95');
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.classList.remove('scale-95');
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.classList.remove('scale-95');
+            });
+        });
+
+        // Toggle filters
+        const filterButtons = document.querySelectorAll('aside .flex.gap-2 button');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const isActive = btn.classList.contains('bg-primary-container');
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    b.classList.add('bg-surface-container-highest', 'text-on-surface-variant');
+                });
+                if (!isActive) {
+                    btn.classList.remove('bg-surface-container-highest', 'text-on-surface-variant');
+                    btn.classList.add('bg-primary-container', 'text-on-primary-container');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - Splash Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#39b8fd",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed": "#9af6b8",
+                      "surface-container-high": "#dce9ff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#7ed99e",
+                      "tertiary": "#b90538",
+                      "outline": "#6f7a70",
+                      "on-surface-variant": "#3f4941",
+                      "primary-container": "#268451",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-surface": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-tertiary-fixed": "#40000d",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed-dim": "#89ceff",
+                      "surface": "#f8f9ff",
+                      "on-secondary-container": "#004666",
+                      "on-background": "#0b1c30",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#00522d",
+                      "on-secondary-fixed-variant": "#004c6e",
+                      "primary": "#006a3b",
+                      "surface-variant": "#d3e4fe",
+                      "secondary": "#006591",
+                      "inverse-primary": "#7ed99e",
+                      "surface-tint": "#006d3d",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#f6fff4",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "surface-container": "#e5eeff",
+                      "on-primary-fixed": "#00210f",
+                      "tertiary-fixed": "#ffdadb",
+                      "background": "#f8f9ff",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-container": "#dc2c4f",
+                      "on-secondary-fixed": "#001e2f",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed": "#c9e6ff",
+                      "outline-variant": "#becabe",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "40px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "xs": "8px",
+                      "margin-desktop": "48px",
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "label-md": ["Be Vietnam Pro"],
+                      "title-md": ["Be Vietnam Pro"],
+                      "display-lg": ["Be Vietnam Pro"],
+                      "headline-lg": ["Be Vietnam Pro"],
+                      "body-lg": ["Be Vietnam Pro"],
+                      "headline-lg-mobile": ["Be Vietnam Pro"],
+                      "body-md": ["Be Vietnam Pro"],
+                      "caption": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .medical-pattern {
+            background-image: 
+                radial-gradient(circle at 100% 150%, rgba(255, 255, 255, 0.03) 24%, rgba(255, 255, 255, 0) 25%),
+                radial-gradient(circle at 0% 150%, rgba(255, 255, 255, 0.03) 24%, rgba(255, 255, 255, 0) 25%),
+                radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0) 11%);
+            background-size: 60px 60px;
+        }
+        
+        .pulse-logo {
+            animation: pulse-soft 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.02);
+                opacity: 0.9;
+            }
+        }
+
+        .shimmer-loader {
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+        }
+
+        .shimmer-loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.6) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-primary m-0 p-0 h-screen w-screen overflow-hidden flex flex-col justify-between items-center medical-pattern">
+<!-- Top Spacer for balance -->
+<div class="h-24 w-full"></div>
+<!-- Center Content: Logo -->
+<div class="flex flex-col items-center justify-center pulse-logo flex-grow">
+<div class="bg-white/10 p-6 rounded-full backdrop-blur-sm border border-white/20 mb-6 shadow-xl">
+<span class="material-symbols-outlined text-[64px] text-white" style="font-variation-settings: 'FILL' 1;">
+                health_and_safety
+            </span>
+</div>
+<h1 class="font-display-lg text-display-lg text-white mb-2 tracking-tight text-center px-4">
+            MediLink DZ
+        </h1>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim text-center px-4 max-w-sm">
+            Professional Healthcare Network
+        </p>
+</div>
+<!-- Bottom Content: Loader and Language -->
+<div class="w-full flex flex-col items-center pb-margin-desktop px-margin-mobile">
+<!-- Loader -->
+<div class="w-48 h-1 shimmer-loader mb-8 shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
+<!-- Language Toggle -->
+<div class="flex items-center gap-4 bg-black/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/10">
+<button class="font-label-md text-label-md text-white font-bold opacity-100 transition-opacity hover:opacity-100">
+                EN
+            </button>
+<div class="w-px h-3 bg-white/30"></div>
+<button class="font-label-md text-label-md text-white/60 transition-opacity hover:opacity-100">
+                FR
+            </button>
+<div class="w-px h-3 bg-white/30"></div>
+<button class="font-label-md text-label-md text-white/60 transition-opacity hover:opacity-100">
+                AR
+            </button>
+</div>
+</div>
+</body></html>

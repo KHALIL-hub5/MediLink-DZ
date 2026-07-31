@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Profile - MediLink DZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#9af6b8",
+                        "surface-container-high": "#dce9ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#7ed99e",
+                        "tertiary": "#b90538",
+                        "outline": "#6f7a70",
+                        "on-surface-variant": "#3f4941",
+                        "primary-container": "#268451",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#40000d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#004666",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#00522d",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "primary": "#006a3b",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006591",
+                        "inverse-primary": "#7ed99e",
+                        "surface-tint": "#006d3d",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f6fff4",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed": "#00210f",
+                        "tertiary-fixed": "#ffdadb",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#dc2c4f",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline-variant": "#becabe",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Be Vietnam Pro"],
+                        "title-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .shadow-level-1 {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- Top App Bar (Task-focused page with back action, no global nav shell) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-16 w-full bg-surface dark:bg-inverse-surface shadow-sm dark:bg-surface-container-low">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 text-on-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-title-md text-title-md font-semibold text-primary dark:text-primary-fixed">Doctor Profile</h1>
+<button aria-label="More options" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 text-on-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col w-full max-w-3xl mx-auto pb-32">
+<!-- Hero Section (Bento style card) -->
+<div class="px-margin-mobile pt-sm pb-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-md flex flex-col md:flex-row items-center md:items-start gap-md relative overflow-hidden">
+<!-- Subtle background pattern/gradient -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl pointer-events-none"></div>
+<div class="w-32 h-32 shrink-0 rounded-full overflow-hidden border-4 border-surface shadow-sm relative">
+<img alt="Dr. Amine Benali" class="w-full h-full object-cover" data-alt="A professional headshot of a mature Algerian doctor wearing a white coat and a stethoscope. The doctor has a warm, reassuring smile. The background is a bright, modern clinic setting with soft natural light streaming in, emphasizing a clean and trustworthy healthcare environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOB9_UP-gKQVQa7H2axMo0SSLyR6-B-qvwvcXKoHwsMVofsKioTJo86Sy_OtSWfemoT9D2_pUH0wwDTnrFo2t9ZDD3kEVHxpp-myAFfh-XonOCxIe147OyRN4WvUNNECet5h-N5USJl6U4E2kHlPrlzbPJ145gQnMw9DEoiy_-4vhgSgMjkmIk9eG9D9uJ1eXafrGWFdmqs4DYnMIbv-zyvXeljTmRnS8eOCLs5oCfc2UTMqFkbD-X"/>
+<div aria-label="Online status" class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-surface flex items-center justify-center"></div>
+</div>
+<div class="flex-grow text-center md:text-start flex flex-col justify-center">
+<div class="flex items-center justify-center md:justify-start gap-xs mb-1">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Dr. Amine Benali</h2>
+<span class="material-symbols-outlined text-secondary-container icon-fill text-[20px]" data-icon="verified">verified</span>
+</div>
+<p class="font-body-md text-body-md text-primary font-medium mb-2">Cardiologist</p>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4 flex items-center justify-center md:justify-start gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                        Algiers Medical Center, Sidi Yahia
+                    </p>
+<div class="flex items-center justify-center md:justify-start gap-xs">
+<div class="flex items-center gap-1 bg-surface-container-highest px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-amber-500 icon-fill text-[16px]" data-icon="star">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.9</span>
+<span class="font-caption text-caption text-on-surface-variant">(128 reviews)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Stats Grid -->
+<div class="px-margin-mobile pb-md">
+<div class="grid grid-cols-3 gap-xs md:gap-sm">
+<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-sm flex flex-col items-center justify-center text-center gap-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-low text-primary flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="work_history">work_history</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">15+</span>
+<span class="font-caption text-caption text-on-surface-variant">Years Exp.</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-sm flex flex-col items-center justify-center text-center gap-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-low text-primary flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">3000 DZD</span>
+<span class="font-caption text-caption text-on-surface-variant">Consultation</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-sm flex flex-col items-center justify-center text-center gap-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-low text-primary flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="local_hospital">local_hospital</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Clinic</span>
+<span class="font-caption text-caption text-on-surface-variant">Private</span>
+</div>
+</div>
+</div>
+<!-- Biography Section -->
+<div class="px-margin-mobile pb-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-md">
+<h3 class="font-title-md text-title-md text-on-surface mb-sm">About</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Dr. Amine Benali is a board-certified cardiologist with over 15 years of experience in diagnosing and treating cardiovascular diseases. He specializes in preventive cardiology and echocardiography. Dedicated to providing compassionate and comprehensive care to his patients in Algiers.
+                </p>
+<button class="mt-2 font-label-md text-label-md text-primary font-medium hover:underline">Read more</button>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Booking Action -->
+<div class="fixed bottom-0 left-0 w-full z-50 glass-panel px-margin-mobile py-sm pb-[calc(16px+env(safe-area-inset-bottom))] shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="max-w-3xl mx-auto flex items-center justify-between gap-md">
+<div class="flex-col hidden sm:flex">
+<span class="font-caption text-caption text-on-surface-variant">Next Available</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Tomorrow, 10:00 AM</span>
+</div>
+<button class="flex-grow bg-primary text-on-primary font-label-md text-label-md font-semibold h-12 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors active:scale-95 duration-150 shadow-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_add_on">calendar_add_on</span>
+                Book Appointment
+            </button>
+</div>
+</div>
+</body></html>

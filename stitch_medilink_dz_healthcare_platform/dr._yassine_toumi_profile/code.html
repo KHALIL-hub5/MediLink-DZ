@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dr. Amine Rahmani - MediLink DZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f0f5ee",
+                        "secondary": "#006591",
+                        "surface-container-highest": "#dfe4dd",
+                        "inverse-surface": "#2d322d",
+                        "on-background": "#181d19",
+                        "inverse-primary": "#7ed99e",
+                        "on-primary-fixed-variant": "#00522d",
+                        "surface-container": "#ebefe8",
+                        "primary-fixed-dim": "#7ed99e",
+                        "on-surface": "#181d19",
+                        "primary": "#006a3b",
+                        "on-primary-container": "#f6fff4",
+                        "surface-container-high": "#e5e9e2",
+                        "on-secondary-container": "#004666",
+                        "inverse-on-surface": "#edf2eb",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface-variant": "#dfe4dd",
+                        "surface": "#f6fbf3",
+                        "on-surface-variant": "#3f4941",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "primary-container": "#268451",
+                        "on-secondary-fixed": "#001e2f",
+                        "tertiary-fixed": "#dbe1ff",
+                        "outline": "#6f7a70",
+                        "on-tertiary-fixed": "#00174b",
+                        "surface-bright": "#f6fbf3",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "surface-tint": "#006d3d",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-error": "#ffffff",
+                        "background": "#f6fbf3",
+                        "tertiary": "#0051d5",
+                        "tertiary-container": "#316bf3",
+                        "on-tertiary-container": "#fefcff",
+                        "primary-fixed": "#9af6b8",
+                        "on-tertiary-fixed-variant": "#003ea8",
+                        "outline-variant": "#becabe",
+                        "on-primary-fixed": "#00210f",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d7dbd4",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#39b8fd",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .doctor-hero-bg {
+            background: linear-gradient(135deg, #f0f5ee 0%, #ffffff 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)] h-20">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-h2 text-h2 tracking-tight text-primary">MediLink DZ</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Find Doctors</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Pharmacies</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">AI Health</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all">notifications</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all shadow-md">Book Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-32">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-12">
+<div class="doctor-hero-bg rounded-lg p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center md:items-end relative overflow-hidden">
+<!-- Decorative Elements -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+<img class="w-full h-full object-cover rounded-xl shadow-xl border-4 border-white" data-alt="A professional portrait of a male doctor in his 40s wearing a clean white lab coat and a stethoscope. He has a friendly, trustworthy expression and is posed against a softly blurred, high-end modern medical clinic background. The lighting is bright and airy, reflecting a clean clinical precision with soft green and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0WEOYZgTwYgCVl35fWYskayXJmuo1rPEdQiUPCHX3iQHi2Jpaskp57CqcV0fYqeVnvSLlSiArHjAvXLfW8jnHrsRG4sRs6XuQs1MLjQ9SCOur2m395Kg34gtiHmoviKAi7J7pavxSSiL2opPLtzXMH7K2MIWyjV38HGpH-tahvccksceFZnNoUS22Wzd2FP8w7cZBe0QVRtZhFK3Ol0hqFHgFwfW4a-JSwR6mQCnGHPGbs_T-Z6BD4Q"/>
+<div class="absolute -bottom-4 -right-4 bg-primary text-on-primary px-4 py-2 rounded-full flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-label-md font-label-md">Verified</span>
+</div>
+</div>
+<div class="flex-grow text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-center gap-2 mb-2 justify-center md:justify-start">
+<h1 class="font-h1 text-h1-mobile md:text-h1 text-on-surface">Dr. Amine Rahmani</h1>
+</div>
+<p class="text-primary font-body-lg text-body-lg mb-4">Senior Cardiologist • Interventional Cardiology</p>
+<div class="flex items-center gap-6 justify-center md:justify-start">
+<div class="flex items-center gap-1 bg-surface-container px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-on-surface-variant text-caption">(120 Reviews)</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">work_history</span>
+<span class="text-label-md">15+ Years Exp.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Bio & Details -->
+<div class="lg:col-span-8 space-y-10">
+<!-- Biography -->
+<section>
+<h3 class="font-h3 text-h3 text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person_search</span>
+                        Biography
+                    </h3>
+<div class="glass-card p-8 rounded-lg">
+<p class="text-on-surface-variant text-body-md leading-relaxed mb-6">
+                            Dr. Amine Rahmani is a distinguished cardiologist based in Algiers, specializing in interventional cardiology and cardiovascular disease management. With over 15 years of experience, he has pioneered several minimally invasive cardiac procedures at the University Hospital Center (CHU Mustapha Pacha).
+                        </p>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                            He is dedicated to providing compassionate, evidence-based care, focusing on preventive measures and advanced treatment options for heart failure and coronary artery disease. His patient-centric approach ensures that each individual receives a tailored treatment plan optimized for their lifestyle.
+                        </p>
+</div>
+</section>
+<!-- Education & Experience Bento -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-card p-6 rounded-lg">
+<h4 class="font-label-md text-label-md text-primary mb-4 uppercase tracking-wider">Education</h4>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary">school</span>
+<div>
+<p class="font-bold text-on-surface">PhD in Cardiology</p>
+<p class="text-caption text-on-surface-variant">University of Algiers, 2008</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+<div>
+<p class="font-bold text-on-surface">Fellowship in Interventional Cardiology</p>
+<p class="text-caption text-on-surface-variant">Sorbonne University, Paris, 2012</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="glass-card p-6 rounded-lg">
+<h4 class="font-label-md text-label-md text-primary mb-4 uppercase tracking-wider">Certifications</h4>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<div>
+<p class="font-bold text-on-surface">Algerian Society of Cardiology</p>
+<p class="text-caption text-on-surface-variant">Board Certified Member</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary">award_star</span>
+<div>
+<p class="font-bold text-on-surface">Excellence in Clinical Care</p>
+<p class="text-caption text-on-surface-variant">Ministry of Health, 2021</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<!-- Reviews Section -->
+<section id="reviews">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h3 text-h3 text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rate_review</span>
+                            Patient Reviews
+                        </h3>
+<button class="text-primary font-label-md text-label-md hover:underline">See All</button>
+</div>
+<div class="space-y-4">
+<!-- Review Item -->
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container font-bold">SM</div>
+<div>
+<p class="font-bold text-on-surface">Sofiane M.</p>
+<p class="text-caption text-on-surface-variant">2 weeks ago</p>
+</div>
+</div>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant italic">"Dr. Rahmani is exceptional. He took the time to explain my condition clearly and made me feel at ease throughout the consultation. Highly recommended for anyone seeking cardiac advice."</p>
+</div>
+<!-- Review Item -->
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container font-bold">LB</div>
+<div>
+<p class="font-bold text-on-surface">Leila B.</p>
+<p class="text-caption text-on-surface-variant">1 month ago</p>
+</div>
+</div>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+</div>
+<p class="text-on-surface-variant italic">"Very professional environment. The clinic is clean and modern. The doctor's expertise is evident from the first minute. I felt my heart health was in good hands."</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Booking & Clinic Card -->
+<aside class="lg:col-span-4">
+<div class="sticky top-24 space-y-6">
+<!-- Clinic Card -->
+<div class="bg-surface border border-outline-variant rounded-lg p-6 shadow-sm overflow-hidden">
+<h4 class="font-h3 text-h3 text-on-surface mb-6">Clinic Information</h4>
+<div class="aspect-video w-full rounded-lg mb-6 overflow-hidden relative group">
+<div class="absolute inset-0 bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-secondary animate-bounce">location_on</span>
+</div>
+<img class="w-full h-full object-cover grayscale-[20%]" data-alt="A clean, minimalist digital map showing a specific neighborhood in Algiers, Algeria. The map design uses a soft color palette of greens and greys to match the healthcare theme, with a prominent pin marking the location of a medical clinic. The visual style is professional, high-contrast, and focused on clarity." data-location="Algiers, Algeria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLVaziMhvCfREM8Okp9B0pddSnpAcbpqduTaF02mE_xZitDPaBEUdJhoqlK_4gBl1uFg-S2DAJvC5b3J-k4mI-nw771A0skTRM5K1_0V4qmWTuCRl7sPh6rB40gnK2ueIFRiAFIr5dT2DBOVofySql5KQwMj70IjUZdLQgpdATCeeyGXJANu6LuZYcUkRXvJjm_gwt3b7MANqDiMCMVGKst0s7J7eyiYX4Il6Hb42lIkwrCjb08lWg4w"/>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary">apartment</span>
+<div>
+<p class="font-bold">Clinic Al-Nadjah</p>
+<p class="text-caption text-on-surface-variant">Rue Didouche Mourad, Algiers</p>
+</div>
+</div>
+<div class="flex items-center justify-between py-3 border-y border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">payments</span>
+<p class="font-bold">Consultation Fee</p>
+</div>
+<span class="text-primary font-bold text-h3">3,500 DA</span>
+</div>
+</div>
+<h5 class="font-label-md text-label-md mb-4 text-on-surface-variant uppercase">Available Time Slots</h5>
+<div class="grid grid-cols-3 gap-2 mb-8">
+<button class="py-2 text-caption font-bold border border-outline-variant rounded-lg hover:border-primary hover:text-primary transition-all">09:00 AM</button>
+<button class="py-2 text-caption font-bold border border-outline-variant rounded-lg hover:border-primary hover:text-primary transition-all">10:30 AM</button>
+<button class="py-2 text-caption font-bold bg-primary-container text-on-primary-container rounded-lg">11:15 AM</button>
+<button class="py-2 text-caption font-bold border border-outline-variant rounded-lg hover:border-primary hover:text-primary transition-all">02:00 PM</button>
+<button class="py-2 text-caption font-bold border border-outline-variant rounded-lg hover:border-primary hover:text-primary transition-all">03:45 PM</button>
+<button class="py-2 text-caption font-bold border border-outline-variant rounded-lg opacity-40 cursor-not-allowed">Taken</button>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-h3 text-h3 shadow-lg hover:translate-y-[-2px] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">calendar_month</span>
+                            Book Appointment
+                        </button>
+<p class="text-center text-caption text-on-surface-variant mt-4">Free cancellation up to 24 hours before</p>
+</div>
+<!-- Emergency Contact -->
+<div class="bg-error-container text-on-error-container p-6 rounded-lg flex items-center gap-4">
+<div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">emergency</span>
+</div>
+<div>
+<p class="font-bold">Emergency?</p>
+<p class="text-caption">Call Clinic Direct: +213 21 XX XX XX</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden bg-surface/80 backdrop-blur-xl shadow-lg rounded-t-lg">
+<div class="flex justify-around items-center h-16 px-4 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-caption">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="text-caption">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="text-caption">Records</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-caption">Profile</span>
+</div>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant py-12 hidden md:block">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<h3 class="font-h3 text-h3 text-primary mb-4">MediLink DZ</h3>
+<p class="text-on-surface-variant text-body-md">Empowering Algerian healthcare through digital innovation and trusted connections.</p>
+</div>
+<div class="flex flex-col space-y-2">
+<p class="font-bold text-on-surface mb-2">Patient Services</p>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Find a Doctor</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Book Consultation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Health Records</a>
+</div>
+<div class="flex flex-col space-y-2">
+<p class="font-bold text-on-surface mb-2">Legal</p>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Medical Ethics</a>
+</div>
+<div class="flex flex-col space-y-4">
+<p class="font-bold text-on-surface mb-2">Connect</p>
+<div class="flex gap-4">
+<button class="w-10 h-10 bg-surface-container-high rounded-full flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">public</span>
+</button>
+<button class="w-10 h-10 bg-surface-container-high rounded-full flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+<p class="text-caption text-on-surface-variant">© 2024 MediLink DZ. Approved by Ministry of Health, Algeria.</p>
+</div>
+</div>
+</footer>
+<!-- Simple Interactivity -->
+<script>
+        // Smooth hover effect for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Toggle Active State for Time Slots
+        const timeSlots = document.querySelectorAll('aside .grid button:not(.opacity-40)');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                timeSlots.forEach(s => {
+                    s.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    s.classList.add('border', 'border-outline-variant', 'text-on-surface-variant');
+                });
+                slot.classList.add('bg-primary-container', 'text-on-primary-container');
+                slot.classList.remove('border', 'border-outline-variant', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

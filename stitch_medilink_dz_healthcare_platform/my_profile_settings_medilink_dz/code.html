@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - User Profile &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f5ee",
+                    "secondary": "#006591",
+                    "surface-container-highest": "#dfe4dd",
+                    "inverse-surface": "#2d322d",
+                    "on-background": "#181d19",
+                    "inverse-primary": "#7ed99e",
+                    "on-primary-fixed-variant": "#00522d",
+                    "surface-container": "#ebefe8",
+                    "primary-fixed-dim": "#7ed99e",
+                    "on-surface": "#181d19",
+                    "primary": "#006a3b",
+                    "on-primary-container": "#f6fff4",
+                    "surface-container-high": "#e5e9e2",
+                    "on-secondary-container": "#004666",
+                    "inverse-on-surface": "#edf2eb",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface-variant": "#dfe4dd",
+                    "surface": "#f6fbf3",
+                    "on-surface-variant": "#3f4941",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "primary-container": "#268451",
+                    "on-secondary-fixed": "#001e2f",
+                    "tertiary-fixed": "#dbe1ff",
+                    "outline": "#6f7a70",
+                    "on-tertiary-fixed": "#00174b",
+                    "surface-bright": "#f6fbf3",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "surface-tint": "#006d3d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "background": "#f6fbf3",
+                    "tertiary": "#0051d5",
+                    "tertiary-container": "#316bf3",
+                    "on-tertiary-container": "#fefcff",
+                    "primary-fixed": "#9af6b8",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "outline-variant": "#becabe",
+                    "on-primary-fixed": "#00210f",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d7dbd4",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#39b8fd",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                "sans": ["Inter", "system-ui", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(45, 50, 45, 0.7);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)] h-20">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="font-h2 text-h2 tracking-tight text-primary dark:text-primary-fixed">MediLink DZ</span>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary transition-colors duration-200" href="#">Find Doctors</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary transition-colors duration-200" href="#">Pharmacies</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary transition-colors duration-200" href="#">AI Health</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container rounded-full">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional medical patient profile avatar showing a friendly middle-aged man with a kind expression. He is wearing a clean casual shirt against a soft, clinical white background with warm, natural sunlight coming from a side window, creating a trustworthy and approachable medical app persona. The style is clean, high-resolution, and matches a minimalist healthcare UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChe0QNGct5WdC88opSTafnj6UmQG8QFirbcpM9k-Df5lUvFRC_hr9gtYbnjxQmgq00AfJFMbaOJAJ0My5kgY7YcmO3lZN0jr7FY4gMAVaszZxuHS4F3PpxlJaicgsMSezFcssZtgrD9TWCqTdnGYsKfANpehXtx2XOYPbNAixNy7NAk8K4JA1nvsJBuxnVy3VfIDhxNJa7IPdBgcrOEUwYUuYbDETY9cxeSjxtn-L-8ORviz40axmVgA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="h-screen w-72 fixed left-0 top-0 hidden md:flex flex-col bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant/30 p-6 pt-24 space-y-4">
+<div class="flex items-center gap-4 mb-8 p-2">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Amine Rahmani</h3>
+<p class="text-caption text-on-surface-variant">Profile &amp; Settings</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">qr_code_2</span>
+<span class="font-label-md text-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold shadow-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-outline-variant/20">
+<button class="flex items-center gap-3 px-4 py-3 w-full text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-72 pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-5xl mx-auto">
+<header class="mb-10">
+<h1 class="font-h1-mobile md:font-h1 text-h1-mobile md:text-h1 text-on-surface">Your Account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Manage your clinical profile and application preferences.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Profile Section (Asymmetric Bento) -->
+<section class="lg:col-span-7 space-y-gutter">
+<div class="glass-card p-8 rounded-lg border border-outline-variant/30 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<button class="text-primary font-label-md hover:underline">Edit Profile</button>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface shadow-lg">
+<img class="w-full h-full object-cover" data-alt="A close-up high-quality portrait of a North African male patient in his late 30s. He has short dark hair and a professional appearance, looking directly into the camera with a confident smile. The background is a soft-focus modern healthcare interior with subtle greens and whites. The lighting is bright and airy, emphasizing clean and clinical professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxnCRUbza0VFIvj2LlJIrq-Qe_uMdEx0f5Ddvhgezipj9utjQOEmkBpXisLJ1YbtCmyZDgOzPaT_an4AP5_reuPTWd-Tj_GEoEEDUHoj4ReU1s5tJIOZyvaLTzZBybQIYavNDo-aFLvqyiTFoYOgIGCWyJNdtG9YVAM6HzCqv85ShmDWFpL_BcRfeVMW0oW66IQBGiRWOsajtl9fApknlVGX95T0S1P2zTBAsq6OgW7_PQxZmhEbSWQw"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary p-1 rounded-full border-2 border-surface cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+</div>
+</div>
+<div class="space-y-1">
+<h2 class="font-h3 text-h3 text-on-surface">Amine Rahmani</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">amine.rahmani@email.dz</p>
+<div class="flex gap-2 mt-4">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-caption font-bold">O+ Blood Type</span>
+<span class="bg-error/10 text-error px-3 py-1 rounded-full text-caption font-bold">Penicillin Allergy</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+<div class="p-4 rounded-xl bg-surface-container/50 border border-outline-variant/10">
+<label class="text-caption text-on-surface-variant block mb-1">Phone Number</label>
+<p class="font-body-md text-body-md">+213 550 12 34 56</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container/50 border border-outline-variant/10">
+<label class="text-caption text-on-surface-variant block mb-1">Emergency Contact</label>
+<p class="font-body-md text-body-md">Sarah Rahmani (Sister)</p>
+<p class="text-caption text-on-surface-variant">+213 661 98 76 54</p>
+</div>
+</div>
+</div>
+<!-- Settings: Security & Account -->
+<div class="glass-card p-8 rounded-lg border border-outline-variant/30 shadow-sm">
+<h3 class="font-h3 text-h3 mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+                        Security
+                    </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">password</span>
+<div>
+<p class="font-label-md text-label-md">Change Password</p>
+<p class="text-caption text-on-surface-variant">Last changed 3 months ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<div>
+<p class="font-label-md text-label-md">Two-Factor Authentication</p>
+<p class="text-caption text-on-surface-variant">Recommended for clinical data safety</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings Tabs (Sidebar Style Selection) -->
+<section class="lg:col-span-5 space-y-gutter">
+<!-- Preferences Card -->
+<div class="glass-card p-8 rounded-lg border border-outline-variant/30 shadow-sm">
+<h3 class="font-h3 text-h3 mb-6">Preferences</h3>
+<div class="space-y-8">
+<!-- Language Selector -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant block mb-4">Preferred Language</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2 rounded-lg border-2 border-primary bg-primary-container/20 text-primary font-bold text-label-md transition-all">French</button>
+<button class="py-2 rounded-lg border-2 border-outline-variant bg-transparent text-on-surface-variant font-medium text-label-md hover:border-primary/50 transition-all">Arabic</button>
+<button class="py-2 rounded-lg border-2 border-outline-variant bg-transparent text-on-surface-variant font-medium text-label-md hover:border-primary/50 transition-all">English</button>
+</div>
+</div>
+<!-- Theme Toggle -->
+<div class="flex items-center justify-between py-4 border-t border-outline-variant/20">
+<div>
+<label class="font-label-md text-label-md">Dark Mode</label>
+<p class="text-caption text-on-surface-variant">Adjust interface for night use</p>
+</div>
+<button class="w-14 h-8 bg-surface-container-highest rounded-full p-1 relative flex items-center transition-colors duration-300" id="themeToggle">
+<div class="w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center transition-transform transform translate-x-0" id="themeIndicator">
+<span class="material-symbols-outlined text-[16px] text-primary">light_mode</span>
+</div>
+</button>
+</div>
+<!-- Notifications -->
+<div class="space-y-4 border-t border-outline-variant/20 pt-6">
+<h4 class="font-label-md text-label-md text-on-surface-variant">Notification Channels</h4>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">mail</span>
+<span class="font-body-md text-body-md">Email Notifications</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">sms</span>
+<span class="font-body-md text-body-md">SMS Alerts</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Support/Help Center -->
+<div class="glass-card p-6 rounded-lg border border-primary/20 bg-primary/5">
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">help</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-primary">Need medical assistance?</h4>
+<p class="text-caption text-on-surface-variant mt-1">Our support team and health AI are available 24/7 to help with your medical portal.</p>
+<button class="mt-3 text-primary font-bold text-label-md flex items-center gap-1 hover:gap-2 transition-all">
+                                Open Health AI <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden rounded-t-lg bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-lg border-t border-outline-variant/10">
+<div class="flex justify-around items-center h-16 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-caption text-caption">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-caption text-caption">Records</span>
+</a>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-caption text-caption">Profile</span>
+</div>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-h3 text-h3 text-primary dark:text-primary-fixed mb-4 block">MediLink DZ</span>
+<p class="text-caption text-on-surface-variant">Advanced healthcare platform dedicated to the Algerian people. Bridging the gap between patients and practitioners.</p>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-label-md text-label-md text-on-surface mb-4">Legal</h5>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Medical Ethics</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-label-md text-label-md text-on-surface mb-4">Company</h5>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Contact Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Careers</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<p class="text-caption text-on-surface-variant mt-auto">© 2024 MediLink DZ. Approved by Ministry of Health, Algeria.</p>
+</div>
+</div>
+</footer>
+<script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIndicator = document.getElementById('themeIndicator');
+        const html = document.documentElement;
+        let isDark = false;
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                html.classList.add('dark');
+                themeIndicator.style.transform = 'translateX(24px)';
+                themeIndicator.innerHTML = '<span class="material-symbols-outlined text-[16px] text-primary">dark_mode</span>';
+                themeToggle.classList.replace('bg-surface-container-highest', 'bg-primary-container');
+            } else {
+                html.classList.remove('dark');
+                themeIndicator.style.transform = 'translateX(0)';
+                themeIndicator.innerHTML = '<span class="material-symbols-outlined text-[16px] text-primary">light_mode</span>';
+                themeToggle.classList.replace('bg-primary-container', 'bg-surface-container-highest');
+            }
+        });
+
+        // Simple button active state visual feedback
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+            el.addEventListener('mouseup', () => el.classList.remove('scale-95'));
+            el.addEventListener('mouseleave', () => el.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

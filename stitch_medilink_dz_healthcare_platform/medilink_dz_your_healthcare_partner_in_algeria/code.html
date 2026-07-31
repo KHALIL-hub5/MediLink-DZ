@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ | Your Health, Simplified</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f0f5ee",
+                        "secondary": "#006591",
+                        "surface-container-highest": "#dfe4dd",
+                        "inverse-surface": "#2d322d",
+                        "on-background": "#181d19",
+                        "inverse-primary": "#7ed99e",
+                        "on-primary-fixed-variant": "#00522d",
+                        "surface-container": "#ebefe8",
+                        "primary-fixed-dim": "#7ed99e",
+                        "on-surface": "#181d19",
+                        "primary": "#006a3b",
+                        "on-primary-container": "#f6fff4",
+                        "surface-container-high": "#e5e9e2",
+                        "on-secondary-container": "#004666",
+                        "inverse-on-surface": "#edf2eb",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface-variant": "#dfe4dd",
+                        "surface": "#f6fbf3",
+                        "on-surface-variant": "#3f4941",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "primary-container": "#268451",
+                        "on-secondary-fixed": "#001e2f",
+                        "tertiary-fixed": "#dbe1ff",
+                        "outline": "#6f7a70",
+                        "on-tertiary-fixed": "#00174b",
+                        "surface-bright": "#f6fbf3",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "surface-tint": "#006d3d",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-error": "#ffffff",
+                        "background": "#f6fbf3",
+                        "tertiary": "#0051d5",
+                        "tertiary-container": "#316bf3",
+                        "on-tertiary-container": "#fefcff",
+                        "primary-fixed": "#9af6b8",
+                        "on-tertiary-fixed-variant": "#003ea8",
+                        "outline-variant": "#becabe",
+                        "on-primary-fixed": "#00210f",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d7dbd4",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#39b8fd",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)] h-20">
+<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="font-h2 text-h2 tracking-tight text-primary dark:text-primary-fixed">MediLink DZ</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary py-1 transition-colors duration-200" href="#">Find Doctors</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Pharmacies</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">AI Health</a>
+</div>
+<div class="flex items-center space-x-4">
+<div class="hidden sm:flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant">translate</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md hover:opacity-90 transition-all">Book Now</button>
+<button class="hidden md:block text-primary font-label-md">Login</button>
+</div>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="absolute inset-0 z-0">
+
+</div>
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+<div class="space-y-8 animate-fade-in">
+<h1 class="font-h1 text-h1 md:text-[56px] leading-[1.1] text-on-background">
+                        Your health, <span class="text-primary">simplified.</span>
+</h1>
+<p class="text-body-lg text-on-surface-variant max-w-lg">
+                        Connecting patients with Algeria's top medical professionals and pharmacies in one seamless digital ecosystem. Fast, secure, and reliable healthcare at your fingertips.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">search</span>
+                            Find a Doctor
+                        </button>
+<button class="bg-error-container text-on-error-container px-8 py-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:bg-error-container/80 transition-colors">
+<span class="material-symbols-outlined">emergency</span>
+                            Emergency
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="relative z-10 rounded-xl overflow-hidden aspect-[4/3] shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A professional Algerian doctor in a clean, modern medical office smiling and reassuring a patient during a consultation. The scene is bathed in soft, natural daylight with a high-end clinical aesthetic. The background features subtle glass textures and medical equipment in soft-focus. The colors are dominated by warm whites and professional forest greens, emphasizing trust and modern healthcare." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc0VTOC6pguOYyl31Vyz_vW4PWivliCUcR5BCpSeexU6uTm2e5vEWSPnjz0TuTzR0ZL1QAftO0WB4Z2zqJeANlHJrcWNYDmOGTX5J4qN6RGsCtXsOfPD6ecyvapd3eDhcdmo3o3s7R52eJ1fm2yW-4Ms2M0zoZg99NQ_9mzsM0TOKFyajowvYPLoUvT4j_-OqpPHRk_Mbj8kgOQjcdJmbFNol6-9x-hIV49g5JCDC45_osYtYy0oqahQ"/>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 glass-card p-6 rounded-lg shadow-xl hidden lg:block">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<div>
+<p class="text-label-md text-on-background">Certified Clinics</p>
+<p class="text-caption text-on-surface-variant">500+ Verified Partners</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1">
+<h2 class="font-h2 text-h2 mb-6 text-on-background">Empowering the Algerian Health Landscape</h2>
+<p class="text-body-md text-on-surface-variant mb-8 leading-relaxed">
+                            MediLink DZ was founded with a single mission: to modernize how Algerians access medical care. By bridging the gap between urban centers and rural areas, we provide every citizen with the tools to manage their medical journey—from booking appointments in Algiers to finding life-saving medication in Oran.
+                        </p>
+<div class="grid grid-cols-2 gap-6">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">public</span>
+<div>
+<h4 class="text-label-md">Local Network</h4>
+<p class="text-caption">Available in all 58 Wilayas</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">lock</span>
+<div>
+<h4 class="text-label-md">Data Privacy</h4>
+<p class="text-caption">GDPR &amp; Algerian Law Compliant</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2 rounded-lg overflow-hidden shadow-sm h-96">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist aerial view of Algiers city with a digital overlay showing glowing nodes representing a medical network. The lighting is soft morning sun reflecting off the Mediterranean sea. The style is professional, using a cool blue and sea green color palette to represent connectivity and technological advancement in the medical field across the Algerian landscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDleBkPeXkPBqQZUTzcsDODohqIDQMNl3kvaSyiP3phpTjPugDjJ0Q6Ma-a6WPfZ8zJXYa98-xLZGEMXmPolZSWm4gsTaPalfQda8cjAzhplRF7oga0wCEC8PLCktpnDZvOOQS5PDlpEEXyt4HzD4l4K_6HvoR5OCJB6KvyH5JhtvJK4f9iFlshkMeC7oUtFitrSuRVi_9Vjn912TAer1pHWJVLNdEGK6L9nNm_377ksBhMSSfLMtnfJg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto text-center mb-16">
+<h2 class="font-h2 text-h2 mb-4">Comprehensive Care for Everyone</h2>
+<p class="text-body-md text-on-surface-variant max-w-2xl mx-auto">Our platform integrates everything you need for a healthy life in one place.</p>
+</div>
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-outline-variant/30 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-primary-container/20 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-4xl">person_search</span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">Find Doctors</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Browse verified profiles, read reviews, and book appointments with specialists near you instantly.</p>
+<a class="text-primary font-label-md flex items-center gap-1 hover:gap-2 transition-all" href="#">Explore Directory <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-outline-variant/30 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-secondary-container/20 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-4xl">local_pharmacy</span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">Locate Pharmacies</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Real-time inventory checks and location services for pharmacies on duty (Pharmacies de Garde) in your city.</p>
+<a class="text-secondary font-label-md flex items-center gap-1 hover:gap-2 transition-all" href="#">Find Medication <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-outline-variant/30 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-tertiary-container/20 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-4xl">smart_toy</span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">AI Health Assistant</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Symptom checker and health advice powered by trained medical AI to guide your first steps to wellness.</p>
+<a class="text-tertiary font-label-md flex items-center gap-1 hover:gap-2 transition-all" href="#">Chat Now <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-20 bg-primary">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div class="text-on-primary">
+<div class="text-[48px] font-bold mb-2">150k+</div>
+<div class="text-label-md opacity-80 uppercase tracking-wider">Active Users</div>
+</div>
+<div class="text-on-primary">
+<div class="text-[48px] font-bold mb-2">2,400+</div>
+<div class="text-label-md opacity-80 uppercase tracking-wider">Registered Doctors</div>
+</div>
+<div class="text-on-primary">
+<div class="text-[48px] font-bold mb-2">500k+</div>
+<div class="text-label-md opacity-80 uppercase tracking-wider">Appointments Made</div>
+</div>
+<div class="text-on-primary">
+<div class="text-[48px] font-bold mb-2">58</div>
+<div class="text-label-md opacity-80 uppercase tracking-wider">Cities Covered</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-surface">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-h2 text-h2 mb-12 text-center">Voices of Trust</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card p-8 rounded-lg shadow-sm border border-outline-variant/20 italic text-on-surface-variant">
+<p class="mb-6">"Finally, a service that makes booking a specialist in Algiers stress-free. I used to wait for hours on the phone; now it takes 30 seconds."</p>
+<div class="flex items-center gap-3 not-italic">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim"></div>
+<div>
+<p class="text-label-md text-on-background">Yasmine B.</p>
+<p class="text-caption">User since 2023</p>
+</div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-lg shadow-sm border border-outline-variant/20 italic text-on-surface-variant">
+<p class="mb-6">"As a practitioner, MediLink has helped me organize my schedule and reach patients who truly need my expertise. Highly professional platform."</p>
+<div class="flex items-center gap-3 not-italic">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed-dim"></div>
+<div>
+<p class="text-label-md text-on-background">Dr. Farid K.</p>
+<p class="text-caption">Cardiologist</p>
+</div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-lg shadow-sm border border-outline-variant/20 italic text-on-surface-variant">
+<p class="mb-6">"The pharmacy locator was a lifesaver during an emergency late at night. It directed me to the nearest pharmacy de garde in Oran instantly."</p>
+<div class="flex items-center gap-3 not-italic">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim"></div>
+<div>
+<p class="text-label-md text-on-background">Omar M.</p>
+<p class="text-caption">Parent</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto">
+<h2 class="font-h2 text-h2 mb-12 text-center">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<details class="group bg-white rounded-lg shadow-sm border border-outline-variant/20 overflow-hidden" open="">
+<summary class="flex justify-between items-center p-6 cursor-pointer font-h3 text-h3 list-none">
+                        Is MediLink free for patients?
+                        <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-body-md text-on-surface-variant border-t border-outline-variant/10">
+                        Yes, searching for doctors, viewing pharmacy lists, and booking appointments are completely free for all patients.
+                    </div>
+</details>
+<details class="group bg-white rounded-lg shadow-sm border border-outline-variant/20 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer font-h3 text-h3 list-none">
+                        How do I verify a doctor's credentials?
+                        <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-body-md text-on-surface-variant border-t border-outline-variant/10">
+                        Every medical practitioner on our platform undergoes a rigorous verification process, including proof of registration with the Algerian National Council of Medical Ethics.
+                    </div>
+</details>
+<details class="group bg-white rounded-lg shadow-sm border border-outline-variant/20 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer font-h3 text-h3 list-none">
+                        Is my medical data secure?
+                        <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-body-md text-on-surface-variant border-t border-outline-variant/10">
+                        We use end-to-end encryption for all medical records and messages, adhering to international healthcare data protection standards and Algerian privacy regulations.
+                    </div>
+</details>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-12">
+<div class="space-y-4">
+<div class="font-h3 text-h3 text-primary dark:text-primary-fixed">MediLink DZ</div>
+<p class="text-body-md text-on-surface-variant">The digital pulse of Algerian healthcare. Revolutionizing access to medical services since 2024.</p>
+<div class="flex space-x-4">
+<a class="w-10 h-10 rounded-full bg-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md mb-4 uppercase tracking-wider">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Find Doctors</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Pharmacies</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">AI Health Assistant</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Emergency Services</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md mb-4 uppercase tracking-wider">Company</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Medical Ethics</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md mb-4 uppercase tracking-wider">Download App</h4>
+<div class="space-y-3">
+<div class="bg-inverse-surface dark:bg-surface text-on-primary dark:text-on-surface px-4 py-2 rounded-lg flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-2xl">shop</span>
+<div class="text-caption">Download on <br/><span class="font-bold text-body-md">Play Store</span></div>
+</div>
+<div class="bg-inverse-surface dark:bg-surface text-on-primary dark:text-on-surface px-4 py-2 rounded-lg flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-2xl">file_download</span>
+<div class="text-caption">Download on <br/><span class="font-bold text-body-md">App Store</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-8 border-t border-outline-variant/30 text-center">
+<p class="text-body-md text-on-surface-variant">© 2024 MediLink DZ. Approved by Ministry of Health, Algeria.</p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden rounded-t-lg bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-lg h-16 px-4 pb-safe flex justify-around items-center">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="text-caption">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:bg-primary-container/50">
+<span class="material-symbols-outlined">search</span>
+<span class="text-caption">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:bg-primary-container/50">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="text-caption">Records</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:bg-primary-container/50">
+<span class="material-symbols-outlined">person</span>
+<span class="text-caption">Profile</span>
+</div>
+</nav>
+<script>
+        // Simple scroll animation for headers
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

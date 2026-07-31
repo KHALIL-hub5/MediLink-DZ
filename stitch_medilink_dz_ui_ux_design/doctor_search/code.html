@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - Doctor Search</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#39b8fd",
+                    "surface-container-low": "#eff4ff",
+                    "primary-fixed": "#9af6b8",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#7ed99e",
+                    "tertiary": "#b90538",
+                    "outline": "#6f7a70",
+                    "on-surface-variant": "#3f4941",
+                    "primary-container": "#268451",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed": "#40000d",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface": "#f8f9ff",
+                    "on-secondary-container": "#004666",
+                    "on-background": "#0b1c30",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#00522d",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "primary": "#006a3b",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#006591",
+                    "inverse-primary": "#7ed99e",
+                    "surface-tint": "#006d3d",
+                    "on-tertiary-fixed-variant": "#92002a",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f6fff4",
+                    "tertiary-fixed-dim": "#ffb2b7",
+                    "surface-container": "#e5eeff",
+                    "on-primary-fixed": "#00210f",
+                    "tertiary-fixed": "#ffdadb",
+                    "background": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary-container": "#dc2c4f",
+                    "on-secondary-fixed": "#001e2f",
+                    "on-tertiary-container": "#fffbff",
+                    "secondary-fixed": "#c9e6ff",
+                    "outline-variant": "#becabe",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "margin-desktop": "48px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "label-md": ["Be Vietnam Pro", "sans-serif"],
+                    "title-md": ["Be Vietnam Pro", "sans-serif"],
+                    "display-lg": ["Be Vietnam Pro", "sans-serif"],
+                    "headline-lg": ["Be Vietnam Pro", "sans-serif"],
+                    "body-lg": ["Be Vietnam Pro", "sans-serif"],
+                    "headline-lg-mobile": ["Be Vietnam Pro", "sans-serif"],
+                    "body-md": ["Be Vietnam Pro", "sans-serif"],
+                    "caption": ["Be Vietnam Pro", "sans-serif"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .glass-panel {
+                @apply bg-white/70 backdrop-blur-[16px] border border-white/30;
+            }
+            .level-1-shadow {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-hidden flex flex-col h-screen relative">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm dark:bg-surface-container-low sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-16 w-full flex-shrink-0 border-none">
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed tracking-tight">MediLink DZ</h1>
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto w-full pb-24 flex flex-col md:max-w-3xl md:mx-auto">
+<!-- Search & Filter Sticky Header -->
+<div class="sticky top-0 z-40 bg-background/90 backdrop-blur-md px-margin-mobile py-4 border-b border-outline-variant/20 flex-shrink-0">
+<!-- Search Field -->
+<div class="relative w-full mb-4 group">
+<div class="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-full py-3 ps-12 pe-12 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-sm" placeholder="Search by name, specialty, or clinic..." type="text"/>
+<button class="absolute inset-y-0 end-0 flex items-center pe-4 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Filter Chips (Horizontal Scroll) -->
+<div class="flex overflow-x-auto scrollbar-hide gap-2 pb-1">
+<button class="flex-shrink-0 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-4 py-2 rounded-full flex items-center gap-1 border border-transparent shadow-sm">
+                    Speciality
+                    <span class="material-symbols-outlined text-[18px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high font-label-md text-label-md px-4 py-2 rounded-full flex items-center gap-1 border border-outline-variant/30 transition-colors">
+                    Algiers (16)
+                    <span class="material-symbols-outlined text-[18px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high font-label-md text-label-md px-4 py-2 rounded-full flex items-center border border-outline-variant/30 transition-colors">
+                    Available Today
+                </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high font-label-md text-label-md px-4 py-2 rounded-full flex items-center border border-outline-variant/30 transition-colors">
+                    Top Rated
+                </button>
+</div>
+</div>
+<!-- Doctor List Canvas -->
+<div class="p-margin-mobile flex flex-col gap-4">
+<!-- Doctor Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl level-1-shadow p-4 flex flex-col gap-4 hover:shadow-lg transition-shadow border border-outline-variant/10 relative overflow-hidden group">
+<!-- Decorative subtle glow -->
+<div class="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex gap-4 items-start relative z-10">
+<img class="w-20 h-20 rounded-lg object-cover bg-surface-container-high border border-outline-variant/20 flex-shrink-0" data-alt="A professional photographic portrait of a middle-aged male cardiologist of Algerian descent. He is wearing a pristine white lab coat over a light blue shirt, with a stethoscope draped around his neck. The lighting is soft, bright, and clinical, creating a trustworthy and empathetic mood. The background is a slightly blurred, modern hospital corridor with a clean, light-mode aesthetic dominated by whites and soft blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6eFpNPbxGopaRjZa9_LN1h0_-yt-6oEwBL3k528Pwpgn2Px-fAAiF30Ce4MLdasUZg4IV-95HQrJWeHb10CFZMexHA9Vur4PPO3eM0uxKFTi08a5Ro6XsoHGyqDmRmhyWj5kgSJy8XmJe2tYbo6ry_NK7_fIK6YervpQvVVyFIZN3mHDVyyOLkD32lTBmFlON9l-tfQWgaKCw0Prr3ugrG4Uf08jpPA5Kgw8ie3PvyvTYhjFBLcHI"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface truncate">Dr. Amine Benali</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Cardiology Specialist</p>
+</div>
+<button class="text-on-surface-variant hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined text-[24px]" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[16px] text-[#F59E0B]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.9</span>
+<span class="font-caption text-caption text-on-surface-variant ml-1">(128 reviews)</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="font-caption text-caption text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5" data-icon="location_on">location_on</span>
+                                2.4 km
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-4 mt-2 relative z-10">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-[#10B981]"></span>
+</span>
+<span class="font-label-md text-label-md text-[#047857]">Available Today</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded-lg hover:bg-primary/90 active:scale-95 transition-all shadow-sm">
+                        Book
+                    </button>
+</div>
+</div>
+<!-- Doctor Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl level-1-shadow p-4 flex flex-col gap-4 hover:shadow-lg transition-shadow border border-outline-variant/10 relative overflow-hidden group">
+<div class="flex gap-4 items-start relative z-10">
+<img class="w-20 h-20 rounded-lg object-cover bg-surface-container-high border border-outline-variant/20 flex-shrink-0" data-alt="A warm and friendly photographic portrait of a young female pediatrician of North African descent. She is wearing a colorful patterned scrub top under a neat white lab coat. She has a welcoming smile. The lighting is bright and inviting, conveying a sense of safety and care. The background is a modern clinic room with subtle, soft pastel accents in a predominantly white, clean environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN_DVir_8riPcvGg8FzUfKk15i6YoROJ51_KcwUD31z4MpwvrRIVJ7xFTmIchVnpnaDBaHFfX-4JgmVJcImhMQrkzrniRoE1K19jyKJQsPeCXboG44DpfgVVGh6clFxVT6w7UEyLElDldmABF6k7n8wrsFKslJFoRku7m7MtuUO6PNJ5nrcPf_44-hxiciFZkx6zp76Uwa3-LERNUK3lvfH3y0o7FKkf7WZcpVefLqEA9eyBAbTPox"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface truncate">Dr. Sarah Mansouri</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Pediatrician</p>
+</div>
+<button class="text-on-surface-variant hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined text-[24px]" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[16px] text-[#F59E0B]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.8</span>
+<span class="font-caption text-caption text-on-surface-variant ml-1">(94 reviews)</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="font-caption text-caption text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5" data-icon="location_on">location_on</span>
+                                5.1 km
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-4 mt-2 relative z-10">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="relative inline-flex rounded-full h-3 w-3 bg-outline-variant"></span>
+</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Next avail: Tomorrow</span>
+</div>
+<button class="bg-surface-container text-primary font-label-md text-label-md px-6 py-2 rounded-lg hover:bg-surface-container-high active:scale-95 transition-all shadow-sm">
+                        View Profile
+                    </button>
+</div>
+</div>
+<!-- Doctor Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl level-1-shadow p-4 flex flex-col gap-4 hover:shadow-lg transition-shadow border border-outline-variant/10 relative overflow-hidden group">
+<div class="flex gap-4 items-start relative z-10">
+<img class="w-20 h-20 rounded-lg object-cover bg-surface-container-high border border-outline-variant/20 flex-shrink-0" data-alt="A crisp, high-resolution portrait of a male dermatologist in his late thirties, of Algerian descent. He is dressed in professional business casual attire under a tailored white medical coat. His expression is calm and confident. The lighting is bright and directional, highlighting a clean, sophisticated atmosphere. The background features a minimalist, modern clinic setting with glass partitions and soft natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp2JpUdNyGeMhD7TIDsOLYEInn9TIMYT81IxY77QOA6kkVAzNwTJkJIKgc9b-qO52LxtJ3rryubWp3-uu7gcXEq-9O2kHP-f_74C3pFe2hKBePjQ6mRvZAw0E2qcyudYPUB9Pz8gJu0r7iA9XYxm2AGftVlvkgs5Ndnjc6exRFA3zCdb6D895OfErzBzEkzBolz-zWs6wFU2vdVRuHbJMk7jKuUo6apyL9XGRx4KzejkQ9k-7Sjk2t"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface truncate">Dr. Yassine Kadri</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Dermatology</p>
+</div>
+<button class="text-on-surface-variant hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined text-[24px]" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[16px] text-[#F59E0B]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">5.0</span>
+<span class="font-caption text-caption text-on-surface-variant ml-1">(210 reviews)</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="font-caption text-caption text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5" data-icon="location_on">location_on</span>
+                                8.0 km
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-4 mt-2 relative z-10">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-[#10B981]"></span>
+</span>
+<span class="font-label-md text-label-md text-[#047857]">Available Today</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded-lg hover:bg-primary/90 active:scale-95 transition-all shadow-sm">
+                        Book
+                    </button>
+</div>
+</div>
+<!-- End of list spacer for safe area -->
+<div class="h-8"></div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) - Active state: Search -->
+<nav class="bg-surface/70 dark:bg-inverse-surface/70 docked full-width bottom-0 rounded-t-xl bg-white/70 backdrop-blur-lg border-t-0 shadow-[0_-4px_24px_rgba(0,0,0,0.08)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 md:hidden">
+<!-- Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<!-- Search (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-full px-5 py-1.5 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5 text-[24px]" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md font-bold">Search</span>
+</a>
+<!-- Records (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Records</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</body></html>

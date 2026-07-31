@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Appointment - MediLink DZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f5ee",
+                    "secondary": "#006591",
+                    "surface-container-highest": "#dfe4dd",
+                    "inverse-surface": "#2d322d",
+                    "on-background": "#181d19",
+                    "inverse-primary": "#7ed99e",
+                    "on-primary-fixed-variant": "#00522d",
+                    "surface-container": "#ebefe8",
+                    "primary-fixed-dim": "#7ed99e",
+                    "on-surface": "#181d19",
+                    "primary": "#006a3b",
+                    "on-primary-container": "#f6fff4",
+                    "surface-container-high": "#e5e9e2",
+                    "on-secondary-container": "#004666",
+                    "inverse-on-surface": "#edf2eb",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface-variant": "#dfe4dd",
+                    "surface": "#f6fbf3",
+                    "on-surface-variant": "#3f4941",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "primary-container": "#268451",
+                    "on-secondary-fixed": "#001e2f",
+                    "tertiary-fixed": "#dbe1ff",
+                    "outline": "#6f7a70",
+                    "on-tertiary-fixed": "#00174b",
+                    "surface-bright": "#f6fbf3",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "surface-tint": "#006d3d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "background": "#f6fbf3",
+                    "tertiary": "#0051d5",
+                    "tertiary-container": "#316bf3",
+                    "on-tertiary-container": "#fefcff",
+                    "primary-fixed": "#9af6b8",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "outline-variant": "#becabe",
+                    "on-primary-fixed": "#00210f",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d7dbd4",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#39b8fd",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .step-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(226, 232, 240, 0.5); }
+        input:focus, textarea:focus { outline: none; border-color: #006a3b; box-shadow: 0 0 0 4px rgba(0, 106, 59, 0.1); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/20">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-h2 text-h2 tracking-tight text-primary">MediLink DZ</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Find Doctors</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Pharmacies</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">AI Health</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-high rounded-full transition-colors">notifications</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a male doctor in a crisp white medical coat, wearing a stethoscope around his neck. He has a friendly, trustworthy expression. The background is a brightly lit, modern medical clinic with clean lines and soft sea-green accents to match the branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3J9gOvWgxigg_VTECVMOu74qvLc-cp8V53423xMJC4xW2_Sa2rpFQKbw85lVnRKXdxZeg361tAh_G2llvEf_EBzkeIo3Aku3f22n-8YjCk95jS-b-S7FRUPo5KrbEickJmolCF7QgTQ_RVAdGU28auHlYUNN-Q9JG7XTOWGsYxcpLWGnbd0A4VPhrTREW2gozWlRDEIDPBObbrqbVVWR__TTUkjeuu-W0AfknMLk34bvXY6pnFYD4QA"/>
+</div>
+</div>
+</nav>
+</header>
+<div class="pt-20 min-h-screen flex">
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="h-[calc(100vh-80px)] w-72 fixed left-0 top-20 hidden md:flex flex-col bg-surface-container-low border-r border-outline-variant/30 p-6 space-y-4">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close-up of Dr. Amine Rahmani, a Middle Eastern cardiologist in his late 40s with a kind smile and professional demeanor. He is wearing business casual attire with a stethoscope visible. The lighting is warm and natural, set in a contemporary office with medical equipment softly blurred in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuFzMJfe7rVviraXsw7LVc6Q05VdaW-uy3v1Jvs1oYwi6Z8KecR0AGYGEaGckJhcv-tDO1go9Cr3nqE1kF6kQdumnUV1bXV8AAqiOCmBp3LAFChc6SBKo_b9LtIt5wnmTLpdFwY2_NHzBvphCPz5I4XXhz99OpNrT0tHvwq_TeNmWpAN1eAgIeWtpnjyXNlVgg8ccbfxqUjWAniZJ5t0BidszJQxdUU-tWlB9yDleOqhkr8YfjcDDiyA"/>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Dr. Amine Rahmani</h3>
+<p class="font-caption text-caption text-on-surface-variant">Cardiologist • Algiers</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 bg-primary-container text-on-primary-container rounded-lg font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">qr_code_2</span>
+<span class="font-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md">AI Assistant</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-outline-variant/20">
+<button class="w-full bg-error text-on-error py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Emergency Call</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 p-margin-mobile md:p-margin-desktop bg-surface-bright">
+<div class="max-w-4xl mx-auto">
+<header class="mb-10">
+<h1 class="font-h2 text-h2 text-on-surface mb-2">Book an Appointment</h1>
+<p class="text-on-surface-variant font-body-md">Follow the steps below to schedule your visit with Dr. Rahmani.</p>
+</header>
+<!-- Stepper Progress -->
+<div class="flex items-center justify-between mb-12 max-w-2xl mx-auto px-4 relative">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-highest -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 h-[2px] bg-primary -translate-y-1/2 z-0 transition-all duration-500 w-[0%]" id="step-line"></div>
+<div class="relative z-10 flex flex-col items-center gap-2 group cursor-pointer" onclick="goToStep(1)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold shadow-md transition-all" id="circle-1">1</div>
+<span class="text-caption font-bold text-primary">Date</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 group cursor-pointer" onclick="goToStep(2)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all" id="circle-2">2</div>
+<span class="text-caption font-bold text-on-surface-variant">Time</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 group cursor-pointer" onclick="goToStep(3)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all" id="circle-3">3</div>
+<span class="text-caption font-bold text-on-surface-variant">Details</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 group cursor-pointer" onclick="goToStep(4)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all" id="circle-4">4</div>
+<span class="text-caption font-bold text-on-surface-variant">Confirm</span>
+</div>
+</div>
+<!-- Step Containers -->
+<div class="relative min-h-[500px]" id="wizard-container">
+<!-- Step 1: Calendar -->
+<section class="step-transition opacity-100 translate-x-0" id="step-1">
+<div class="glass-panel p-8 rounded-lg shadow-sm">
+<h3 class="font-h3 text-h3 mb-6">Select a Date</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="bg-surface-container-low p-6 rounded-2xl">
+<div class="flex justify-between items-center mb-6">
+<span class="font-bold text-lg">November 2024</span>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 text-center mb-4 text-on-surface-variant text-caption font-bold">
+<span>MO</span><span>TU</span><span>WE</span><span>TH</span><span>FR</span><span>SA</span><span>SU</span>
+</div>
+<div class="grid grid-cols-7 gap-2" id="calendar-grid">
+<!-- JS will populate or static mockup -->
+<div class="py-3 text-outline-variant cursor-not-allowed">28</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">29</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">30</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">31</div>
+<div class="py-3 hover:bg-primary-container/20 rounded-xl cursor-pointer transition-all font-medium">1</div>
+<div class="py-3 text-outline-variant">2</div>
+<div class="py-3 text-outline-variant">3</div>
+<!-- Row 2 -->
+<div class="py-3 hover:bg-primary-container/20 rounded-xl cursor-pointer transition-all font-medium">4</div>
+<div class="py-3 hover:bg-primary-container/20 rounded-xl cursor-pointer transition-all font-medium">5</div>
+<div class="py-3 bg-primary text-on-primary rounded-xl cursor-pointer shadow-lg font-bold">6</div>
+<div class="py-3 hover:bg-primary-container/20 rounded-xl cursor-pointer transition-all font-medium">7</div>
+<div class="py-3 hover:bg-primary-container/20 rounded-xl cursor-pointer transition-all font-medium">8</div>
+<div class="py-3 text-outline-variant">9</div>
+<div class="py-3 text-outline-variant">10</div>
+</div>
+</div>
+<div class="flex flex-col justify-center space-y-6">
+<div class="p-6 bg-primary-container/10 border-l-4 border-primary rounded-r-2xl">
+<p class="font-body-md text-primary font-bold">Selected Date:</p>
+<p class="text-h3 font-h3">Wednesday, Nov 6</p>
+</div>
+<p class="text-on-surface-variant body-md">Choose your preferred day to see available time slots in the next step.</p>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-all shadow-md group" onclick="nextStep(2)">
+<span>Choose Time Slots</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 2: Time Slots -->
+<section class="step-transition hidden opacity-0 translate-x-12" id="step-2">
+<div class="glass-panel p-8 rounded-lg">
+<h3 class="font-h3 text-h3 mb-6">Select Appointment Time</h3>
+<div class="space-y-8">
+<div>
+<p class="font-label-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">wb_sunny</span> Morning
+                                    </p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<button class="time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all">09:00 AM</button>
+<button class="time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all">09:30 AM</button>
+<button class="time-slot border-2 border-primary bg-primary text-on-primary p-4 rounded-xl font-bold shadow-md">10:00 AM</button>
+<button class="time-slot bg-surface-container-highest opacity-50 p-4 rounded-xl font-medium text-outline cursor-not-allowed">11:00 AM</button>
+</div>
+</div>
+<div>
+<p class="font-label-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">light_mode</span> Afternoon
+                                    </p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<button class="time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all">02:00 PM</button>
+<button class="time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all">03:30 PM</button>
+<button class="time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all">04:00 PM</button>
+<button class="time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all">04:30 PM</button>
+</div>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<button class="flex-1 border border-outline text-outline font-bold py-4 rounded-xl hover:bg-surface-container-low transition-all" onclick="nextStep(1)">Back</button>
+<button class="flex-[2] bg-primary text-on-primary font-bold py-4 rounded-xl shadow-md hover:bg-primary-container transition-all" onclick="nextStep(3)">Continue to Details</button>
+</div>
+</div>
+</section>
+<!-- Step 3: Details -->
+<section class="step-transition hidden opacity-0 translate-x-12" id="step-3">
+<div class="glass-panel p-8 rounded-lg">
+<h3 class="font-h3 text-h3 mb-6">Patient Information</h3>
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-3">Reason for Visit</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<label class="flex items-center p-4 bg-surface-container rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="ml-3 font-body-md">Routine Checkup</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors">
+<input class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="ml-3 font-body-md">Consultation</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors">
+<input class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="ml-3 font-body-md">Blood Test</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors">
+<input class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="ml-3 font-body-md">Other</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-3">Notes for the Doctor (Optional)</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 font-body-md resize-none" placeholder="Explain any symptoms or medical history..." rows="4"></textarea>
+</div>
+<div class="mt-8 flex gap-4">
+<button class="flex-1 border border-outline text-outline font-bold py-4 rounded-xl hover:bg-surface-container-low transition-all" onclick="nextStep(2)" type="button">Back</button>
+<button class="flex-[2] bg-primary text-on-primary font-bold py-4 rounded-xl shadow-md hover:bg-primary-container transition-all" onclick="nextStep(4)" type="button">Review Appointment</button>
+</div>
+</form>
+</div>
+</section>
+<!-- Step 4: Summary -->
+<section class="step-transition hidden opacity-0 translate-x-12" id="step-4">
+<div class="glass-panel p-8 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[120px] text-primary">verified</span>
+</div>
+<h3 class="font-h3 text-h3 mb-8">Confirm Your Appointment</h3>
+<div class="space-y-6 relative z-10">
+<div class="flex gap-6 items-start">
+<div class="p-3 bg-primary-container/20 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl">calendar_today</span>
+</div>
+<div>
+<p class="text-caption font-bold text-outline uppercase tracking-wider">Date &amp; Time</p>
+<p class="font-body-lg text-on-surface">Wednesday, November 6th, 2024</p>
+<p class="font-h3 text-primary">10:00 AM</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="p-3 bg-secondary-container/20 rounded-2xl">
+<span class="material-symbols-outlined text-secondary text-3xl">person</span>
+</div>
+<div>
+<p class="text-caption font-bold text-outline uppercase tracking-wider">Medical Professional</p>
+<p class="font-body-lg text-on-surface">Dr. Amine Rahmani</p>
+<p class="text-body-md text-on-surface-variant">Cardiology Department, Algiers Clinic</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="p-3 bg-surface-container-highest rounded-2xl">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">medical_services</span>
+</div>
+<div>
+<p class="text-caption font-bold text-outline uppercase tracking-wider">Service</p>
+<p class="font-body-lg text-on-surface">Routine Cardiovascular Checkup</p>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/30 mt-8 flex gap-4">
+<button class="flex-1 border border-outline text-outline font-bold py-4 rounded-xl hover:bg-surface-container-low transition-all" onclick="nextStep(3)">Edit Details</button>
+<button class="flex-[2] bg-primary text-on-primary font-bold py-4 rounded-xl shadow-xl hover:scale-[1.02] active:scale-95 transition-all" onclick="showSuccess()">Confirm Booking</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Final: Success Message -->
+<section class="step-transition hidden opacity-0 scale-95 flex flex-col items-center text-center py-12" id="success-message">
+<div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center mb-8 shadow-2xl animate-bounce">
+<span class="material-symbols-outlined text-on-primary text-5xl">check</span>
+</div>
+<h2 class="font-h1 text-h1 text-on-surface mb-4">Booking Confirmed!</h2>
+<p class="text-body-lg text-on-surface-variant max-w-md mx-auto mb-10">Your appointment is scheduled. We've sent a confirmation email with all the details to your inbox.</p>
+<div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+<button class="flex-1 flex items-center justify-center gap-3 bg-white border-2 border-[#4285F4] text-[#4285F4] py-4 rounded-xl font-bold hover:bg-[#4285F4]/5 transition-all">
+<img class="w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT29vxcpbOCoKWgRb-hxe7pxrnA7uU7e2YvtLnNclEnmolQS6IWTD2VpTXzolSNlbqeIaBOAhl60bSWTCVtQWy9v2wkP3W8T1wNFte9v53ISC8rW1hOaNeRuwODWv4tXMf4dD1o_LR7KUi_4vQz37SeS7eC3IHKKaGTgZ0PlvyeGPbHdEhPR96Jfz2UPX9O2FOj-o1mJayzJsqdR74F2638pD4_aOQLrXgQnRvBqIaZ60wTqx1idXqIA"/>
+<span>Add to Google Calendar</span>
+</button>
+<button class="flex-1 bg-surface-container-highest text-on-surface-variant py-4 rounded-xl font-bold hover:bg-surface-container-high transition-all" onclick="location.reload()">Return Home</button>
+</div>
+</section>
+</div>
+</div>
+<!-- History Sidebar (Floating Bento-style on desktop right, bottom on mobile) -->
+<div class="mt-20 border-t border-outline-variant/30 pt-12">
+<h3 class="font-h3 text-h3 mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">history</span>
+                    Appointment History
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Upcoming -->
+<div class="bg-surface-container p-6 rounded-2xl hover:shadow-lg transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-primary/10 text-primary text-caption font-bold rounded-full">Upcoming</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">more_vert</span>
+</div>
+<h4 class="font-bold text-on-surface">Dr. Sarah Bellal</h4>
+<p class="text-caption text-on-surface-variant mb-4">Dermatology • Nov 12, 02:00 PM</p>
+<button class="text-primary font-bold text-label-md flex items-center gap-1 hover:underline">
+                            View Details <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<!-- Completed -->
+<div class="bg-surface-container p-6 rounded-2xl opacity-80 hover:opacity-100 transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-caption font-bold rounded-full">Completed</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="font-bold text-on-surface">Dr. Mourad K.</h4>
+<p class="text-caption text-on-surface-variant mb-4">General Physician • Oct 28</p>
+<button class="text-secondary font-bold text-label-md flex items-center gap-1 hover:underline">
+                            Download Report
+                        </button>
+</div>
+<!-- Cancelled -->
+<div class="bg-surface-container p-6 rounded-2xl opacity-60">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-error/10 text-error text-caption font-bold rounded-full">Cancelled</span>
+</div>
+<h4 class="font-bold text-on-surface">Dr. Leila Touati</h4>
+<p class="text-caption text-on-surface-variant">Pediatrics • Oct 15</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden bg-surface/80 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.08)] flex justify-around items-center h-16 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-caption text-caption">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-caption text-caption">Booking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-caption">Profile</span>
+</a>
+</nav>
+<script>
+        let currentStep = 1;
+
+        function goToStep(step) {
+            if (step > currentStep + 1) return; // Basic validation
+            nextStep(step);
+        }
+
+        function nextStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`step-${i}`);
+                if (el) {
+                    el.classList.add('hidden');
+                    el.classList.add('opacity-0');
+                    el.classList.add('translate-x-12');
+                }
+            }
+            document.getElementById('success-message').classList.add('hidden');
+
+            // Show target step
+            const nextEl = document.getElementById(`step-${step}`);
+            if (nextEl) {
+                nextEl.classList.remove('hidden');
+                setTimeout(() => {
+                    nextEl.classList.remove('opacity-0');
+                    nextEl.classList.remove('translate-x-12');
+                    nextEl.classList.add('translate-x-0');
+                    nextEl.classList.add('opacity-100');
+                }, 10);
+            }
+
+            // Update Stepper UI
+            currentStep = step;
+            updateStepperUI(step);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateStepperUI(step) {
+            const progress = ((step - 1) / 3) * 100;
+            document.getElementById('step-line').style.width = `${progress}%`;
+
+            for (let i = 1; i <= 4; i++) {
+                const circle = document.getElementById(`circle-${i}`);
+                const label = circle.nextElementSibling;
+                
+                if (i < step) {
+                    circle.innerHTML = '<span class="material-symbols-outlined">check</span>';
+                    circle.className = "w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold shadow-md transition-all";
+                    label.className = "text-caption font-bold text-primary";
+                } else if (i === step) {
+                    circle.innerText = i;
+                    circle.className = "w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold shadow-md ring-4 ring-primary/20 scale-110 transition-all";
+                    label.className = "text-caption font-bold text-primary";
+                } else {
+                    circle.innerText = i;
+                    circle.className = "w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all";
+                    label.className = "text-caption font-bold text-on-surface-variant";
+                }
+            }
+        }
+
+        function showSuccess() {
+            // Hide previous step
+            const lastStep = document.getElementById('step-4');
+            lastStep.classList.add('hidden');
+            
+            // Update line to 100%
+            document.getElementById('step-line').style.width = `100%`;
+            
+            // Show Success
+            const success = document.getElementById('success-message');
+            success.classList.remove('hidden');
+            setTimeout(() => {
+                success.classList.remove('opacity-0');
+                success.classList.remove('scale-95');
+                success.classList.add('opacity-100');
+                success.classList.add('scale-100');
+            }, 50);
+            
+            // Update circles for finale
+            for (let i = 1; i <= 4; i++) {
+                const circle = document.getElementById(`circle-${i}`);
+                circle.innerHTML = '<span class="material-symbols-outlined">check</span>';
+                circle.className = "w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold shadow-md";
+            }
+        }
+
+        // Add some interactivity to calendar cells
+        document.querySelectorAll('#calendar-grid div').forEach(day => {
+            if (!day.classList.contains('cursor-not-allowed') && !day.classList.contains('text-outline-variant')) {
+                day.addEventListener('click', () => {
+                    document.querySelectorAll('#calendar-grid div').forEach(d => {
+                         if (!d.classList.contains('text-outline-variant')) {
+                            d.className = "py-3 hover:bg-primary-container/20 rounded-xl cursor-pointer transition-all font-medium";
+                         }
+                    });
+                    day.className = "py-3 bg-primary text-on-primary rounded-xl cursor-pointer shadow-lg font-bold";
+                });
+            }
+        });
+
+        // Time slot selection
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            if (!slot.classList.contains('cursor-not-allowed')) {
+                slot.addEventListener('click', () => {
+                    // Remove active from all sibling containers' slots
+                    document.querySelectorAll('.time-slot').forEach(s => {
+                        if (!s.classList.contains('cursor-not-allowed')) {
+                            s.className = "time-slot border border-outline-variant p-4 rounded-xl font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all";
+                        }
+                    });
+                    slot.className = "time-slot border-2 border-primary bg-primary text-on-primary p-4 rounded-xl font-bold shadow-md";
+                });
+            }
+        });
+    </script>
+</body></html>

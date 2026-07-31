@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard | MediLink DZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f5ee",
+                    "secondary": "#006591",
+                    "surface-container-highest": "#dfe4dd",
+                    "inverse-surface": "#2d322d",
+                    "on-background": "#181d19",
+                    "inverse-primary": "#7ed99e",
+                    "on-primary-fixed-variant": "#00522d",
+                    "surface-container": "#ebefe8",
+                    "primary-fixed-dim": "#7ed99e",
+                    "on-surface": "#181d19",
+                    "primary": "#006a3b",
+                    "on-primary-container": "#f6fff4",
+                    "surface-container-high": "#e5e9e2",
+                    "on-secondary-container": "#004666",
+                    "inverse-on-surface": "#edf2eb",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface-variant": "#dfe4dd",
+                    "surface": "#f6fbf3",
+                    "on-surface-variant": "#3f4941",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "primary-container": "#268451",
+                    "on-secondary-fixed": "#001e2f",
+                    "tertiary-fixed": "#dbe1ff",
+                    "outline": "#6f7a70",
+                    "on-tertiary-fixed": "#00174b",
+                    "surface-bright": "#f6fbf3",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "surface-tint": "#006d3d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "background": "#f6fbf3",
+                    "tertiary": "#0051d5",
+                    "tertiary-container": "#316bf3",
+                    "on-tertiary-container": "#fefcff",
+                    "primary-fixed": "#9af6b8",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "outline-variant": "#becabe",
+                    "on-primary-fixed": "#00210f",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d7dbd4",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#39b8fd",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {},
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .sidebar-item-active {
+            background-color: #268451; /* primary-container fallback */
+            color: #f6fff4; /* on-primary-container */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #becabe;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-72 fixed left-0 top-0 hidden md:flex flex-col bg-inverse-surface text-surface-variant border-r border-outline-variant/30 z-50">
+<!-- Brand Header -->
+<div class="p-8">
+<h1 class="font-h3 text-h3 text-primary-fixed">MediLink DZ</h1>
+<p class="text-caption opacity-70 mt-1 uppercase tracking-widest">Admin Control</p>
+</div>
+<!-- Admin Profile -->
+<div class="px-6 mb-8">
+<div class="flex items-center space-x-4 p-4 bg-white/5 rounded-lg border border-white/10">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-fixed/30 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of Dr. Amine Rahmani, a confident Algerian male cardiologist in his 40s wearing a clean white lab coat and a stethoscope. The background is a soft-focus medical clinic with clean white walls and warm lighting, creating an atmosphere of professional clinical precision and approachability for the MediLink DZ platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqG7paM9EyiKJoU5YAR7Ey972ZhNvnptWS-rYfsRUdC9HLHYHhGdgICvK5D3sSSzXJI07sXp5ujfTFDhGIErKm9-7fBlnv4Ukt83ERLJzIuO1mQ8o9UjECfhHygosM0a8oXMt8PcdG4kH2HxuDy7ZbihzLOSI_20sxrx3wUdPxaV3uz6TU9zWhusjhFto2lXsDnxX0s9ETov7phz826p84bHpBmCnNIU4NH79FdPPLyVP3MhMjhMz_Tg"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-white">Dr. Amine Rahmani</h4>
+<p class="text-caption text-surface-variant/60">Super Administrator</p>
+</div>
+</div>
+</div>
+<!-- Nav Navigation Items -->
+<nav class="flex-1 px-6 space-y-2 overflow-y-auto">
+<!-- Search Item logic mapping: Dashboard is active -->
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg font-bold bg-primary-container text-on-primary-container transition-transform duration-150 scale-100" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg font-medium text-surface-variant hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="font-label-md">Appointments</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg font-medium text-surface-variant hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="Description">qr_code_2</span>
+<span class="font-label-md">Medical Records</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg font-medium text-surface-variant hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-md">AI Assistant</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg font-medium text-surface-variant hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="local_pharmacy">local_pharmacy</span>
+<span class="font-label-md">Pharmacy</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg font-medium text-surface-variant hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<!-- CTA & Logout -->
+<div class="p-6 mt-auto">
+<button class="w-full bg-error text-on-error py-3 rounded-lg font-label-md flex items-center justify-center space-x-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span>Emergency Call</span>
+</button>
+<button class="w-full mt-4 flex items-center space-x-3 px-4 py-3 text-on-error-container/80 hover:text-on-error-container transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-72 min-h-screen overflow-y-auto pb-24">
+<!-- TopNavBar Component (Embedded as header) -->
+<header class="sticky top-0 w-full z-40 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/70 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.05)] border-b border-outline-variant/10">
+<div>
+<h2 class="font-h3 text-h3 text-primary">System Overview</h2>
+<p class="text-caption text-on-surface-variant">Welcome back, Administrator Rahmani</p>
+</div>
+<div class="flex items-center space-x-6">
+<!-- Search Bar -->
+<div class="hidden lg:flex items-center bg-surface-container-low border border-outline-variant rounded-full px-4 py-2 w-80">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full ml-2" placeholder="Search patients or reports..." type="text"/>
+</div>
+<div class="flex items-center space-x-3">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md hover:shadow-lg transition-all">
+                        Generate Report
+                    </button>
+</div>
+</div>
+</header>
+<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-container-max mx-auto space-y-gutter">
+<!-- Statistics Dashboard: Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Total Patients Card -->
+<div class="glass-card p-6 rounded-lg group hover:-translate-y-1 transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary-container/20 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="groups">groups</span>
+</div>
+<span class="text-primary font-bold flex items-center text-label-md">
+                            +12% <span class="material-symbols-outlined text-[16px] ml-1" data-icon="trending_up">trending_up</span>
+</span>
+</div>
+<h3 class="font-h2 text-h2 text-on-surface">14,284</h3>
+<p class="text-on-surface-variant font-label-md">Total Patients</p>
+</div>
+<!-- Active Doctors Card -->
+<div class="glass-card p-6 rounded-lg group hover:-translate-y-1 transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-secondary-container/20 rounded-lg text-secondary">
+<span class="material-symbols-outlined text-[32px]" data-icon="medical_services">medical_services</span>
+</div>
+<span class="text-secondary font-bold flex items-center text-label-md">
+                            Active
+                        </span>
+</div>
+<h3 class="font-h2 text-h2 text-on-surface">342</h3>
+<p class="text-on-surface-variant font-label-md">Active Doctors</p>
+</div>
+<!-- Pharmacies Card -->
+<div class="glass-card p-6 rounded-lg group hover:-translate-y-1 transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-tertiary-container/20 rounded-lg text-tertiary">
+<span class="material-symbols-outlined text-[32px]" data-icon="pharmacy">format_h4</span>
+</div>
+<span class="text-on-surface-variant/40 font-label-md">Across Algeria</span>
+</div>
+<h3 class="font-h2 text-h2 text-on-surface">128</h3>
+<p class="text-on-surface-variant font-label-md">Partner Pharmacies</p>
+</div>
+<!-- Monthly Appointments Card -->
+<div class="glass-card p-6 rounded-lg group hover:-translate-y-1 transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary-container/20 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="calendar_month">calendar_month</span>
+</div>
+<span class="text-error font-bold flex items-center text-label-md">
+                            -2% <span class="material-symbols-outlined text-[16px] ml-1" data-icon="trending_down">trending_down</span>
+</span>
+</div>
+<h3 class="font-h2 text-h2 text-on-surface">2,850</h3>
+<p class="text-on-surface-variant font-label-md">Monthly Appointments</p>
+</div>
+</section>
+<!-- Analytics & Trends Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Line Chart: Appointment Trends -->
+<div class="lg:col-span-2 glass-card p-8 rounded-lg relative overflow-hidden h-[400px]">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Appointment Analytics</h3>
+<p class="text-caption text-on-surface-variant">Daily volume across all wilayas</p>
+</div>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg text-label-md px-3 py-1 focus:ring-primary">
+<option>Last 30 Days</option>
+<option>Last Quarter</option>
+</select>
+</div>
+<!-- SVG Chart Mockup -->
+<div class="relative h-64 w-full flex items-end">
+<svg class="w-full h-full text-primary overflow-visible" viewbox="0 0 1000 300">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:currentColor;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:currentColor;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid lines -->
+<line opacity="0.1" stroke="currentColor" stroke-dasharray="4" x1="0" x2="1000" y1="0" y2="0"></line>
+<line opacity="0.1" stroke="currentColor" stroke-dasharray="4" x1="0" x2="1000" y1="100" y2="100"></line>
+<line opacity="0.1" stroke="currentColor" stroke-dasharray="4" x1="0" x2="1000" y1="200" y2="200"></line>
+<line opacity="0.2" stroke="currentColor" stroke-dasharray="4" x1="0" x2="1000" y1="300" y2="300"></line>
+<!-- Path -->
+<path d="M0,250 Q100,220 200,260 T400,180 T600,120 T800,150 T1000,80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0,250 Q100,220 200,260 T400,180 T600,120 T800,150 T1000,80 L1000,300 L0,300 Z" fill="url(#chartGradient)"></path>
+<!-- Points -->
+<circle cx="200" cy="260" fill="white" r="6" stroke="currentColor" stroke-width="3"></circle>
+<circle cx="600" cy="120" fill="white" r="6" stroke="currentColor" stroke-width="3"></circle>
+<circle cx="1000" cy="80" fill="white" r="6" stroke="currentColor" stroke-width="3"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-4 text-caption text-on-surface-variant font-medium">
+<span>Jan 01</span>
+<span>Jan 10</span>
+<span>Jan 20</span>
+<span>Jan 30</span>
+</div>
+</div>
+<!-- AI System Health (Atmospheric Decor) -->
+<div class="glass-card p-8 rounded-lg flex flex-col items-center justify-center text-center space-y-4">
+<div class="relative w-48 h-48 rounded-full flex items-center justify-center">
+<!-- Custom WebGL animation placeholder -->
+
+<div class="relative z-10 text-primary">
+<span class="material-symbols-outlined text-[48px]" data-icon="clinical_notes">clinical_notes</span>
+</div>
+</div>
+<div>
+<h4 class="font-h3 text-h3 text-on-surface">AI Diagnostics</h4>
+<p class="text-body-md text-on-surface-variant px-4">System is processing health records at 98.4% accuracy.</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[98%] h-full bg-primary transition-all duration-1000"></div>
+</div>
+</div>
+</section>
+<!-- User Management & Recent Registrations Table -->
+<section class="glass-card rounded-lg overflow-hidden">
+<div class="p-8 border-b border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Recent Registrations</h3>
+<p class="text-caption text-on-surface-variant">Live updates from across the platform</p>
+</div>
+<div class="flex items-center space-x-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[20px]" data-icon="filter_list">filter_list</span>
+<select class="pl-10 pr-8 py-2 bg-surface-container border border-outline-variant rounded-lg text-label-md focus:ring-primary appearance-none">
+<option>Status: All</option>
+<option>Verified</option>
+<option>Pending</option>
+</select>
+</div>
+<button class="flex items-center space-x-2 px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors text-label-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+<span>Export Data</span>
+</button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low/50 border-b border-outline-variant/30">
+<tr>
+<th class="px-8 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-caption">User Identity</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-caption">Account Type</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-caption">Date Joined</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-caption">Status</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-caption text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">SM</div>
+<div>
+<p class="font-label-md text-on-surface">Selma Merabet</p>
+<p class="text-caption text-on-surface-variant">selma.merabet@email.dz</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5 text-label-md text-on-surface">Patient</td>
+<td class="px-8 py-5 text-label-md text-on-surface-variant">May 12, 2024</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-caption font-bold border border-primary/20">Verified</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold">KB</div>
+<div>
+<p class="font-label-md text-on-surface">Karim Belhadj</p>
+<p class="text-caption text-on-surface-variant">k.belhadj@clinic.dz</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5 text-label-md text-on-surface">Doctor</td>
+<td class="px-8 py-5 text-label-md text-on-surface-variant">May 11, 2024</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary rounded-full text-caption font-bold border border-secondary/20">Pending</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center font-bold">PA</div>
+<div>
+<p class="font-label-md text-on-surface">Pharmacie d'Alger</p>
+<p class="text-caption text-on-surface-variant">contact@pharmaciealger.dz</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5 text-label-md text-on-surface">Pharmacy</td>
+<td class="px-8 py-5 text-label-md text-on-surface-variant">May 10, 2024</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-caption font-bold border border-primary/20">Verified</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group border-b-0">
+<td class="px-8 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-error-container/20 text-error flex items-center justify-center font-bold">YT</div>
+<div>
+<p class="font-label-md text-on-surface">Yasmine Toumi</p>
+<p class="text-caption text-on-surface-variant">yasmine.t@email.dz</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5 text-label-md text-on-surface">Patient</td>
+<td class="px-8 py-5 text-label-md text-on-surface-variant">May 09, 2024</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary rounded-full text-caption font-bold border border-secondary/20">Pending</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="p-4 bg-surface-container-low/30 flex items-center justify-center">
+<button class="text-primary font-label-md hover:underline transition-all">View All Registrations</button>
+</div>
+</section>
+</div>
+<!-- Footer Component -->
+<footer class="w-full py-12 bg-surface-container-highest border-t border-outline-variant mt-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<h3 class="font-h3 text-h3 text-primary mb-4">MediLink DZ</h3>
+<p class="text-on-surface-variant text-body-md">Leading digital healthcare integration for the Algerian medical ecosystem.</p>
+</div>
+<div class="flex flex-col space-y-2">
+<h4 class="font-label-md text-on-surface uppercase tracking-wider mb-2">Legal</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Medical Ethics</a>
+</div>
+<div class="flex flex-col space-y-2">
+<h4 class="font-label-md text-on-surface uppercase tracking-wider mb-2">Support</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">API Documentation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Contact Us</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-md text-on-surface uppercase tracking-wider">System Status</h4>
+<div class="flex items-center space-x-2 text-primary">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-label-md">All Systems Operational</span>
+</div>
+</div>
+</div>
+<div class="mt-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-on-surface-variant text-body-md text-center md:text-left">© 2024 MediLink DZ. Approved by Ministry of Health, Algeria.</p>
+<div class="flex space-x-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="facebook">qr_code_2</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="linked_camera">linked_camera</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="public">public</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden bg-surface/80 backdrop-blur-xl shadow-lg border-t border-outline-variant/20 rounded-t-lg">
+<div class="flex justify-around items-center h-16 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-caption">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span class="text-caption">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-caption">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interaction for charts and hover effects
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = 'rgba(0, 106, 59, 0.3)'; // Primary color tint
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = 'rgba(226, 232, 240, 0.5)';
+            });
+        });
+    </script>
+</body></html>

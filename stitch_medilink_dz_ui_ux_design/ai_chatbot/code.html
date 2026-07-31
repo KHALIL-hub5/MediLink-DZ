@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#39b8fd",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed": "#9af6b8",
+                      "surface-container-high": "#dce9ff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#7ed99e",
+                      "tertiary": "#b90538",
+                      "outline": "#6f7a70",
+                      "on-surface-variant": "#3f4941",
+                      "primary-container": "#268451",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-surface": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-tertiary-fixed": "#40000d",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed-dim": "#89ceff",
+                      "surface": "#f8f9ff",
+                      "on-secondary-container": "#004666",
+                      "on-background": "#0b1c30",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#00522d",
+                      "on-secondary-fixed-variant": "#004c6e",
+                      "primary": "#006a3b",
+                      "surface-variant": "#d3e4fe",
+                      "secondary": "#006591",
+                      "inverse-primary": "#7ed99e",
+                      "surface-tint": "#006d3d",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#f6fff4",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "surface-container": "#e5eeff",
+                      "on-primary-fixed": "#00210f",
+                      "tertiary-fixed": "#ffdadb",
+                      "background": "#f8f9ff",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-container": "#dc2c4f",
+                      "on-secondary-fixed": "#001e2f",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed": "#c9e6ff",
+                      "outline-variant": "#becabe",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "40px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "xs": "8px",
+                      "margin-desktop": "48px",
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "title-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "caption": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .user-bubble {
+            background: linear-gradient(135deg, var(--tw-colors-primary), var(--tw-colors-primary-container));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- NavigationDrawer (Desktop) -->
+<nav class="hidden md:flex bg-surface dark:bg-inverse-surface fixed inset-y-0 start-0 w-[280px] bg-white/80 backdrop-blur-xl border-e border-outline-variant/20 shadow-xl flex-col h-full py-md z-40">
+<div class="px-md mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary">MediLink DZ</h1>
+</div>
+<div class="px-md mb-lg flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img alt="User Profile" class="object-cover w-full h-full" data-alt="A professional headshot of an Algerian male cardiologist in his late 30s, wearing a white coat over a light blue shirt. Bright, clean clinical lighting. Trustworthy expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-STEXimHp0Tn-zkzQillh4w8VxpteIbw10JIWm3QTIFTHWiXwPrQeYnGRomJxqnw72HYxTAwoeicPAus_tpq9Wt-K3ObRAjE948S79h8zTx96RQqT-ioIP4QCNkl1mbQuLTdZoF_9U1sRrnSkZXcRaZBEclGIKOdSzExSt32QGrNOZxZzNfkNU2HtbHCFkX2p0hFk1hbEv7-_wn37qILPDYzDdN8JWODEc80FZRH_4JyMsZeelCQS"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-title-md text-title-md text-on-surface truncate">Dr. Amine Benali</p>
+<p class="font-caption text-caption text-on-surface-variant truncate">Cardiologist • Algiers</p>
+<p class="font-caption text-caption text-on-surface-variant truncate opacity-70">ID: 29482</p>
+</div>
+</div>
+<ul class="flex-1 space-y-xs">
+<li>
+<a class="flex items-center gap-sm py-2 px-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg hover:translate-x-1 transition-transform duration-200 ripple-effect" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-2 px-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg hover:translate-x-1 transition-transform duration-200 ripple-effect" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-2 px-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg hover:translate-x-1 transition-transform duration-200 ripple-effect" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-2 px-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg hover:translate-x-1 transition-transform duration-200 ripple-effect" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-2 px-3 bg-secondary-container text-on-secondary-container dark:bg-secondary dark:text-on-secondary font-bold rounded-lg mx-2 hover:translate-x-1 transition-transform duration-200 ripple-effect" href="#">
+<span class="material-symbols-outlined" data-icon="forum" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="font-label-md text-label-md">AI Assistant</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-2 px-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 mx-2 rounded-lg hover:translate-x-1 transition-transform duration-200 ripple-effect" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-16 w-full bg-surface dark:bg-inverse-surface shadow-sm dark:bg-surface-container-low docked full-width top-0">
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">MediLink DZ</h1>
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-[280px] h-[calc(100vh-64px)] md:h-screen relative overflow-hidden bg-surface-bright">
+<!-- Header / Context Area -->
+<div class="px-margin-mobile md:px-margin-desktop py-md border-b border-outline-variant/20 bg-surface/50 backdrop-blur-sm z-10 shrink-0">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                        MediLink Health Assistant
+                    </h2>
+<p class="font-caption text-caption text-on-surface-variant mt-1">AI-powered medical insights &amp; support</p>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-variant/30 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="hidden sm:inline">History</span>
+</button>
+</div>
+</div>
+<!-- Chat Container -->
+<div class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-md space-y-lg flex flex-col scroll-smooth" id="chat-window">
+<!-- Welcome / Suggestions (Empty State concept) -->
+<div class="flex flex-col items-center justify-center py-lg text-center opacity-80">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-sm shadow-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">How can I assist you today, Dr. Benali?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-md">I can help analyze lab results, review patient histories, or check latest medical guidelines.</p>
+<!-- Suggested Chips -->
+<div class="flex flex-wrap justify-center gap-sm mt-md">
+<button class="glass-panel px-4 py-2 rounded-full font-label-md text-label-md text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">science</span>
+                        Analyze Blood Panel
+                    </button>
+<button class="glass-panel px-4 py-2 rounded-full font-label-md text-label-md text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">medication</span>
+                        Check Drug Interactions
+                    </button>
+<button class="glass-panel px-4 py-2 rounded-full font-label-md text-label-md text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">history_edu</span>
+                        Summarize Patient #1042
+                    </button>
+</div>
+</div>
+<!-- Example Chat Flow -->
+<!-- User Message -->
+<div class="flex justify-end animate-fade-in-up">
+<div class="max-w-[85%] md:max-w-[70%]">
+<div class="user-bubble text-on-primary rounded-2xl rounded-tr-sm px-4 py-3 shadow-md">
+<p class="font-body-md text-body-md">Can you review the latest lipid panel for Patient ID: 49201? They have a history of mild hypertension.</p>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-1 text-end">10:42 AM</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex justify-start animate-fade-in-up" style="animation-delay: 0.1s;">
+<div class="flex gap-3 max-w-[90%] md:max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-outline-variant/30 mt-1">
+<span class="material-symbols-outlined text-[18px] text-secondary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<div class="glass-panel bg-surface/80 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-outline-variant/20">
+<p class="font-body-md text-body-md text-on-surface mb-2">I have retrieved the latest lipid panel for Patient ID: 49201 (dated yesterday). Here is a summary:</p>
+<div class="bg-surface-container-low rounded-lg p-3 mb-2 border border-outline-variant/10">
+<ul class="space-y-1 font-body-md text-body-md">
+<li class="flex justify-between border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface-variant">Total Cholesterol:</span>
+<span class="font-medium text-error">210 mg/dL <span class="material-symbols-outlined text-[14px] align-middle">arrow_upward</span></span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 py-1">
+<span class="text-on-surface-variant">LDL:</span>
+<span class="font-medium text-error">145 mg/dL <span class="material-symbols-outlined text-[14px] align-middle">arrow_upward</span></span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 py-1">
+<span class="text-on-surface-variant">HDL:</span>
+<span class="font-medium text-on-surface">45 mg/dL</span>
+</li>
+<li class="flex justify-between pt-1">
+<span class="text-on-surface-variant">Triglycerides:</span>
+<span class="font-medium text-on-surface">150 mg/dL</span>
+</li>
+</ul>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Given the patient's history of mild hypertension, the elevated LDL and Total Cholesterol indicate an increased cardiovascular risk. Would you like me to pull up the current hypertension treatment plan or suggest lifestyle/statin interventions based on Algerian cardiology guidelines?</p>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<p class="font-caption text-caption text-on-surface-variant">10:43 AM</p>
+<div class="flex gap-1">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[16px]">thumb_up</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[16px]">thumb_down</span></button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+</div>
+</div>
+<!-- AI Follow-up Suggestions -->
+<div class="flex flex-wrap gap-2 mt-3">
+<button class="border border-outline-variant/50 bg-surface text-on-surface px-3 py-1.5 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors">View Treatment Plan</button>
+<button class="border border-outline-variant/50 bg-surface text-on-surface px-3 py-1.5 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors">Suggest Interventions</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Typing Indicator (Simulated) -->
+<div class="flex justify-start animate-fade-in-up hidden" id="typing-indicator">
+<div class="flex gap-3 max-w-[90%] md:max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-outline-variant/30 mt-1">
+<span class="material-symbols-outlined text-[18px] text-secondary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="glass-panel bg-surface/80 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-outline-variant/20 flex items-center gap-1">
+<div class="w-2 h-2 bg-on-surface-variant rounded-full animate-bounce"></div>
+<div class="w-2 h-2 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+<div class="w-2 h-2 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+</div>
+</div>
+</div>
+<!-- Spacer for bottom input -->
+<div class="h-20"></div>
+</div>
+<!-- Input Area (Fixed Bottom) -->
+<div class="absolute bottom-0 left-0 w-full p-margin-mobile md:p-md bg-gradient-to-t from-surface-bright via-surface-bright to-transparent z-20 pb-[calc(env(safe-area-inset-bottom)+1rem+64px)] md:pb-md">
+<div class="glass-panel max-w-4xl mx-auto bg-surface/90 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex items-end p-2 gap-2 relative transition-all duration-300 focus-within:border-primary focus-within:shadow-[0_0_0_3px_rgba(0,106,59,0.1)]">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container rounded-full shrink-0 mb-1" title="Upload File/Image">
+<span class="material-symbols-outlined">add_photo_alternate</span>
+</button>
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none max-h-32 py-2.5 font-body-md text-body-md text-on-surface placeholder-on-surface-variant/60" placeholder="Ask MediLink Assistant..." rows="1" style="min-height: 44px;"></textarea>
+<div class="flex items-center gap-1 mb-1 shrink-0">
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors hover:bg-surface-container rounded-full" title="Voice Input">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2 bg-primary text-on-primary hover:bg-surface-tint transition-colors rounded-full shadow-sm active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<p class="text-center font-caption text-caption text-on-surface-variant mt-2 max-w-4xl mx-auto opacity-70">MediLink AI can make mistakes. Verify important medical information.</p>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/70 dark:bg-inverse-surface/70 docked full-width bottom-0 rounded-t-xl bg-white/70 backdrop-blur-lg border-t border-outline-variant/30 shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-md text-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-full px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="forum" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="font-label-md text-label-md text-[10px]">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="description">description</span>
+<span class="font-label-md text-label-md text-[10px]">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-md text-label-md text-[10px]">Profile</span>
+</a>
+</nav>
+<style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+    </style>
+<script>
+        // Simple auto-resize for textarea
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
+</body></html>

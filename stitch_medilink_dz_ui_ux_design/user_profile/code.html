@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile - MediLink DZ</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Be Vietnam Pro -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#39b8fd",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed": "#9af6b8",
+                      "surface-container-high": "#dce9ff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#7ed99e",
+                      "tertiary": "#b90538",
+                      "outline": "#6f7a70",
+                      "on-surface-variant": "#3f4941",
+                      "primary-container": "#268451",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-surface": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-tertiary-fixed": "#40000d",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed-dim": "#89ceff",
+                      "surface": "#f8f9ff",
+                      "on-secondary-container": "#004666",
+                      "on-background": "#0b1c30",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#00522d",
+                      "on-secondary-fixed-variant": "#004c6e",
+                      "primary": "#006a3b",
+                      "surface-variant": "#d3e4fe",
+                      "secondary": "#006591",
+                      "inverse-primary": "#7ed99e",
+                      "surface-tint": "#006d3d",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#f6fff4",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "surface-container": "#e5eeff",
+                      "on-primary-fixed": "#00210f",
+                      "tertiary-fixed": "#ffdadb",
+                      "background": "#f8f9ff",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-container": "#dc2c4f",
+                      "on-secondary-fixed": "#001e2f",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed": "#c9e6ff",
+                      "outline-variant": "#becabe",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "40px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "xs": "8px",
+                      "margin-desktop": "48px",
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "title-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "caption": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-8 flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm dark:bg-surface-container-low docked full-width top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-16 w-full">
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">MediLink DZ</h1>
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="w-full max-w-3xl px-margin-mobile md:px-margin-desktop py-md flex-grow flex flex-col gap-md">
+<!-- Hero Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-md flex flex-col md:flex-row items-center md:items-start gap-md relative overflow-hidden">
+<!-- Decorative blob for glassmorphism feel -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+<div class="relative">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait photo of a modern, professional adult looking confident and healthy. Soft, warm natural lighting creates a reassuring mood. The background is a slightly blurred, bright, clean medical or modern office environment, maintaining a light-mode aesthetic with soft white and light grey tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz6WpiLgmeKbQKJetZGYK7T6vNEvLhNoOdBbzLDYdHiS9Gnx6eRUVdADfYDgvTcqDBmsM6bW-yY8qXKGcSIyNAkSQVJSCv9uqGMuupQV0nyjhOILQFSD8LqgaeCm1Cc-hIzaOvYzrN_Cf_csQMBalfJlVGnBe9qgmVsUwMfpuG9ORda7nankmHyESxRkTZ0sZ3Y-00APQ00i4lX7jWcqjzOGZfr7gFWDmayG-3WTBOXEufrtJT8s8F"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary rounded-full p-2 shadow-md hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left flex-grow">
+<h2 class="font-title-md text-title-md text-on-surface mb-base">Karim Yelles</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Patient ID: ML-9824-DZ</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-xs">
+<div class="inline-flex items-center gap-2 bg-error-container text-on-error-container px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" data-icon="bloodtype">bloodtype</span>
+<span class="font-label-md text-label-md">O+</span>
+</div>
+<div class="inline-flex items-center gap-2 bg-surface-container-high text-on-surface px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md">32 yrs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats / Health Info (Bento Grid Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Allergies Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-md flex flex-col">
+<div class="flex items-center gap-2 mb-sm text-tertiary">
+<span class="material-symbols-outlined icon-fill" data-icon="vaccines">vaccines</span>
+<h3 class="font-title-md text-title-md text-on-surface">Allergies</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-tertiary-container/10 text-tertiary px-3 py-1.5 rounded-lg font-label-md text-label-md border border-tertiary/20">Penicillin</span>
+<span class="bg-tertiary-container/10 text-tertiary px-3 py-1.5 rounded-lg font-label-md text-label-md border border-tertiary/20">Peanuts</span>
+<button class="border border-dashed border-outline-variant text-on-surface-variant hover:bg-surface-variant/50 px-3 py-1.5 rounded-lg flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Chronic Conditions Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-md flex flex-col">
+<div class="flex items-center gap-2 mb-sm text-secondary">
+<span class="material-symbols-outlined icon-fill" data-icon="monitor_heart">monitor_heart</span>
+<h3 class="font-title-md text-title-md text-on-surface">Chronic Conditions</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container/20 text-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md border border-secondary/20">Asthma</span>
+<button class="border border-dashed border-outline-variant text-on-surface-variant hover:bg-surface-variant/50 px-3 py-1.5 rounded-lg flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Settings List -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface p-md pb-xs">Settings &amp; Preferences</h3>
+<div class="flex flex-col">
+<!-- Language -->
+<button class="flex items-center justify-between p-md hover:bg-surface-container-highest transition-colors text-left w-full border-b border-surface-container-high last:border-0">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</div>
+<div>
+<span class="font-body-md text-body-md text-on-surface block">Language</span>
+<span class="font-caption text-caption text-on-surface-variant">English (EN)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Theme -->
+<div class="flex items-center justify-between p-md hover:bg-surface-container-highest transition-colors text-left w-full border-b border-surface-container-high last:border-0">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</div>
+<div>
+<span class="font-body-md text-body-md text-on-surface block">Dark Mode</span>
+<span class="font-caption text-caption text-on-surface-variant">System default</span>
+</div>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Privacy -->
+<button class="flex items-center justify-between p-md hover:bg-surface-container-highest transition-colors text-left w-full border-b border-surface-container-high last:border-0">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="shield_lock">shield_lock</span>
+</div>
+<div>
+<span class="font-body-md text-body-md text-on-surface block">Privacy &amp; Security</span>
+<span class="font-caption text-caption text-on-surface-variant">Manage data access</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Support -->
+<button class="flex items-center justify-between p-md hover:bg-surface-container-highest transition-colors text-left w-full border-b border-surface-container-high last:border-0">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</div>
+<div>
+<span class="font-body-md text-body-md text-on-surface block">Help &amp; Support</span>
+<span class="font-caption text-caption text-on-surface-variant">Contact MediLink DZ</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Logout Button -->
+<div class="mt-xs mb-lg">
+<button class="w-full flex items-center justify-center gap-2 p-4 text-error bg-error-container/30 hover:bg-error-container/50 rounded-xl transition-colors font-title-md text-title-md">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface/70 dark:bg-inverse-surface/70 bg-white/70 backdrop-blur-lg border-t border-outline-variant/30 shadow-lg docked full-width bottom-0 rounded-t-xl fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 py-1 px-4 rounded-full">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 py-1 px-4 rounded-full">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md mt-1">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 py-1 px-4 rounded-full">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md mt-1">Records</span>
+</button>
+<!-- ACTIVE STATE: Profile -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-full px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined icon-fill" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

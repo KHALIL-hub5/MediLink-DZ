@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 100 50% 97%;
+    --foreground: 120 9% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 120 9% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 9% 10%;
+    --primary: 153 100% 21%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 198 100% 28%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 100 23% 95%;
+    --muted-foreground: 126 7% 27%;
+    --accent: 146 56% 33%;
+    --accent-foreground: 120 100% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 113 16% 77%;
+    --input: 113 16% 77%;
+    --ring: 153 100% 21%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 146 48% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 199 89% 52%;
+    --secondary-foreground: 222 47% 8%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 173 58% 42%;
+    --accent-foreground: 222 47% 8%;
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 210 40% 96%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 146 48% 45%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family:
+      "Be Vietnam Pro",
+      Inter,
+      system-ui,
+      sans-serif;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply border border-white/60 bg-white/70 shadow-[0_4px_20px_rgba(15,23,42,0.05)] backdrop-blur-xl;
+  }
+}

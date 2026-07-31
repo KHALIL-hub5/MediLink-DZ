@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - Register</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#39b8fd",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed": "#9af6b8",
+                      "surface-container-high": "#dce9ff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#7ed99e",
+                      "tertiary": "#b90538",
+                      "outline": "#6f7a70",
+                      "on-surface-variant": "#3f4941",
+                      "primary-container": "#268451",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-surface": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-tertiary-fixed": "#40000d",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed-dim": "#89ceff",
+                      "surface": "#f8f9ff",
+                      "on-secondary-container": "#004666",
+                      "on-background": "#0b1c30",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#00522d",
+                      "on-secondary-fixed-variant": "#004c6e",
+                      "primary": "#006a3b",
+                      "surface-variant": "#d3e4fe",
+                      "secondary": "#006591",
+                      "inverse-primary": "#7ed99e",
+                      "surface-tint": "#006d3d",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#f6fff4",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "surface-container": "#e5eeff",
+                      "on-primary-fixed": "#00210f",
+                      "tertiary-fixed": "#ffdadb",
+                      "background": "#f8f9ff",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-container": "#dc2c4f",
+                      "on-secondary-fixed": "#001e2f",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed": "#c9e6ff",
+                      "outline-variant": "#becabe",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "40px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "xs": "8px",
+                      "margin-desktop": "48px",
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "title-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "caption": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .role-card-active {
+            border-color: #006a3b !important;
+            background-color: #e5eeff !important;
+        }
+
+        .role-card-active .material-symbols-outlined {
+            color: #006a3b !important;
+        }
+
+        .input-error {
+            border-color: #ba1a1a !important;
+        }
+        
+        .input-error:focus {
+            box-shadow: 0 0 0 3px #ffdad6 !important;
+        }
+        
+        .input-success {
+            border-color: #006a3b !important;
+        }
+        
+        .input-success:focus {
+            box-shadow: 0 0 0 3px #9af6b8 !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center p-4">
+<!-- Register Canvas -->
+<div class="w-full max-w-[1000px] bg-surface-container-lowest rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col md:flex-row">
+<!-- Left Side: Branding/Image (Hidden on mobile) -->
+<div class="hidden md:flex md:w-5/12 bg-primary relative p-12 flex-col justify-between overflow-hidden">
+<!-- Decorative Background Element -->
+<div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay" data-alt="A modern, abstract medical background featuring subtle, glowing green and blue geometric patterns overlaying a pristine white surface. The design conveys a sense of high-tech healthcare, trust, and cleanliness, perfect for a digital health platform interface. Soft, ambient lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDH5KeH7tSvgt6Rsoj2tLFtvWMydJNFLUDPuA3AM7e9z23WJ5XLaAZ4UxBItV-q2YT56MhueB7PsZSCQDo_8Q_m1pFPtvJxmgZsByeQrJmc-k4hE8t3BHMVYbxyC4LiWXQTCWG_r0ceTL57J7sHXS9kojAROo_8d_dneoXWEBxE1Yll_EyIrnZwf0zATaUtYcEw1zNjqWWCyaWJh9B3VQZ5VAK-4qjkqnr-XGu4xJL8vA06cer9Vd64')"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-on-primary text-[32px]">local_hospital</span>
+<h1 class="font-headline-lg text-headline-lg text-on-primary font-bold tracking-tight">MediLink DZ</h1>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-primary mb-4">Join our healthcare network.</h2>
+<p class="font-body-lg text-body-lg text-on-primary/80">Secure, efficient, and connected medical management for Algeria.</p>
+</div>
+<div class="relative z-10">
+<div class="glass-panel rounded-lg p-6 text-on-primary">
+<p class="font-title-md text-title-md mb-2">"MediLink has streamlined our clinic's workflow immensely."</p>
+<p class="font-label-md text-label-md opacity-80">- Dr. Yassine K., Algiers</p>
+</div>
+</div>
+</div>
+<!-- Right Side: Form -->
+<div class="w-full md:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+<!-- Mobile Header (Visible only on mobile) -->
+<div class="md:hidden flex items-center gap-2 mb-8 justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]">local_hospital</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight">MediLink DZ</h1>
+</div>
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-2">Create Account</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Select your role and fill in your details to get started.</p>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<!-- Role Selection -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface block">I am registering as a:</label>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+<!-- Role: Patient -->
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="role" type="radio" value="patient"/>
+<div class="role-card rounded-lg border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors peer-checked:role-card-active h-full">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+<span class="font-label-md text-label-md text-on-surface text-center">Patient</span>
+</div>
+</label>
+<!-- Role: Doctor -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role" type="radio" value="doctor"/>
+<div class="role-card rounded-lg border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors peer-checked:role-card-active h-full">
+<span class="material-symbols-outlined text-on-surface-variant">stethoscope</span>
+<span class="font-label-md text-label-md text-on-surface text-center">Doctor</span>
+</div>
+</label>
+<!-- Role: Pharmacist -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role" type="radio" value="pharmacist"/>
+<div class="role-card rounded-lg border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors peer-checked:role-card-active h-full">
+<span class="material-symbols-outlined text-on-surface-variant">medication</span>
+<span class="font-label-md text-label-md text-on-surface text-center">Pharmacist</span>
+</div>
+</label>
+<!-- Role: Admin -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role" type="radio" value="admin"/>
+<div class="role-card rounded-lg border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors peer-checked:role-card-active h-full">
+<span class="material-symbols-outlined text-on-surface-variant">admin_panel_settings</span>
+<span class="font-label-md text-label-md text-on-surface text-center">Administrator</span>
+</div>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="space-y-1 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface block" for="fullName">Full Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">badge</span>
+</div>
+<input class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-md text-body-md rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5 transition-shadow" id="fullName" placeholder="Mohamed Ali" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-1 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface block" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">mail</span>
+</div>
+<input class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-md text-body-md rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5 transition-shadow" id="email" placeholder="mohamed.ali@example.com" type="email"/>
+</div>
+</div>
+<!-- Phone Number (with Error State Example) -->
+<div class="space-y-1 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface block" for="phone">Phone Number</label>
+<div class="relative flex">
+<span class="inline-flex items-center px-3 font-label-md text-label-md text-on-surface-variant bg-surface-container-low border border-e-0 border-outline-variant rounded-s-lg">
+                                +213
+                            </span>
+<div class="relative w-full">
+<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+<span class="material-symbols-outlined text-error">phone</span>
+</div>
+<input class="bg-error-container/20 border input-error text-on-surface font-body-md text-body-md rounded-e-lg focus:ring-error focus:border-error block w-full ps-10 p-2.5 transition-shadow" id="phone" placeholder="555 12 34 56" type="tel" value="055"/>
+</div>
+</div>
+<p class="font-caption text-caption text-error mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                            Please enter a valid Algerian mobile number.
+                        </p>
+</div>
+<!-- Password -->
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface block" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+<span class="material-symbols-outlined text-primary">lock</span>
+</div>
+<input class="bg-primary-container/10 border input-success text-on-surface font-body-md text-body-md rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5 transition-shadow" id="password" placeholder="••••••••" type="password" value="StrongPass123!"/>
+<button class="absolute inset-y-0 end-0 flex items-center pe-3 text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<!-- Password Strength Indicator -->
+<div class="flex gap-1 mt-2">
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-variant rounded-full"></div>
+</div>
+<p class="font-caption text-caption text-primary mt-1 text-end">Strong</p>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface block" for="confirmPassword">Confirm Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">lock_clock</span>
+</div>
+<input class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-md text-body-md rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5 transition-shadow" id="confirmPassword" placeholder="••••••••" type="password"/>
+</div>
+</div>
+</div>
+<!-- Terms -->
+<div class="flex items-start">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 border border-outline-variant rounded bg-surface-container-lowest focus:ring-3 focus:ring-primary-container text-primary" id="terms" type="checkbox" value=""/>
+</div>
+<label class="ms-2 font-caption text-caption text-on-surface-variant" for="terms">
+                        I agree to the <a class="text-primary hover:underline font-medium" href="#">Terms of Service</a> and <a class="text-primary hover:underline font-medium" href="#">Privacy Policy</a>.
+                    </label>
+</div>
+<!-- Submit Button -->
+<button class="w-full text-white bg-[#2E8B57] hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-container font-label-md text-label-md rounded-lg px-5 py-3 text-center shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all active:scale-[0.98]" type="submit">
+                    Create Account
+                </button>
+<div class="text-center mt-4">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Already have an account? <a class="text-primary font-medium hover:underline" href="#">Sign in here</a>
+</p>
+</div>
+</form>
+</div>
+</div>
+</body></html>

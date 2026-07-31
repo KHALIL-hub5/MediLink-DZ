@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediLink DZ - Emergency</title>
+<!-- Google Fonts: Be Vietnam Pro -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#9af6b8",
+                        "surface-container-high": "#dce9ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#7ed99e",
+                        "tertiary": "#b90538",
+                        "outline": "#6f7a70",
+                        "on-surface-variant": "#3f4941",
+                        "primary-container": "#268451",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#40000d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#004666",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#00522d",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "primary": "#006a3b",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006591",
+                        "inverse-primary": "#7ed99e",
+                        "surface-tint": "#006d3d",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f6fff4",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed": "#00210f",
+                        "tertiary-fixed": "#ffdadb",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#dc2c4f",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline-variant": "#becabe",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "lg": "40px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xl": "64px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Be Vietnam Pro"],
+                        "title-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"]
+                    },
+                    fontSize: {
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "caption": ["12px", { lineHeight: "16px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.4); }
+            70% { box-shadow: 0 0 0 40px rgba(186, 26, 26, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        
+        .sos-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex justify-center">
+<!-- Mobile-first container -->
+<div class="w-full max-w-md bg-surface flex flex-col relative shadow-2xl overflow-hidden">
+<!-- Custom Task-Focused Header (Nav suppressed) -->
+<header class="flex items-center justify-between px-margin-mobile h-16 sticky top-0 z-50 bg-surface/90 backdrop-blur-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors text-on-surface">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="font-title-md text-title-md text-on-surface">Emergency</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto pb-xl px-margin-mobile flex flex-col gap-md pt-sm">
+<!-- Hero SOS Button -->
+<section class="flex flex-col items-center justify-center py-md">
+<button class="w-48 h-48 rounded-full bg-error text-on-error flex flex-col items-center justify-center sos-pulse shadow-[0_12px_32px_rgba(186,26,26,0.3)] active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[64px] mb-2" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile uppercase tracking-widest">SOS</span>
+</button>
+<p class="font-body-md text-body-md text-on-surface-variant mt-6 text-center max-w-[250px]">
+                    Press and hold for 3 seconds to dispatch immediate medical assistance.
+                </p>
+</section>
+<!-- Share Live Location Toggle -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-4 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface">Share Live Location</h2>
+<p class="font-caption text-caption text-on-surface-variant">Active during emergency calls</p>
+</div>
+</div>
+<!-- Toggle Switch -->
+<button class="w-12 h-6 rounded-full bg-primary relative transition-colors duration-300">
+<div class="absolute right-1 top-1 w-4 h-4 rounded-full bg-on-primary shadow-sm"></div>
+</button>
+</section>
+<!-- Quick Call Services -->
+<section>
+<h2 class="font-title-md text-title-md text-on-surface mb-4">Quick Call</h2>
+<div class="grid grid-cols-3 gap-3">
+<!-- Ambulance -->
+<button class="bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/20 rounded-xl p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-all shadow-sm">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface text-center">Ambulance</span>
+<span class="font-caption text-caption text-on-surface-variant">14</span>
+</button>
+<!-- Police -->
+<button class="bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/20 rounded-xl p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-all shadow-sm">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_police</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface text-center">Police</span>
+<span class="font-caption text-caption text-on-surface-variant">17</span>
+</button>
+<!-- Civil Protection -->
+<button class="bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/20 rounded-xl p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-all shadow-sm">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fire_truck</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface text-center">Pompiers</span>
+<span class="font-caption text-caption text-on-surface-variant">14</span>
+</button>
+</div>
+</section>
+<!-- Nearest Hospitals -->
+<section class="mt-2 pb-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-title-md text-title-md text-on-surface">Nearest Hospitals</h2>
+<button class="font-label-md text-label-md text-primary flex items-center gap-1">
+                        View Map <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-40 rounded-xl overflow-hidden mb-4 shadow-sm border border-outline-variant/30 relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A highly detailed overhead map view of Algiers city streets with a light-mode modern UI aesthetic. The map features soft pastel background colors like light gray and pristine white for roads, with subtle blue accents for water. Bright primary green location pins mark hospital locations. The mood is clean, clinical, and reassuring, perfectly lit to maximize contrast and legibility without harsh shadows." data-location="Algiers, Algeria" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFnLILXQKkF3wnOO9Tya7Q26uGMu8H2DS75Vyx4YqNHGNTTl4ZbioaMpY6up9skfpq8mcxLbM4g3z0b88klFr7IIY_CKuO7Ov9FxEox7UTxeyNx_BmBuj-hsJt7ulXhkZMrhkpwNubtdzZKW1ry79hpMlV8DRTx_QE2njTqrnPn7TwCZo8Gw1PDViV8jk_3pvbAZd7_89QEsf_DgcIMaVwGt6v35HnGelJv3v6CBY1aSKLOGtI2nIH')"></div>
+<!-- Floating Map Action -->
+<button class="absolute bottom-2 right-2 bg-surface text-on-surface w-10 h-10 rounded-full shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+<!-- Hospital List -->
+<div class="flex flex-col gap-3">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-4 rounded-xl flex items-center gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">CHU Mustapha Pacha</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> 1.2 km • 5 min
+                            </p>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined">directions</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-4 rounded-xl flex items-center gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Clinique Chahrazed</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> 3.4 km • 12 min
+                            </p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined">directions</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>
