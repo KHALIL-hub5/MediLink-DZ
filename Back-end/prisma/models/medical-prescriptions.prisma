@@ -1,0 +1,47 @@
+model Prescription {
+  id              String             @id @default(uuid()) @db.Uuid
+  medicalRecordId String             @map("medical_record_id") @db.Uuid
+  status          PrescriptionStatus @default(ACTIVE)
+  issuedAt        DateTime           @default(now()) @map("issued_at")
+  validUntil      DateTime?          @map("valid_until") @db.Date
+  instructions    String?            @db.Text
+  createdAt       DateTime           @default(now()) @map("created_at")
+  updatedAt       DateTime           @updatedAt @map("updated_at")
+
+  medicalRecord MedicalRecord            @relation(fields: [medicalRecordId], references: [id], onDelete: Restrict)
+  items         PrescriptionItem[]
+  accesses      PrescriptionAccess[]
+  reservations  StockReservation[]
+  dispensings   PrescriptionDispensing[]
+
+  @@index([medicalRecordId, issuedAt])
+  @@index([status, validUntil])
+  @@map("prescriptions")
+}
+
+model PrescriptionItem {
+  id             String          @id @default(uuid()) @db.Uuid
+  prescriptionId String          @map("prescription_id") @db.Uuid
+  medicationId   String?         @map("medication_id") @db.Uuid
+  medicationName String          @map("medication_name") @db.VarChar(200)
+  brandName      String?         @map("brand_name") @db.VarChar(200)
+  strength       String?         @db.VarChar(100)
+  form           MedicationForm?
+  dosage         String          @db.VarChar(100)
+  frequency      String          @db.VarChar(150)
+  quantity       Int?
+  durationDays   Int?            @map("duration_days")
+  route          String?         @db.VarChar(100)
+  instructions   String?         @db.Text
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+
+  prescription     Prescription                 @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  medication       Medication?                  @relation(fields: [medicationId], references: [id], onDelete: SetNull)
+  reservationItems StockReservationItem[]
+  dispensingItems  PrescriptionDispensingItem[]
+
+  @@index([prescriptionId])
+  @@index([medicationId])
+  @@map("prescription_items")
+}

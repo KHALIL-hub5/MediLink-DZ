@@ -1,0 +1,208 @@
+enum UserRole {
+  PATIENT
+  DOCTOR
+  PHARMACY_STAFF
+  CLINIC_STAFF
+  PLATFORM_ADMIN
+}
+
+enum UserStatus {
+  PENDING_VERIFICATION
+  ACTIVE
+  LOCKED
+  SUSPENDED
+  DEACTIVATED
+  PENDING_DELETION
+  BANNED
+  DELETED
+}
+
+enum AccountDeactivationSource {
+  USER
+  ADMIN
+  SYSTEM
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+enum BloodType {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+  UNKNOWN
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum ConsultationType {
+  IN_PERSON
+  VIDEO
+}
+
+enum DoctorStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  CHANGES_REQUESTED
+  APPROVED
+  REJECTED
+  SUSPENDED
+}
+
+enum VerificationDocumentType {
+  IDENTITY_DOCUMENT
+  MEDICAL_LICENSE
+  PROFESSIONAL_CARD
+  DIPLOMA
+  SPECIALTY_CERTIFICATE
+  CLINIC_AFFILIATION
+  OTHER
+}
+
+enum VerificationDocumentStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+enum OrganizationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  SUSPENDED
+  CLOSED
+}
+
+enum PharmacyStaffRole {
+  OWNER
+  MANAGER
+  PHARMACIST
+  EMPLOYEE
+}
+
+enum ClinicStaffRole {
+  OWNER
+  MANAGER
+  RECEPTIONIST
+  EMPLOYEE
+}
+
+enum PrescriptionStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+enum MedicationForm {
+  TABLET
+  CAPSULE
+  SYRUP
+  INJECTION
+  CREAM
+  DROPS
+  INHALER
+  OTHER
+}
+
+enum NotificationType {
+  APPOINTMENT
+  REMINDER
+  PRESCRIPTION
+  PHARMACY
+  PAYMENT
+  SECURITY
+  SYSTEM
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum AuditAction {
+  CREATE
+  VIEW
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  APPROVE
+  REJECT
+  SUSPEND
+  RESTORE
+  DISPENSE
+  REFUND
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  PAID
+  FAILED
+  CANCELLED
+  PARTIALLY_REFUNDED
+  REFUNDED
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  READY_FOR_PICKUP
+  COLLECTED
+  EXPIRED
+  CANCELLED
+  REJECTED
+}
+
+enum DispensingStatus {
+  PENDING
+  PARTIALLY_DISPENSED
+  DISPENSED
+  REJECTED
+  CANCELLED
+}
+
+enum AllergySeverity {
+  UNKNOWN
+  MILD
+  MODERATE
+  SEVERE
+}
+
+enum ConditionStatus {
+  ACTIVE
+  MONITORING
+  RESOLVED
+}
