@@ -1,15 +1,19 @@
 import {
-  Controller,
-  Post,
   Body,
+  Controller,
+  Get,
   HttpCode,
   HttpStatus,
-  Get,
+  Post,
   Request,
   UseGuards,
 } from "@nestjs/common";
+
 import { AuthService } from "./auth.service";
-import { JwtAuthGuard } from "../../common/guards/jwt-auth.guard";
+import { LoginDto } from "./dto/login.dto";
+import { RefreshTokenDto } from "./dto/refresh-token.dto";
+import { JwtAuthGuard } from "./guards/jwt-auth.guard";
+import { LogoutDto } from "./dto/logout.dto";
 
 @Controller("auth")
 export class AuthController {
@@ -17,45 +21,27 @@ export class AuthController {
 
   @Post("login")
   @HttpCode(HttpStatus.OK)
-  async login(@Body() body: any) {
-    return this.authService.login(body);
+  async login(@Body() loginDto: LoginDto) {
+    return this.authService.login(loginDto);
   }
 
   @Get("me")
   @UseGuards(JwtAuthGuard)
   async me(@Request() req: any) {
-    return req.user;
+    return {
+      user: req.user,
+    };
+  }
+
+  @Post("refresh")
+  @HttpCode(HttpStatus.OK)
+  async refresh(@Body() dto: RefreshTokenDto) {
+    return this.authService.refresh(dto.refreshToken);
+  }
+
+  @Post("logout")
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async logout(@Body() dto: LogoutDto) {
+    await this.authService.logout(dto.refreshToken);
   }
 }
-
-/* GET /auth/me
-      ↓
-@UseGuards(JwtAuthGuard)
-      ↓
-JwtAuthGuard
-      ↓
-AuthGuard('jwt')
-      ↓
-"Use strategy named jwt"
-      ↓
-JwtStrategy
-      ↓
-Extract Bearer token
-      ↓
-Verify signature
-      ↓
-Check expiration
-      ↓
-validate(payload)
-      ↓
-Did everything succeed? 
-
-If yes:
-
-Guard allows request ✅
-      ↓
-me() executes
-      ↓
-return req.user
-
-*/
