@@ -46,7 +46,7 @@ export class PatientsController {
   async addMyAllergy(@Request() req: any, @Body() dto: AddPatientAllergyDto) {
     return this.patientsService.addMyAllergy(req.user.id, dto);
   }
-
+  
   @Patch("me/allergies/:allergyId")
   async updateMyAllergy(
     @Request() req: any,

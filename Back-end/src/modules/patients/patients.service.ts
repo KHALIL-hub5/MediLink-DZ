@@ -102,7 +102,7 @@ export class PatientsService {
         userId,
       },
     });
-
+    
     if (!patient) {
       throw new NotFoundException("Patient profile not found");
     }
@@ -115,6 +115,7 @@ export class PatientsService {
         allergy: true,
       },
     });
+    console.log("helllllllow bebeeeeeeeeeeee");
   }
 
   async addMyAllergy(userId: string, dto: AddPatientAllergyDto) {
