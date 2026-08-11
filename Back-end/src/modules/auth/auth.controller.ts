@@ -14,6 +14,9 @@ import { LoginDto } from "./dto/login.dto";
 import { RefreshTokenDto } from "./dto/refresh-token.dto";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { LogoutDto } from "./dto/logout.dto";
+import { RolesGuard } from "src/common/guards/roles.guard";
+import { UserRole } from "@prisma/client";
+import { Roles } from "./decorators/roles.decorator";
 
 @Controller("auth")
 export class AuthController {
@@ -40,8 +43,19 @@ export class AuthController {
   }
 
   @Post("logout")
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @HttpCode(HttpStatus.OK)
   async logout(@Body() dto: LogoutDto) {
     await this.authService.logout(dto.refreshToken);
+    return {
+      message: "Logout successful",
+    };
+  }
+  @Get("admin-test")
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.PLATFORM_ADMIN)
+  async adminTest() {
+    return {
+      message: "You are allowed to access admin routes",
+    };
   }
 }
