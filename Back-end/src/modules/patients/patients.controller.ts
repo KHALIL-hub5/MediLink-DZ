@@ -21,6 +21,9 @@ import { Roles } from "../../common/decorators/roles.decorator";
 import { AddPatientAllergyDto } from "./dto/add-patient-allergy.dto";
 import { UpdatePatientAllergyDto } from "./dto/update-patient-allergy.dto";
 
+import { AddPatientConditionDto } from "./dto/add-patient-condition.dto";
+import { UpdatePatientConditionDto } from "./dto/update-patient-condition.dto";
+
 @Controller("patients")
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles(UserRole.PATIENT)
@@ -63,4 +66,46 @@ export class PatientsController {
   ) {
     return this.patientsService.deleteMyAllergy(req.user.id, allergyId);
   }
+
+  @Get("me/conditions")
+async getMyConditions(@Request() req: any) {
+  return this.patientsService.getMyConditions(
+    req.user.id,
+  );
+}
+
+@Post("me/conditions")
+async addMyCondition(
+  @Request() req: any,
+  @Body() dto: AddPatientConditionDto,
+) {
+  return this.patientsService.addMyCondition(
+    req.user.id,
+    dto,
+  );
+}
+
+@Patch("me/conditions/:conditionId")
+async updateMyCondition(
+  @Request() req: any,
+  @Param("conditionId") conditionId: string,
+  @Body() dto: UpdatePatientConditionDto,
+) {
+  return this.patientsService.updateMyCondition(
+    req.user.id,
+    conditionId,
+    dto,
+  );
+}
+
+@Delete("me/conditions/:conditionId")
+async deleteMyCondition(
+  @Request() req: any,
+  @Param("conditionId") conditionId: string,
+) {
+  return this.patientsService.deleteMyCondition(
+    req.user.id,
+    conditionId,
+  );
+}
 }
