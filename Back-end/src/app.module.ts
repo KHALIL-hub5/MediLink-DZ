@@ -10,6 +10,7 @@ import { HealthModule } from './modules/health/health.module';
 import { PatientsModule } from './modules/patients/patients.module';
 import { PharmaciesModule } from './modules/pharmacies/pharmacies.module';
 import { UsersModule } from './modules/users/users.module';
+import { AvailabilityModule } from "./modules/availability/availability.module";
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { UsersModule } from './modules/users/users.module';
     }),
 
     PrismaModule,
-
+    AvailabilityModule,
     AuthModule,
     UsersModule,
     PatientsModule,
