@@ -1,0 +1,78 @@
+model Doctor {
+  id                       String       @id @default(uuid()) @db.Uuid
+  userId                   String       @unique @map("user_id") @db.Uuid
+  licenseNumber            String       @unique @map("license_number") @db.VarChar(100)
+  bio                      String?      @db.Text
+  yearsExperience          Int          @default(0) @map("years_experience")
+  defaultConsultationPrice Decimal?     @map("default_consultation_price") @db.Decimal(10, 2)
+  status                   DoctorStatus @default(DRAFT)
+  profileCompleted         Boolean      @default(false) @map("profile_completed")
+  acceptsOnlineBooking     Boolean      @default(true) @map("accepts_online_booking")
+  submittedAt              DateTime?    @map("submitted_at")
+  reviewedAt               DateTime?    @map("reviewed_at")
+  approvedAt               DateTime?    @map("approved_at")
+  rejectionReason          String?      @map("rejection_reason") @db.Text
+  reviewedById             String?      @map("reviewed_by_id") @db.Uuid
+  createdAt                DateTime     @default(now()) @map("created_at")
+  updatedAt                DateTime     @updatedAt @map("updated_at")
+
+  user                  User                         @relation(fields: [userId], references: [id], onDelete: Restrict)
+  reviewedBy            User?                        @relation("DoctorReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  specialties           DoctorSpecialty[]
+  clinics               DoctorClinic[]
+  availabilities        DoctorAvailability[]
+  timeOff               DoctorTimeOff[]
+  appointments          Appointment[]
+  verificationDocuments DoctorVerificationDocument[]
+
+  @@index([status, acceptsOnlineBooking])
+  @@index([reviewedById])
+  @@map("doctors")
+}
+
+model DoctorVerificationDocument {
+  id           String                     @id @default(uuid()) @db.Uuid
+  doctorId     String                     @map("doctor_id") @db.Uuid
+  type         VerificationDocumentType
+  fileUrl      String                     @map("file_url") @db.VarChar(500)
+  status       VerificationDocumentStatus @default(PENDING)
+  reviewNote   String?                    @map("review_note") @db.Text
+  reviewedById String?                    @map("reviewed_by_id") @db.Uuid
+  uploadedAt   DateTime                   @default(now()) @map("uploaded_at")
+  reviewedAt   DateTime?                  @map("reviewed_at")
+
+  doctor     Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  reviewedBy User?  @relation("DoctorDocumentReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([doctorId, status])
+  @@index([reviewedById])
+  @@map("doctor_verification_documents")
+}
+
+model Specialty {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(150)
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  doctors DoctorSpecialty[]
+
+  @@map("specialties")
+}
+
+model DoctorSpecialty {
+  doctorId    String   @map("doctor_id") @db.Uuid
+  specialtyId String   @map("specialty_id") @db.Uuid
+  isPrimary   Boolean  @default(false) @map("is_primary")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  doctor    Doctor    @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  specialty Specialty @relation(fields: [specialtyId], references: [id], onDelete: Cascade)
+
+  @@id([doctorId, specialtyId])
+  @@index([specialtyId])
+  @@index([doctorId, isPrimary])
+  @@map("doctor_specialties")
+}

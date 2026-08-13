@@ -1,0 +1,80 @@
+model Patient {
+  id                    String    @id @default(uuid()) @db.Uuid
+  userId                String    @unique @map("user_id") @db.Uuid
+  dateOfBirth           DateTime? @map("date_of_birth") @db.Date
+  gender                Gender?
+  bloodType             BloodType @default(UNKNOWN) @map("blood_type")
+  addressLine           String?   @map("address_line") @db.VarChar(255)
+  communeId             Int?      @map("commune_id")
+  emergencyContactName  String?   @map("emergency_contact_name") @db.VarChar(150)
+  emergencyContactPhone String?   @map("emergency_contact_phone") @db.VarChar(30)
+  medicalNotes          String?   @map("medical_notes") @db.Text
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  user         User               @relation(fields: [userId], references: [id], onDelete: Restrict)
+  commune      Commune?           @relation(fields: [communeId], references: [id], onDelete: SetNull)
+  appointments Appointment[]
+  allergies    PatientAllergy[]
+  conditions   PatientCondition[]
+
+  @@index([communeId])
+  @@map("patients")
+}
+
+model Allergy {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique @db.VarChar(150)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  patients PatientAllergy[]
+
+  @@map("allergies")
+}
+
+model PatientAllergy {
+  patientId String          @map("patient_id") @db.Uuid
+  allergyId String          @map("allergy_id") @db.Uuid
+  severity  AllergySeverity @default(UNKNOWN)
+  reaction  String?         @db.VarChar(500)
+  notes     String?         @db.Text
+  createdAt DateTime        @default(now()) @map("created_at")
+  updatedAt DateTime        @updatedAt @map("updated_at")
+
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  allergy Allergy @relation(fields: [allergyId], references: [id], onDelete: Restrict)
+
+  @@id([patientId, allergyId])
+  @@index([allergyId])
+  @@map("patient_allergies")
+}
+
+model MedicalCondition {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(200)
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  patients PatientCondition[]
+
+  @@map("medical_conditions")
+}
+
+model PatientCondition {
+  patientId   String          @map("patient_id") @db.Uuid
+  conditionId String          @map("condition_id") @db.Uuid
+  status      ConditionStatus @default(ACTIVE)
+  diagnosedAt DateTime?       @map("diagnosed_at") @db.Date
+  notes       String?         @db.Text
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+
+  patient   Patient          @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  condition MedicalCondition @relation(fields: [conditionId], references: [id], onDelete: Restrict)
+
+  @@id([patientId, conditionId])
+  @@index([conditionId, status])
+  @@map("patient_conditions")
+}

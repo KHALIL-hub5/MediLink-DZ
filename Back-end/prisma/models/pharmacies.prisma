@@ -1,0 +1,217 @@
+model Pharmacy {
+  id              String             @id @default(uuid()) @db.Uuid
+  name            String             @db.VarChar(200)
+  slug            String             @unique @db.VarChar(220)
+  phone           String?            @db.VarChar(30)
+  email           String?            @db.VarChar(255)
+  addressLine     String             @map("address_line") @db.VarChar(255)
+  communeId       Int                @map("commune_id")
+  latitude        Decimal?           @db.Decimal(9, 6)
+  longitude       Decimal?           @db.Decimal(9, 6)
+  isOpen24Hours   Boolean            @default(false) @map("is_open_24_hours")
+  status          OrganizationStatus @default(DRAFT)
+  submittedAt     DateTime?          @map("submitted_at")
+  reviewedAt      DateTime?          @map("reviewed_at")
+  approvedAt      DateTime?          @map("approved_at")
+  rejectionReason String?            @map("rejection_reason") @db.Text
+  reviewedById    String?            @map("reviewed_by_id") @db.Uuid
+  deletedAt       DateTime?          @map("deleted_at")
+  createdAt       DateTime           @default(now()) @map("created_at")
+  updatedAt       DateTime           @updatedAt @map("updated_at")
+
+  commune      Commune                  @relation(fields: [communeId], references: [id], onDelete: Restrict)
+  reviewedBy   User?                    @relation("PharmacyReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  staff        PharmacyStaff[]
+  openingHours PharmacyOpeningHour[]
+  inventory    PharmacyInventory[]
+  accesses     PrescriptionAccess[]
+  reservations StockReservation[]
+  dispensings  PrescriptionDispensing[]
+
+  @@index([communeId, status])
+  @@index([reviewedById])
+  @@index([latitude, longitude])
+  @@index([deletedAt])
+  @@map("pharmacies")
+}
+
+model PharmacyStaff {
+  id         String            @id @default(uuid()) @db.Uuid
+  userId     String            @map("user_id") @db.Uuid
+  pharmacyId String            @map("pharmacy_id") @db.Uuid
+  role       PharmacyStaffRole
+  isActive   Boolean           @default(true) @map("is_active")
+  createdAt  DateTime          @default(now()) @map("created_at")
+  updatedAt  DateTime          @updatedAt @map("updated_at")
+
+  user        User                     @relation(fields: [userId], references: [id], onDelete: Restrict)
+  pharmacy    Pharmacy                 @relation(fields: [pharmacyId], references: [id], onDelete: Cascade)
+  dispensings PrescriptionDispensing[]
+
+  @@unique([userId, pharmacyId])
+  @@index([pharmacyId, isActive])
+  @@map("pharmacy_staff")
+}
+
+model PharmacyOpeningHour {
+  id             String    @id @default(uuid()) @db.Uuid
+  pharmacyId     String    @map("pharmacy_id") @db.Uuid
+  dayOfWeek      DayOfWeek @map("day_of_week")
+  opensAtMinute  Int?      @map("opens_at_minute")
+  closesAtMinute Int?      @map("closes_at_minute")
+  isClosed       Boolean   @default(false) @map("is_closed")
+
+  pharmacy Pharmacy @relation(fields: [pharmacyId], references: [id], onDelete: Cascade)
+
+  @@unique([pharmacyId, dayOfWeek])
+  @@map("pharmacy_opening_hours")
+}
+
+model Medication {
+  id                   String         @id @default(uuid()) @db.Uuid
+  slug                 String         @unique @db.VarChar(220)
+  genericName          String         @map("generic_name") @db.VarChar(200)
+  brandName            String?        @map("brand_name") @db.VarChar(200)
+  form                 MedicationForm
+  strength             String?        @db.VarChar(100)
+  requiresPrescription Boolean        @default(false) @map("requires_prescription")
+  isActive             Boolean        @default(true) @map("is_active")
+  deletedAt            DateTime?      @map("deleted_at")
+  createdAt            DateTime       @default(now()) @map("created_at")
+  updatedAt            DateTime       @updatedAt @map("updated_at")
+
+  inventories       PharmacyInventory[]
+  prescriptionItems PrescriptionItem[]
+
+  @@index([genericName])
+  @@index([isActive, deletedAt])
+  @@map("medications")
+}
+
+model PharmacyInventory {
+  id               String   @id @default(uuid()) @db.Uuid
+  pharmacyId       String   @map("pharmacy_id") @db.Uuid
+  medicationId     String   @map("medication_id") @db.Uuid
+  stockQuantity    Int      @default(0) @map("stock_quantity")
+  reservedQuantity Int      @default(0) @map("reserved_quantity")
+  unitPrice        Decimal? @map("unit_price") @db.Decimal(10, 2)
+  lastVerifiedAt   DateTime @default(now()) @map("last_verified_at")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  pharmacy         Pharmacy                     @relation(fields: [pharmacyId], references: [id], onDelete: Cascade)
+  medication       Medication                   @relation(fields: [medicationId], references: [id], onDelete: Restrict)
+  reservationItems StockReservationItem[]
+  dispensingItems  PrescriptionDispensingItem[]
+
+  @@unique([pharmacyId, medicationId])
+  @@index([medicationId, stockQuantity])
+  @@index([pharmacyId, updatedAt])
+  @@map("pharmacy_inventory")
+}
+
+model PrescriptionAccess {
+  id              String    @id @default(uuid()) @db.Uuid
+  prescriptionId  String    @map("prescription_id") @db.Uuid
+  pharmacyId      String    @map("pharmacy_id") @db.Uuid
+  grantedByUserId String    @map("granted_by_user_id") @db.Uuid
+  accessCodeHash  String?   @unique @map("access_code_hash") @db.VarChar(255)
+  expiresAt       DateTime  @map("expires_at")
+  usedAt          DateTime? @map("used_at")
+  revokedAt       DateTime? @map("revoked_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  prescription Prescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  pharmacy     Pharmacy     @relation(fields: [pharmacyId], references: [id], onDelete: Cascade)
+  grantedBy    User         @relation("PrescriptionAccessGrantor", fields: [grantedByUserId], references: [id], onDelete: Restrict)
+
+  @@index([prescriptionId, revokedAt])
+  @@index([pharmacyId, expiresAt])
+  @@index([grantedByUserId])
+  @@map("prescription_accesses")
+}
+
+model StockReservation {
+  id                String            @id @default(uuid()) @db.Uuid
+  prescriptionId    String            @map("prescription_id") @db.Uuid
+  pharmacyId        String            @map("pharmacy_id") @db.Uuid
+  requestedByUserId String            @map("requested_by_user_id") @db.Uuid
+  status            ReservationStatus @default(PENDING)
+  expiresAt         DateTime          @map("expires_at")
+  confirmedAt       DateTime?         @map("confirmed_at")
+  readyAt           DateTime?         @map("ready_at")
+  collectedAt       DateTime?         @map("collected_at")
+  cancelledAt       DateTime?         @map("cancelled_at")
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime          @updatedAt @map("updated_at")
+
+  prescription Prescription           @relation(fields: [prescriptionId], references: [id], onDelete: Restrict)
+  pharmacy     Pharmacy               @relation(fields: [pharmacyId], references: [id], onDelete: Restrict)
+  requestedBy  User                   @relation("ReservationRequester", fields: [requestedByUserId], references: [id], onDelete: Restrict)
+  items        StockReservationItem[]
+
+  @@index([prescriptionId, status])
+  @@index([pharmacyId, status])
+  @@index([requestedByUserId, createdAt])
+  @@index([status, expiresAt])
+  @@map("stock_reservations")
+}
+
+model StockReservationItem {
+  id                 String   @id @default(uuid()) @db.Uuid
+  reservationId      String   @map("reservation_id") @db.Uuid
+  prescriptionItemId String   @map("prescription_item_id") @db.Uuid
+  inventoryId        String   @map("inventory_id") @db.Uuid
+  quantityReserved   Int      @map("quantity_reserved")
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  reservation      StockReservation  @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  prescriptionItem PrescriptionItem  @relation(fields: [prescriptionItemId], references: [id], onDelete: Restrict)
+  inventory        PharmacyInventory @relation(fields: [inventoryId], references: [id], onDelete: Restrict)
+
+  @@unique([reservationId, prescriptionItemId])
+  @@index([inventoryId])
+  @@map("stock_reservation_items")
+}
+
+model PrescriptionDispensing {
+  id              String           @id @default(uuid()) @db.Uuid
+  prescriptionId  String           @map("prescription_id") @db.Uuid
+  pharmacyId      String           @map("pharmacy_id") @db.Uuid
+  pharmacyStaffId String           @map("pharmacy_staff_id") @db.Uuid
+  status          DispensingStatus @default(PENDING)
+  dispensedAt     DateTime?        @map("dispensed_at")
+  notes           String?          @db.Text
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+
+  prescription  Prescription                 @relation(fields: [prescriptionId], references: [id], onDelete: Restrict)
+  pharmacy      Pharmacy                     @relation(fields: [pharmacyId], references: [id], onDelete: Restrict)
+  pharmacyStaff PharmacyStaff                @relation(fields: [pharmacyStaffId], references: [id], onDelete: Restrict)
+  items         PrescriptionDispensingItem[]
+
+  @@index([prescriptionId, status])
+  @@index([pharmacyId, createdAt])
+  @@index([pharmacyStaffId])
+  @@map("prescription_dispensings")
+}
+
+model PrescriptionDispensingItem {
+  id                      String   @id @default(uuid()) @db.Uuid
+  dispensingId            String   @map("dispensing_id") @db.Uuid
+  prescriptionItemId      String   @map("prescription_item_id") @db.Uuid
+  inventoryId             String?  @map("inventory_id") @db.Uuid
+  quantityRequested       Int      @map("quantity_requested")
+  quantityDispensed       Int      @default(0) @map("quantity_dispensed")
+  dispensedMedicationName String?  @map("dispensed_medication_name") @db.VarChar(200)
+  substitutionNote        String?  @map("substitution_note") @db.Text
+  createdAt               DateTime @default(now()) @map("created_at")
+
+  dispensing       PrescriptionDispensing @relation(fields: [dispensingId], references: [id], onDelete: Cascade)
+  prescriptionItem PrescriptionItem       @relation(fields: [prescriptionItemId], references: [id], onDelete: Restrict)
+  inventory        PharmacyInventory?     @relation(fields: [inventoryId], references: [id], onDelete: SetNull)
+
+  @@unique([dispensingId, prescriptionItemId])
+  @@index([inventoryId])
+  @@map("prescription_dispensing_items")
+}

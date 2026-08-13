@@ -102,7 +102,7 @@ The application is fully responsive and optimized for:
 
 ---
 
-## Backend *(planned)*
+## Backend _(planned)_
 
 - NestJS
 - TypeScript
@@ -113,14 +113,14 @@ The application is fully responsive and optimized for:
 
 ---
 
-## AI Integration *(planned)*
+## AI Integration _(planned)_
 
 - OpenAI API
 - Google Gemini API
 
 ---
 
-## Maps & Location *(planned)*
+## Maps & Location _(planned)_
 
 - Google Maps API
 - Geolocation API
@@ -255,5 +255,42 @@ Passionate about:
 - Healthcare Technologies
 
 ---
+
+---
+
+Patient visits doctor _
+↓  
+Doctor creates digital prescription _
+↓
+Prescription appears in patient account
+↓
+Patient clicks “Find pharmacies” _
+↓
+System checks pharmacy inventories
+↓
+System displays matching pharmacies
+↓ _
+Patient selects one pharmacy
+↓
+Patient authorizes that pharmacy to view the prescription
+↓
+Pharmacy reserves and dispenses the medicines \*
+
+---
+
+PostgreSQL
+= the real database
+
+Prisma schema
+= describes the database structure
+
+Prisma Client
+= NestJS code that communicates with PostgreSQL
+
+Prisma Studio
+= developer screen for viewing and testing PostgreSQL data
+
+pgAdmin
+= advanced PostgreSQL administration tool
 
 ⭐ If you like this project, consider giving it a star!
