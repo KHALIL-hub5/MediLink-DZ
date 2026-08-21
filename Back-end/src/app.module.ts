@@ -13,6 +13,7 @@ import { UsersModule } from "./modules/users/users.module";
 import { AvailabilityModule } from "./modules/availability/availability.module";
 import { MedicalRecordsModule } from "./modules/medical-records/medical-records.module";
 import { PrescriptionsModule } from "./modules/prescriptions/prescriptions.module";
+import { SpecialtiesModule } from "./modules/specialties/specialties.module";
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,6 +27,7 @@ import { PrescriptionsModule } from "./modules/prescriptions/prescriptions.modul
     UsersModule,
     PatientsModule,
     DoctorsModule,
+    SpecialtiesModule,
     AppointmentsModule,
     PrescriptionsModule,
     PharmaciesModule,

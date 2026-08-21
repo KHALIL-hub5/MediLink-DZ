@@ -118,7 +118,7 @@ export class PrescriptionsService {
 
   async create(userId: string, createPrescriptionDto: CreatePrescriptionDto) {
     const doctor = await this.getDoctorByUserId(userId);
-     console.log("hellllllllllo maaaaaaaaaaaaan");
+    console.log("hellllllllllo maaaaaaaaaaaaan");
     const medicalRecord = await this.prisma.medicalRecord.findUnique({
       where: {
         id: createPrescriptionDto.medicalRecordId,
@@ -395,6 +395,77 @@ export class PrescriptionsService {
       },
       include: this.getPrescriptionInclude(),
     });
+  }
+
+  async authorizePharmacy(
+    prescriptionId: string,
+    userId: string,
+    pharmacyId: string,
+  ) {
+    const patient = await this.getPatientByUserId(userId);
+
+    const prescription = await this.prisma.prescription.findFirst({
+      where: {
+        id: prescriptionId,
+        medicalRecord: {
+          appointment: {
+            patientId: patient.id,
+          },
+        },
+      },
+      select: { id: true, status: true },
+    });
+
+    if (!prescription) {
+      throw new NotFoundException("Prescription not found or access denied.");
+    }
+
+    if (prescription.status !== PrescriptionStatus.ACTIVE) {
+      throw new BadRequestException(
+        "Only active prescriptions can be authorized for a pharmacy.",
+      );
+    }
+
+    const pharmacy = await this.prisma.pharmacy.findUnique({
+      where: { id: pharmacyId },
+    });
+
+    if (!pharmacy) {
+      throw new NotFoundException("Pharmacy not found.");
+    }
+
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 24);
+
+    return this.prisma.prescriptionAccess.create({
+      data: {
+        prescriptionId,
+        pharmacyId,
+        grantedByUserId: userId,
+        expiresAt,
+      },
+    });
+  }
+
+  private async getPharmacyStaffByUserId(userId: string) {
+    const staff = await this.prisma.pharmacyStaff.findFirst({
+      where: {
+        userId,
+        isActive: true,
+      },
+      select: {
+        id: true,
+        pharmacyId: true,
+      },
+    });
+
+    if (!staff) {
+      throw new ForbiddenException(
+        "An active pharmacy staff profile is required.",
+      );
+    }
+
+    return staff;
   }
 
   async complete(prescriptionId: string, userId: string) {

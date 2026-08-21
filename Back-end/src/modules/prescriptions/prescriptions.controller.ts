@@ -10,7 +10,7 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { UserRole } from "@prisma/client";
-
+import { AuthorizePharmacyDto } from "./dto/authorize-pharmacy.dto";
 import { PrescriptionsService } from "./prescriptions.service";
 import { CreatePrescriptionDto } from "./dto/create-prescription.dto";
 import { UpdatePrescriptionDto } from "./dto/update-prescription.dto";
@@ -65,6 +65,20 @@ export class PrescriptionsController {
     return this.prescriptionsService.findOne(id, req.user.id, req.user.role);
   }
 
+  @Post(":id/authorize-pharmacy")
+  @Roles(UserRole.PATIENT)
+  async authorizePharmacy(
+    @Param("id", ParseUUIDPipe) id: string,
+    @Request() req: any,
+    @Body() dto: AuthorizePharmacyDto,
+  ) {
+    return this.prescriptionsService.authorizePharmacy(
+      id,
+      req.user.id,
+      dto.pharmacyId,
+    );
+  }
+
   @Patch(":id")
   @Roles(UserRole.DOCTOR)
   async update(
@@ -86,7 +100,7 @@ export class PrescriptionsController {
   }
 
   @Patch(":id/complete")
-  @Roles(UserRole.DOCTOR)
+  @Roles(UserRole.PHARMACY_STAFF)
   async complete(@Param("id", ParseUUIDPipe) id: string, @Request() req: any) {
     return this.prescriptionsService.complete(id, req.user.id);
   }
