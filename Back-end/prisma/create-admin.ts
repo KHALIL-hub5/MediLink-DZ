@@ -1,41 +1,27 @@
-import { PrismaClient } from "@prisma/client";
-// @ts-ignore: bcryptjs has no bundled type declarations in this project
 import * as bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = "admin@medilink.test";
-  const newPassword = "Admin123!";
+  const plainPassword = "14042003Mm"; // 👈 set your real password here
+  const hash = await bcrypt.hash(plainPassword, 10); // 👈 10 = salt rounds
 
-  // Hash the new password
-  const passwordHash = await bcrypt.hash(newPassword, 12);
-
-  // Update the existing admin user
-  const admin = await prisma.user.update({
-    where: {
-      email,
-    },
+  await prisma.user.create({
     data: {
-      passwordHash,
+      email: "admin@medilinkdz.com",
+      passwordHash: hash,
+      firstName: "MediLink",
+      lastName: "Admin",
+      role: "PLATFORM_ADMIN",
+      status: "ACTIVE",
+      emailVerifiedAt: new Date(),
     },
   });
 
-  console.log("Admin password updated successfully");
-
-  console.log({
-    id: admin.id,
-    email: admin.email,
-    role: admin.role,
-    status: admin.status,
-  });
+  console.log("Admin created successfully");
 }
 
 main()
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch((e) => console.error(e))
+  .finally(async () => await prisma.$disconnect());

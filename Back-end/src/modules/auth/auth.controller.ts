@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Query,
   Request,
   UseGuards,
 } from "@nestjs/common";
@@ -17,13 +18,28 @@ import { LogoutDto } from "./dto/logout.dto";
 import { RolesGuard } from "src/common/guards/roles.guard";
 import { UserRole } from "@prisma/client";
 import { Roles } from "./decorators/roles.decorator";
+import { Public } from "./decorators/public.decorator";
+import { RegisterDto } from "./dto/register.dto";
 
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Post("register")
+  @Public()
+  register(@Body() dto: RegisterDto) {
+    return this.authService.register(dto);
+  }
+
+  @Get("verify-email")
+  @Public()
+  verifyEmail(@Query("token") token: string) {
+    return this.authService.verifyEmail(token);
+  }
+
   @Post("login")
   @HttpCode(HttpStatus.OK)
+  @Public()
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }

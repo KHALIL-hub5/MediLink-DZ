@@ -1,7 +1,11 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { APP_GUARD } from "@nestjs/core";
 
 import { PrismaModule } from "./database/prisma.module";
+
+import { JwtAuthGuard } from "./modules/auth/guards/jwt-auth.guard";
+import { RolesGuard } from "./common/guards/roles.guard";
 
 import { AppointmentsModule } from "./modules/appointments/appointments.module";
 import { AuthModule } from "./modules/auth/auth.module";
@@ -14,6 +18,8 @@ import { AvailabilityModule } from "./modules/availability/availability.module";
 import { MedicalRecordsModule } from "./modules/medical-records/medical-records.module";
 import { PrescriptionsModule } from "./modules/prescriptions/prescriptions.module";
 import { SpecialtiesModule } from "./modules/specialties/specialties.module";
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -33,6 +39,21 @@ import { SpecialtiesModule } from "./modules/specialties/specialties.module";
     PharmaciesModule,
     HealthModule,
     MedicalRecordsModule,
+  ],
+
+
+  providers: [
+
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+
   ],
 })
 export class AppModule {}

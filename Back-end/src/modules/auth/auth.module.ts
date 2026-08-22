@@ -6,6 +6,8 @@ import { UsersModule } from '../users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports: [
@@ -16,6 +18,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
 
     JwtModule.register({}),
+    MailModule,
   ],
 
   controllers: [AuthController],
@@ -23,6 +26,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   providers: [
     AuthService,
     JwtStrategy,
+    RolesGuard,
   ],
 
   exports: [
