@@ -1,36 +1,23 @@
 model FileUpload {
+  id String @id @default(uuid()) @db.Uuid
 
-id String @id @default(uuid()) @db.Uuid
+  uploadedById String @map("uploaded_by_id") @db.Uuid
 
+  url String @db.VarChar(500)
 
-uploadedById String @map("uploaded_by_id") @db.Uuid
+  originalName String @map("original_name") @db.VarChar(255)
 
+  mimeType String @map("mime_type") @db.VarChar(100)
 
-url String @db.VarChar(500)
+  size Int
 
+  category UploadCategory
 
-originalName String @map("original_name") @db.VarChar(255)
+  createdAt DateTime @default(now())
 
+  uploadedBy User @relation("FileUploader", fields: [uploadedById], references: [id], onDelete: Restrict)
 
-mimeType String @map("mime_type") @db.VarChar(100)
-
-
-size Int
-
-
-category UploadCategory
-
-
-createdAt DateTime @default(now())
-
-
-uploadedBy User @relation("FileUploader", fields: [uploadedById], references: [id], onDelete: Restrict)
-
-
-@@index([uploadedById])
-
-@@index([category])
-
-@@map("file_uploads")
-
+  @@index([uploadedById])
+  @@index([category])
+  @@map("file_uploads")
 }

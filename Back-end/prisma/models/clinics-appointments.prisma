@@ -28,6 +28,7 @@ model Clinic {
   @@index([communeId, status])
   @@index([reviewedById])
   @@index([deletedAt])
+  @@index([status, deletedAt])
   @@map("clinics")
 }
 

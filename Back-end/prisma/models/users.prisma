@@ -26,20 +26,20 @@ model User {
   doctor                      Doctor?
   pharmacyMemberships         PharmacyStaff[]
   clinicMemberships           ClinicStaff[]
-  createdAppointments         Appointment[]                @relation("AppointmentCreator")
+  createdAppointments         Appointment[]                  @relation("AppointmentCreator")
   refreshTokens               RefreshToken[]
   notifications               Notification[]
   aiConversations             AiConversation[]
   payments                    Payment[]
-  grantedPrescriptionAccesses PrescriptionAccess[]         @relation("PrescriptionAccessGrantor")
-  requestedReservations       StockReservation[]           @relation("ReservationRequester")
-  reviewedDoctors             Doctor[]                     @relation("DoctorReviewer")
-  reviewedDoctorDocuments     DoctorVerificationDocument[] @relation("DoctorDocumentReviewer")
-  reviewedClinics             Clinic[]                     @relation("ClinicReviewer")
-  reviewedPharmacies          Pharmacy[]                   @relation("PharmacyReviewer")
+  grantedPrescriptionAccesses PrescriptionAccess[]           @relation("PrescriptionAccessGrantor")
+  requestedReservations       StockReservation[]             @relation("ReservationRequester")
+  reviewedDoctors             Doctor[]                       @relation("DoctorReviewer")
+  reviewedDoctorDocuments     DoctorVerificationDocument[]   @relation("DoctorDocumentReviewer")
+  reviewedClinics             Clinic[]                       @relation("ClinicReviewer")
+  reviewedPharmacies          Pharmacy[]                     @relation("PharmacyReviewer")
   reviewedPharmacyDocuments   PharmacyVerificationDocument[] @relation("PharmacyDocumentReviewer")
-  uploadedFiles               FileUpload[]                 @relation("FileUploader")
-  auditLogs                   AuditLog[]                   @relation("AuditActor")
+  uploadedFiles               FileUpload[]                   @relation("FileUploader")
+  auditLogs                   AuditLog[]                     @relation("AuditActor")
 
   @@index([role, status])
   @@index([status, deletedAt])

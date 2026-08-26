@@ -19,7 +19,7 @@ import { MedicalRecordsModule } from "./modules/medical-records/medical-records.
 import { PrescriptionsModule } from "./modules/prescriptions/prescriptions.module";
 import { SpecialtiesModule } from "./modules/specialties/specialties.module";
 import {UploadsModule} from "./modules/uploads/uploads.module";
-
+import { ClinicsModule } from "./modules/clinics/clinics.module";
 
 @Module({
   imports: [
@@ -35,6 +35,7 @@ import {UploadsModule} from "./modules/uploads/uploads.module";
     UploadsModule,
     PatientsModule,
     DoctorsModule,
+    ClinicsModule,
     SpecialtiesModule,
     AppointmentsModule,
     PrescriptionsModule,
