@@ -189,6 +189,86 @@ export class AuthService {
     };
   }
 
+  async forgotPassword(email: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    // Security:
+    // do not reveal if email exists
+
+    if (!user) {
+      return {
+        message: "If this email exists, a reset link was sent",
+      };
+    }
+
+    const token = crypto.randomUUID();
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+
+      data: {
+        passwordResetToken: token,
+
+        passwordResetExpiresAt: new Date(Date.now() + 15 * 60 * 1000),
+      },
+    });
+
+    await this.mailService.sendResetPasswordEmail(user.email, token);
+
+    return {
+      message: "If this email exists, a reset link was sent",
+    };
+  }
+
+  async resetPassword(token: string, newPassword: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        passwordResetToken: token,
+      } as any,
+    });
+
+    if (!user) {
+      throw new BadRequestException("Invalid token");
+    }
+
+    const userWithResetExpiry = user as typeof user & {
+      passwordResetExpiresAt: Date | null;
+    };
+
+    if (
+      !userWithResetExpiry.passwordResetExpiresAt ||
+      userWithResetExpiry.passwordResetExpiresAt < new Date()
+    ) {
+      throw new BadRequestException("Token expired");
+    }
+
+    const passwordHash = await bcrypt.hash(newPassword, 12);
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+
+      data: {
+        passwordHash,
+
+        passwordResetToken: null,
+
+        passwordResetExpiresAt: null,
+      },
+    });
+
+    return {
+      message: "Password reset successfully",
+    };
+  }
+
   // =========================================================
   // REFRESH TOKEN
   // =========================================================

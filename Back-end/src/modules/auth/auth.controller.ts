@@ -20,7 +20,8 @@ import { UserRole } from "@prisma/client";
 import { Roles } from "./decorators/roles.decorator";
 import { Public } from "./decorators/public.decorator";
 import { RegisterDto } from "./dto/register.dto";
-
+import { ForgotPasswordDto } from "./dto/forgot-password.dto";
+import { ResetPasswordDto } from "./dto/reset-password.dto";
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -29,6 +30,18 @@ export class AuthController {
   @Public()
   register(@Body() dto: RegisterDto) {
     return this.authService.register(dto);
+  }
+
+  @Post("forgot-password")
+  @Public()
+  forgotPassword(@Body() dto: ForgotPasswordDto) {
+    return this.authService.forgotPassword(dto.email);
+  }
+
+  @Post("reset-password")
+  @Public()
+  resetPassword(@Body() dto: ResetPasswordDto) {
+    return this.authService.resetPassword(dto.token, dto.newPassword);
   }
 
   @Get("verify-email")

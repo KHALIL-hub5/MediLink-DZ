@@ -18,6 +18,7 @@ import { AvailabilityModule } from "./modules/availability/availability.module";
 import { MedicalRecordsModule } from "./modules/medical-records/medical-records.module";
 import { PrescriptionsModule } from "./modules/prescriptions/prescriptions.module";
 import { SpecialtiesModule } from "./modules/specialties/specialties.module";
+import {UploadsModule} from "./modules/uploads/uploads.module";
 
 
 @Module({
@@ -31,6 +32,7 @@ import { SpecialtiesModule } from "./modules/specialties/specialties.module";
     AvailabilityModule,
     AuthModule,
     UsersModule,
+    UploadsModule,
     PatientsModule,
     DoctorsModule,
     SpecialtiesModule,

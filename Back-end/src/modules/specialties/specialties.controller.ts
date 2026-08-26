@@ -32,6 +32,11 @@ export class SpecialtiesController {
     return this.service.findAll();
   }
 
+  @Get("search")
+  search(@Query("q") q: string) {
+    return this.service.search(q);
+  }
+
   @Get(":id")
   @Roles("PLATFORM_ADMIN")
   findOne(@Param("id") id: string) {
@@ -48,10 +53,5 @@ export class SpecialtiesController {
   @Roles("PLATFORM_ADMIN")
   remove(@Param("id") id: string) {
     return this.service.remove(id);
-  }
-
-  @Get("search")
-  search(@Query("q") q: string) {
-    return this.service.search(q);
   }
 }
