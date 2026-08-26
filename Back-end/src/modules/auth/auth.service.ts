@@ -1,4 +1,6 @@
 import {
+  BadRequestException,
+  ConflictException,
   ForbiddenException,
   Injectable,
   UnauthorizedException,
@@ -15,6 +17,8 @@ import { createHash, randomBytes } from "node:crypto";
 import { UsersService } from "../users/users.service";
 import { LoginDto } from "./dto/login.dto";
 import { PrismaService } from "../../database/prisma.service";
+import { MailService } from "../mail/mail.service";
+import { RegisterDto } from "./dto/register.dto";
 
 @Injectable()
 export class AuthService {
@@ -23,7 +27,87 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly prisma: PrismaService,
+    private mailService: MailService,
   ) {}
+
+  async register(dto: RegisterDto) {
+    const existing = await this.prisma.user.findUnique({
+      where: {
+        email: dto.email,
+      },
+    });
+
+    if (existing) {
+      throw new ConflictException("Email already exists");
+    }
+
+    const passwordHash = await bcrypt.hash(dto.password, 12);
+
+    const token = crypto.randomUUID();
+
+    const user = await this.prisma.user.create({
+      data: {
+        email: dto.email,
+
+        passwordHash,
+
+        firstName: dto.firstName,
+
+        lastName: dto.lastName,
+
+        status: "PENDING_VERIFICATION",
+
+        emailVerificationToken: token,
+
+        emailVerificationExpiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      },
+    });
+
+    await this.mailService.sendVerificationEmail(user.email, token);
+
+    return {
+      message: "Account created. Check your email.",
+    };
+  }
+
+  async verifyEmail(token: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        emailVerificationToken: token,
+      },
+    });
+
+    if (!user) {
+      throw new BadRequestException("Invalid verification token");
+    }
+
+    if (
+      !user.emailVerificationExpiresAt ||
+      user.emailVerificationExpiresAt < new Date()
+    ) {
+      throw new BadRequestException("Token expired");
+    }
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+
+      data: {
+        status: "ACTIVE",
+
+        emailVerifiedAt: new Date(),
+
+        emailVerificationToken: null,
+
+        emailVerificationExpiresAt: null,
+      },
+    });
+
+    return {
+      message: "Email verified successfully",
+    };
+  }
 
   // =========================================================
   // LOGIN
@@ -52,6 +136,9 @@ export class AuthService {
     }
 
     // 4. Check account status
+    if (user.status === UserStatus.PENDING_VERIFICATION) {
+      throw new ForbiddenException("Please verify your email first");
+    }
     if (user.status !== UserStatus.ACTIVE) {
       throw new ForbiddenException(
         `Account is not active. Current status: ${user.status}`,
@@ -102,6 +189,86 @@ export class AuthService {
     };
   }
 
+  async forgotPassword(email: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    // Security:
+    // do not reveal if email exists
+
+    if (!user) {
+      return {
+        message: "If this email exists, a reset link was sent",
+      };
+    }
+
+    const token = crypto.randomUUID();
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+
+      data: {
+        passwordResetToken: token,
+
+        passwordResetExpiresAt: new Date(Date.now() + 15 * 60 * 1000),
+      },
+    });
+
+    await this.mailService.sendResetPasswordEmail(user.email, token);
+
+    return {
+      message: "If this email exists, a reset link was sent",
+    };
+  }
+
+  async resetPassword(token: string, newPassword: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        passwordResetToken: token,
+      } as any,
+    });
+
+    if (!user) {
+      throw new BadRequestException("Invalid token");
+    }
+
+    const userWithResetExpiry = user as typeof user & {
+      passwordResetExpiresAt: Date | null;
+    };
+
+    if (
+      !userWithResetExpiry.passwordResetExpiresAt ||
+      userWithResetExpiry.passwordResetExpiresAt < new Date()
+    ) {
+      throw new BadRequestException("Token expired");
+    }
+
+    const passwordHash = await bcrypt.hash(newPassword, 12);
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+
+      data: {
+        passwordHash,
+
+        passwordResetToken: null,
+
+        passwordResetExpiresAt: null,
+      },
+    });
+
+    return {
+      message: "Password reset successfully",
+    };
+  }
+
   // =========================================================
   // REFRESH TOKEN
   // =========================================================
@@ -128,44 +295,29 @@ export class AuthService {
 
     // 4. Token A was already revoked
     if (storedToken.revokedAt) {
-      throw new UnauthorizedException(
-        "Refresh token has been revoked",
-      );
+      throw new UnauthorizedException("Refresh token has been revoked");
     }
 
     // 5. Token A expired
     if (storedToken.expiresAt <= new Date()) {
-      throw new UnauthorizedException(
-        "Refresh token has expired",
-      );
+      throw new UnauthorizedException("Refresh token has expired");
     }
 
     // 6. Find the owner of token A
-    const user = await this.usersService.findById(
-      storedToken.userId,
-    );
+    const user = await this.usersService.findById(storedToken.userId);
 
     if (!user) {
-      throw new UnauthorizedException(
-        "User no longer exists",
-      );
+      throw new UnauthorizedException("User no longer exists");
     }
 
     // 7. Check account status
     if (user.status !== UserStatus.ACTIVE) {
-      throw new UnauthorizedException(
-        "User account is not active",
-      );
+      throw new UnauthorizedException("User account is not active");
     }
 
     // 8. Check account lock
-    if (
-      user.lockedUntil &&
-      user.lockedUntil > new Date()
-    ) {
-      throw new UnauthorizedException(
-        "User account is temporarily locked",
-      );
+    if (user.lockedUntil && user.lockedUntil > new Date()) {
+      throw new UnauthorizedException("User account is temporarily locked");
     }
 
     // At this point:
@@ -182,22 +334,17 @@ export class AuthService {
     // ---------------------------------------------------------
 
     // 9. Generate a new access token
-    const accessToken =
-      await this.generateAccessToken(user);
+    const accessToken = await this.generateAccessToken(user);
 
     // 10. Generate refresh token B
-    const newRefreshToken =
-      randomBytes(32).toString("hex");
+    const newRefreshToken = randomBytes(32).toString("hex");
 
     // 11. Hash refresh token B before storing it
-    const newTokenHash =
-      this.hashRefreshToken(newRefreshToken);
+    const newTokenHash = this.hashRefreshToken(newRefreshToken);
 
     // 12. Refresh token B expires in 7 days
     const newExpiresAt = new Date();
-    newExpiresAt.setDate(
-      newExpiresAt.getDate() + 7,
-    );
+    newExpiresAt.setDate(newExpiresAt.getDate() + 7);
 
     // ---------------------------------------------------------
     // STEP 3: Rotate refresh tokens
@@ -236,49 +383,43 @@ export class AuthService {
   }
 
   async logout(refreshToken: string): Promise<void> {
-  // 1. Hash the refresh token received from the client
-  const tokenHash = this.hashRefreshToken(refreshToken);
+    // 1. Hash the refresh token received from the client
+    const tokenHash = this.hashRefreshToken(refreshToken);
 
-  // 2. Find the refresh token in PostgreSQL
-  const storedToken = await this.prisma.refreshToken.findFirst({
-    where: {
-      tokenHash,
-    },
-  });
+    // 2. Find the refresh token in PostgreSQL
+    const storedToken = await this.prisma.refreshToken.findFirst({
+      where: {
+        tokenHash,
+      },
+    });
 
-  // 3. Token doesn't exist
-  if (!storedToken) {
-    throw new UnauthorizedException("Invalid refresh token");
+    // 3. Token doesn't exist
+    if (!storedToken) {
+      throw new UnauthorizedException("Invalid refresh token");
+    }
+
+    // 4. Token is already revoked
+    if (storedToken.revokedAt) {
+      throw new UnauthorizedException("Refresh token has already been revoked");
+    }
+
+    // 5. Revoke the refresh token
+    await this.prisma.refreshToken.update({
+      where: {
+        id: storedToken.id,
+      },
+      data: {
+        revokedAt: new Date(),
+      },
+    });
   }
-
-  // 4. Token is already revoked
-  if (storedToken.revokedAt) {
-    throw new UnauthorizedException(
-      "Refresh token has already been revoked",
-    );
-  }
-
-  // 5. Revoke the refresh token
-  await this.prisma.refreshToken.update({
-    where: {
-      id: storedToken.id,
-    },
-    data: {
-      revokedAt: new Date(),
-    },
-  });
-}
 
   // =========================================================
   // HELPERS
   // =========================================================
 
-  private hashRefreshToken(
-    refreshToken: string,
-  ): string {
-    return createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
+  private hashRefreshToken(refreshToken: string): string {
+    return createHash("sha256").update(refreshToken).digest("hex");
   }
 
   private async generateAccessToken(user: {
@@ -286,13 +427,10 @@ export class AuthService {
     email: string;
     role: string;
   }): Promise<string> {
-    const jwtSecret =
-      this.configService.get<string>("JWT_SECRET");
+    const jwtSecret = this.configService.get<string>("JWT_SECRET");
 
     if (!jwtSecret) {
-      throw new Error(
-        "JWT_SECRET is not configured",
-      );
+      throw new Error("JWT_SECRET is not configured");
     }
 
     const payload = {

@@ -27,6 +27,7 @@ model Pharmacy {
   accesses     PrescriptionAccess[]
   reservations StockReservation[]
   dispensings  PrescriptionDispensing[]
+  verificationDocuments PharmacyVerificationDocument[]
 
   @@index([communeId, status])
   @@index([reviewedById])
@@ -51,6 +52,39 @@ model PharmacyStaff {
   @@unique([userId, pharmacyId])
   @@index([pharmacyId, isActive])
   @@map("pharmacy_staff")
+}
+
+model PharmacyVerificationDocument {
+
+id String @id @default(uuid()) @db.Uuid
+
+pharmacyId String @map("pharmacy_id") @db.Uuid
+
+type VerificationDocumentType
+
+fileUrl String @map("file_url") @db.VarChar(500)
+
+status VerificationDocumentStatus @default(PENDING)
+
+reviewNote String? @db.Text
+
+reviewedById String? @map("reviewed_by_id") @db.Uuid
+
+uploadedAt DateTime @default(now())
+
+reviewedAt DateTime?
+
+
+pharmacy Pharmacy @relation(fields: [pharmacyId], references: [id], onDelete: Cascade)
+
+
+reviewedBy User? @relation("PharmacyDocumentReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+
+@@index([pharmacyId,status])
+
+@@map("pharmacy_verification_documents")
+
 }
 
 model PharmacyOpeningHour {

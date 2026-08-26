@@ -1,8 +1,21 @@
-import { Controller, Post } from '@nestjs/common';
+import {
+  Controller, Post, UseInterceptors, UploadedFile, Body, Req,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { UploadsService } from './uploads.service';
+import { UploadFileDto } from './dto/upload.dto';
+
 @Controller('uploads')
 export class UploadsController {
+  constructor(private uploadsService: UploadsService) {}
+
   @Post()
-  upload() {
-    return { success: true };
+  @UseInterceptors(FileInterceptor('file'))
+  async upload(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: UploadFileDto,
+    @Req() req: any,
+  ) {
+    return this.uploadsService.uploadFile(file, dto.category, req.user.id);
   }
 }
