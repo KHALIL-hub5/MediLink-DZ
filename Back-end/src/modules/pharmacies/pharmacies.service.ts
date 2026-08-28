@@ -10,16 +10,45 @@ import {
   OrganizationStatus,
   PrescriptionStatus,
   Prisma,
+  PharmacyStaffRole,
+  PharmacyVerificationDocumentType,
+  UploadCategory,
 } from "@prisma/client";
 
 import { PrismaService } from "../../database/prisma.service";
 
 import { UpdateInventoryDto } from "./dto/update-inventory.dto";
 import { DispensePrescriptionDto } from "./dto/dispense-prescription.dto";
+import { UploadsService } from "../uploads/uploads.service";
 
 @Injectable()
 export class PharmaciesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService, private readonly uploadsService: UploadsService) {}
+
+  private getPharmacyUploadCategory(type: PharmacyVerificationDocumentType): UploadCategory {
+    return type === PharmacyVerificationDocumentType.OPERATING_LICENSE || type === PharmacyVerificationDocumentType.PHARMACIST_LICENSE
+      ? UploadCategory.PHARMACY_LICENSE
+      : UploadCategory.PHARMACY_DOCUMENT;
+  }
+
+  async uploadVerificationDocument(userId: string, pharmacyId: string, file: Express.Multer.File, type: PharmacyVerificationDocumentType) {
+    const pharmacy = await this.prisma.pharmacy.findFirst({ where: { id: pharmacyId, deletedAt: null } });
+    if (!pharmacy) throw new NotFoundException("Pharmacy not found.");
+    const membership = await this.prisma.pharmacyStaff.findFirst({
+      where: { userId, pharmacyId, isActive: true, role: { in: [PharmacyStaffRole.OWNER, PharmacyStaffRole.MANAGER] } },
+    });
+    if (!membership) throw new ForbiddenException("You do not have permission to manage this pharmacy.");
+    const upload = await this.uploadsService.uploadFile(file, this.getPharmacyUploadCategory(type), userId);
+    return this.prisma.pharmacyVerificationDocument.create({ data: { pharmacyId, type, fileUrl: upload.url } });
+  }
+
+  async getVerificationDocuments(userId: string, pharmacyId: string) {
+    const pharmacy = await this.prisma.pharmacy.findFirst({ where: { id: pharmacyId, deletedAt: null } });
+    if (!pharmacy) throw new NotFoundException("Pharmacy not found.");
+    const membership = await this.prisma.pharmacyStaff.findFirst({ where: { userId, pharmacyId, isActive: true } });
+    if (!membership) throw new ForbiddenException("You do not have access to this pharmacy.");
+    return this.prisma.pharmacyVerificationDocument.findMany({ where: { pharmacyId }, orderBy: { uploadedAt: "desc" } });
+  }
 
   // =========================================================
   // HELPERS

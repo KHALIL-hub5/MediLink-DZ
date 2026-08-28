@@ -1,5 +1,8 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "../../database/prisma.service";
+import { PatientDocumentType, UploadCategory } from "@prisma/client";
+import { UploadsService } from "../uploads/uploads.service";
+import { UploadPatientDocumentDto } from "./dto/upload-patient-document.dto";
 import { UpdatePatientDto } from "./dto/update-patient.dto";
 import { AddPatientAllergyDto } from "./dto/add-patient-allergy.dto";
 import { UpdatePatientAllergyDto } from "./dto/update-patient-allergy.dto";
@@ -8,7 +11,24 @@ import { UpdatePatientConditionDto } from "./dto/update-patient-condition.dto";
 
 @Injectable()
 export class PatientsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService, private readonly uploadsService: UploadsService) {}
+
+  private getPatientUploadCategory(type: PatientDocumentType): UploadCategory {
+    return type === PatientDocumentType.PRESCRIPTION ? UploadCategory.PRESCRIPTION : UploadCategory.MEDICAL_DOCUMENT;
+  }
+
+  async uploadDocument(userId: string, file: Express.Multer.File, dto: UploadPatientDocumentDto) {
+    const patient = await this.prisma.patient.findUnique({ where: { userId } });
+    if (!patient) throw new NotFoundException("Patient profile not found");
+    const upload = await this.uploadsService.uploadFile(file, this.getPatientUploadCategory(dto.type), userId);
+    return this.prisma.patientDocument.create({ data: { patientId: patient.id, type: dto.type, title: dto.title, fileUrl: upload.url } });
+  }
+
+  async getMyDocuments(userId: string) {
+    const patient = await this.prisma.patient.findUnique({ where: { userId } });
+    if (!patient) throw new NotFoundException("Patient profile not found");
+    return this.prisma.patientDocument.findMany({ where: { patientId: patient.id }, orderBy: { uploadedAt: "desc" } });
+  }
 
   async getMyProfile(userId: string) {
     const patient = await this.prisma.patient.findUnique({

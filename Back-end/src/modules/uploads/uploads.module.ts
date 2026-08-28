@@ -18,5 +18,6 @@ import { PrismaModule } from '../../database/prisma.module';
           : LocalStorageService,
     },
   ],
+  exports: [UploadsService],
 })
 export class UploadsModule {}

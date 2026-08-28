@@ -8,13 +8,17 @@ import {
   Post,
   Request,
   UseGuards,
+  UploadedFile,
+  UseInterceptors,
 } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 import { UserRole } from "@prisma/client";
 
 import { PharmaciesService } from "./pharmacies.service";
 
 import { UpdateInventoryDto } from "./dto/update-inventory.dto";
 import { DispensePrescriptionDto } from "./dto/dispense-prescription.dto";
+import { UploadPharmacyDocumentDto } from "./dto/upload-pharmacy-document.dto";
 
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 import { RolesGuard } from "../../common/guards/roles.guard";
@@ -37,6 +41,26 @@ export class PharmaciesController {
     return this.pharmaciesService.getMyPharmacy(
       req.user.id,
     );
+  }
+
+  @Post(":id/verification-documents")
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.PHARMACY_STAFF)
+  @UseInterceptors(FileInterceptor("file"))
+  uploadVerificationDocument(
+    @Request() req: any,
+    @Param("id", ParseUUIDPipe) pharmacyId: string,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: UploadPharmacyDocumentDto,
+  ) {
+    return this.pharmaciesService.uploadVerificationDocument(req.user.id, pharmacyId, file, dto.type);
+  }
+
+  @Get(":id/verification-documents")
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.PHARMACY_STAFF)
+  getVerificationDocuments(@Param("id", ParseUUIDPipe) pharmacyId: string, @Request() req: any) {
+    return this.pharmaciesService.getVerificationDocuments(req.user.id, pharmacyId);
   }
 
   // =========================================================

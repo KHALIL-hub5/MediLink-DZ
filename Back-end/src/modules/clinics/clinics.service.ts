@@ -9,7 +9,10 @@ import {
   ClinicStaffRole,
   OrganizationStatus,
   Prisma,
+  UploadCategory,
   UserRole,
+  ClinicVerificationDocumentType,
+  
 } from "@prisma/client";
 
 import { PrismaService } from "../../database/prisma.service";
@@ -18,6 +21,7 @@ import { CreateClinicDto } from "./dto/create-clinic.dto";
 import { UpdateClinicDto } from "./dto/update-clinic.dto";
 import { ClinicQueryDto } from "./dto/clinic-query.dto";
 import { ReviewClinicDto } from "./dto/review-clinic.dto";
+import { UploadsService } from "../uploads/uploads.service";
 
 type Actor = {
   id: string;
@@ -26,7 +30,7 @@ type Actor = {
 
 @Injectable()
 export class ClinicsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService, private readonly uploadsService: UploadsService) {}
 
   // --------------------------------------------------
   // CREATE
@@ -97,6 +101,38 @@ export class ClinicsService {
       });
 
       return clinic;
+    });
+  }
+
+  async addVerificationDocument(
+    actor: Actor,
+    clinicId: string,
+    file: Express.Multer.File,
+    type: ClinicVerificationDocumentType,
+  ) {
+    await this.getClinicOrThrow(clinicId);
+
+    await this.assertCanManage(actor, clinicId);
+
+    const category = type === ClinicVerificationDocumentType.OPERATING_LICENSE
+      ? UploadCategory.CLINIC_LICENSE
+      : UploadCategory.CLINIC_DOCUMENT;
+    const upload = await this.uploadsService.uploadFile(file, category, actor.id);
+
+    return this.prisma.clinicVerificationDocument.create({
+      data: {
+        clinicId,
+        type,
+        fileUrl: upload.url,
+      },
+    });
+  }
+
+  async getVerificationDocuments(clinicId: string) {
+    await this.getClinicOrThrow(clinicId);
+    return this.prisma.clinicVerificationDocument.findMany({
+      where: { clinicId },
+      orderBy: { uploadedAt: "desc" },
     });
   }
 

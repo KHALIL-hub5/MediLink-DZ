@@ -86,6 +86,30 @@ enum VerificationDocumentType {
   OTHER
 }
 
+enum ClinicVerificationDocumentType {
+  OPERATING_LICENSE
+  COMMERCIAL_REGISTRATION
+  TAX_DOCUMENT
+  OWNER_IDENTITY
+  OTHER
+}
+
+enum PharmacyVerificationDocumentType {
+  OPERATING_LICENSE
+  PHARMACIST_LICENSE
+  COMMERCIAL_REGISTRATION
+  OWNER_IDENTITY
+  OTHER
+}
+
+enum PatientDocumentType {
+  LAB_RESULT
+  IMAGING
+  MEDICAL_REPORT
+  PRESCRIPTION
+  OTHER
+}
+
 enum VerificationDocumentStatus {
   PENDING
   ACCEPTED

@@ -59,7 +59,7 @@ model PharmacyVerificationDocument {
 
   pharmacyId String @map("pharmacy_id") @db.Uuid
 
-  type VerificationDocumentType
+  type PharmacyVerificationDocumentType
 
   fileUrl String @map("file_url") @db.VarChar(500)
 

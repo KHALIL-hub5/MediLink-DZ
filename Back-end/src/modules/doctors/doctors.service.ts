@@ -3,19 +3,50 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
-import { Prisma } from "@prisma/client";
+import { Prisma, UploadCategory, VerificationDocumentType } from "@prisma/client";
 
 import { PrismaService } from "../../database/prisma.service";
 
 import { CreateDoctorProfileDto } from "./dto/create-doctor-profile.dto";
 import { UpdateDoctorProfileDto } from "./dto/update-doctor-profile.dto";
 import { SearchDoctorsDto } from "./dto/search-doctors.dto";
+import { UploadsService } from "../uploads/uploads.service";
 
 @Injectable()
 export class DoctorsService {
   constructor(
     private readonly prisma: PrismaService,
+    private readonly uploadsService: UploadsService,
   ) {}
+
+  private getDoctorUploadCategory(type: VerificationDocumentType): UploadCategory {
+    switch (type) {
+      case VerificationDocumentType.MEDICAL_LICENSE:
+        return UploadCategory.DOCTOR_LICENSE;
+      case VerificationDocumentType.DIPLOMA:
+        return UploadCategory.DOCTOR_DIPLOMA;
+      default:
+        return UploadCategory.DOCTOR_DOCUMENT;
+    }
+  }
+
+  async uploadVerificationDocument(userId: string, file: Express.Multer.File, type: VerificationDocumentType) {
+    const doctor = await this.prisma.doctor.findUnique({ where: { userId } });
+    if (!doctor) throw new NotFoundException("Doctor profile not found");
+
+    const upload = await this.uploadsService.uploadFile(file, this.getDoctorUploadCategory(type), userId);
+    return this.prisma.doctorVerificationDocument.create({
+      data: { doctorId: doctor.id, type, fileUrl: upload.url },
+    });
+  }
+
+  async getMyVerificationDocuments(userId: string) {
+    const doctor = await this.prisma.doctor.findUnique({ where: { userId } });
+    if (!doctor) throw new NotFoundException("Doctor profile not found");
+    return this.prisma.doctorVerificationDocument.findMany({
+      where: { doctorId: doctor.id }, orderBy: { uploadedAt: "desc" },
+    });
+  }
 
   // =========================================================
   // CREATE MY DOCTOR PROFILE

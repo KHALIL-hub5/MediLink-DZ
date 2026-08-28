@@ -18,8 +18,9 @@ import { AvailabilityModule } from "./modules/availability/availability.module";
 import { MedicalRecordsModule } from "./modules/medical-records/medical-records.module";
 import { PrescriptionsModule } from "./modules/prescriptions/prescriptions.module";
 import { SpecialtiesModule } from "./modules/specialties/specialties.module";
-import {UploadsModule} from "./modules/uploads/uploads.module";
+import { UploadsModule } from "./modules/uploads/uploads.module";
 import { ClinicsModule } from "./modules/clinics/clinics.module";
+import { AdminModule } from "./modules/admin/admin.module";
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { ClinicsModule } from "./modules/clinics/clinics.module";
     PatientsModule,
     DoctorsModule,
     ClinicsModule,
+    AdminModule,
     SpecialtiesModule,
     AppointmentsModule,
     PrescriptionsModule,
@@ -44,9 +46,7 @@ import { ClinicsModule } from "./modules/clinics/clinics.module";
     MedicalRecordsModule,
   ],
 
-
   providers: [
-
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
@@ -56,7 +56,6 @@ import { ClinicsModule } from "./modules/clinics/clinics.module";
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-
   ],
 })
 export class AppModule {}

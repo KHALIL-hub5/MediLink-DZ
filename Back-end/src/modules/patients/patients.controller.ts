@@ -8,7 +8,10 @@ import {
   Post,
   Request,
   UseGuards,
+  UploadedFile,
+  UseInterceptors,
 } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 import { UserRole } from "@prisma/client";
 
 import { PatientsService } from "./patients.service";
@@ -23,6 +26,7 @@ import { UpdatePatientAllergyDto } from "./dto/update-patient-allergy.dto";
 
 import { AddPatientConditionDto } from "./dto/add-patient-condition.dto";
 import { UpdatePatientConditionDto } from "./dto/update-patient-condition.dto";
+import { UploadPatientDocumentDto } from "./dto/upload-patient-document.dto";
 
 @Controller("patients")
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -33,6 +37,21 @@ export class PatientsController {
   @Get("me")
   async getMyProfile(@Request() req: any) {
     return this.patientsService.getMyProfile(req.user.id);
+  }
+
+  @Post("me/documents")
+  @UseInterceptors(FileInterceptor("file"))
+  uploadDocument(
+    @Request() req: any,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: UploadPatientDocumentDto,
+  ) {
+    return this.patientsService.uploadDocument(req.user.id, file, dto);
+  }
+
+  @Get("me/documents")
+  getMyDocuments(@Request() req: any) {
+    return this.patientsService.getMyDocuments(req.user.id);
   }
 
   @Patch("me")

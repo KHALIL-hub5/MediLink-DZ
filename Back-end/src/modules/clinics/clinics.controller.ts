@@ -8,7 +8,10 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 
 import { UserRole } from "@prisma/client";
 
@@ -22,6 +25,7 @@ import { ReviewClinicDto } from "./dto/review-clinic.dto";
 import { Public } from "../auth/decorators/public.decorator";
 import { Roles } from "../auth/decorators/roles.decorator";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
+import { UploadClinicDocumentDto } from "./dto/upload-clinic-document.dto";
 
 type CurrentActor = {
   id: string;
@@ -98,6 +102,30 @@ export class ClinicsController {
     id: string,
   ) {
     return this.clinicsService.submit(user, id);
+  }
+
+  @Post(":id/verification-documents")
+  @UseInterceptors(FileInterceptor("file"))
+  addVerificationDocument(
+    @CurrentUser() user: CurrentActor,
+
+    @Param("id", ParseUUIDPipe)
+    id: string,
+
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: UploadClinicDocumentDto,
+  ) {
+    return this.clinicsService.addVerificationDocument(
+      user,
+      id,
+      file,
+      dto.type,
+    );
+  }
+
+  @Get(":id/verification-documents")
+  getVerificationDocuments(@Param("id", ParseUUIDPipe) id: string) {
+    return this.clinicsService.getVerificationDocuments(id);
   }
 
   // --------------------

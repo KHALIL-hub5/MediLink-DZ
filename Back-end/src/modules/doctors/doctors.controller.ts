@@ -9,7 +9,10 @@ import {
   Query,
   Request,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
 } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 import { UserRole } from "@prisma/client";
 
 import { DoctorsService } from "./doctors.service";
@@ -17,6 +20,7 @@ import { DoctorsService } from "./doctors.service";
 import { CreateDoctorProfileDto } from "./dto/create-doctor-profile.dto";
 import { UpdateDoctorProfileDto } from "./dto/update-doctor-profile.dto";
 import { SearchDoctorsDto } from "./dto/search-doctors.dto";
+import { UploadDoctorDocumentDto } from "./dto/upload-doctor-document.dto";
 
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 import { RolesGuard } from "../../common/guards/roles.guard";
@@ -87,6 +91,29 @@ export class DoctorsController {
       req.user.id,
       dto,
     );
+  }
+
+  @Post("me/verification-documents")
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.DOCTOR)
+  @UseInterceptors(FileInterceptor("file"))
+  uploadVerificationDocument(
+    @Request() req: any,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: UploadDoctorDocumentDto,
+  ) {
+    return this.doctorsService.uploadVerificationDocument(
+      req.user.id,
+      file,
+      dto.type,
+    );
+  }
+
+  @Get("me/verification-documents")
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.DOCTOR)
+  getMyVerificationDocuments(@Request() req: any) {
+    return this.doctorsService.getMyVerificationDocuments(req.user.id);
   }
 
   // =========================================================
