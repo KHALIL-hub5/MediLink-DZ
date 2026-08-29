@@ -21,6 +21,7 @@ import { SpecialtiesModule } from "./modules/specialties/specialties.module";
 import { UploadsModule } from "./modules/uploads/uploads.module";
 import { ClinicsModule } from "./modules/clinics/clinics.module";
 import { AdminModule } from "./modules/admin/admin.module";
+import { ChatbotModule } from "./modules/chatbot/chatbot.module";
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { AdminModule } from "./modules/admin/admin.module";
     PharmaciesModule,
     HealthModule,
     MedicalRecordsModule,
+    ChatbotModule,
   ],
 
   providers: [

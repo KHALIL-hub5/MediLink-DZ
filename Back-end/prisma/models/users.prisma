@@ -41,6 +41,7 @@ model User {
   uploadedFiles               FileUpload[]                   @relation("FileUploader")
   auditLogs                   AuditLog[]                     @relation("AuditActor")
   reviewedClinicDocuments     ClinicVerificationDocument[]   @relation("ClinicDocumentReviewer")
+  chatConversations           ChatConversation[]
 
   @@index([role, status])
   @@index([status, deletedAt])

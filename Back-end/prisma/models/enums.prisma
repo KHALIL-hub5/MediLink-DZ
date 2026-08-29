@@ -61,6 +61,17 @@ enum AppointmentStatus {
   NO_SHOW
 }
 
+enum AiProvider {
+  OPENAI
+  GEMINI
+  ANTHROPIC
+}
+
+enum ChatMessageRole {
+  USER
+  ASSISTANT
+}
+
 enum ConsultationType {
   IN_PERSON
   VIDEO
